@@ -8,6 +8,6 @@ namespace ThreeIT.SYM.DataAccess
 {
     public class Class1
     {
-        teste
+        teste 4
     }
 }
