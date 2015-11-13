@@ -8,5 +8,6 @@ namespace ThreeIT.SYM.DataAccess
 {
     public class Class1
     {
+        teste 4
     }
 }
