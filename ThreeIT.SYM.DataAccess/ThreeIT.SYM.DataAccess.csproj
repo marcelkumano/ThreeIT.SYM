@@ -45,18 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SYMContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ThreeIT.SYM.WebApi\ThreeIT.SYM.WebApi.csproj">
-      <Project>{28722d13-2380-4898-97a3-b0a24a420b07}</Project>
-      <Name>ThreeIT.SYM.WebApi</Name>
-    </ProjectReference>
+    <Compile Include="SYMConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Desktop\ThreeIT.SYM\ThreeIT.SYM.Models\ThreeIT.SYM.Models.csproj">
+      <Project>{f1b08c71-6504-475d-a2b9-41ee0be4b19e}</Project>
+      <Name>ThreeIT.SYM.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
