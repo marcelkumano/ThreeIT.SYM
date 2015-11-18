@@ -27,23 +27,23 @@
 <body ng-app="sym.pesquisa-salas">
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="sym.pesquisa-salas.navbar">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" ng-click="navbarCollapsed = !navbarCollapsed" >
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">SYM</a>
+                <a class="navbar-brand" href="#">{{navbarCollapsed}}</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div class="navbar-collapse" ng-class="navbarCollapsed ? 'collapse' : 'in'">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li class="dropdown">
+                    <li class="dropdown open" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
@@ -60,7 +60,7 @@
         </div>
     </nav>
 
-    <div class="container" ng-controller="sym.pesquisa-salas.resultado">
+    <div class="container sym-container-nopadding" ng-controller="sym.pesquisa-salas.resultado">
         <!-- PAINEL MES -->
         <div class="panel sym-panel-month {{mes.mes}}" ng-repeat="mes in items">
             <!-- PAINEL MES-HEADING -->
@@ -150,10 +150,6 @@
                 </div>
             </div>
         </div>
-
-
-       
-
     </div> <!-- /container -->
 
     <button class="sym-btn-new"></button>
@@ -162,7 +158,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../scripts/angular.js"></script>
+    <script src="../scripts/angular-animate.js"></script>
     <script src="../scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
-    <script src="../scripts/sym.index..js"></script>
+    <script src="../scripts/sym.index.js"></script>
 </body>
 </html>

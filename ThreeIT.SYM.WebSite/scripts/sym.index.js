@@ -1,6 +1,14 @@
-﻿angular.module('sym.pesquisa-salas', []);
+﻿angular.module('sym.pesquisa-salas', ['ngAnimate', 'ui.bootstrap']);
+
+angular.module('sym.pesquisa-salas').controller('sym.pesquisa-salas.navbar', function ($scope, $log) {
+
+    $scope.navbarCollapsed = true;
+
+});
 
 angular.module('sym.pesquisa-salas').controller('sym.pesquisa-salas.resultado', function ($scope, $log) {
+
+ 
 
     $scope.items = [{
         mes: "novembro", descricaoMes: "Novembro 2015", dias: [

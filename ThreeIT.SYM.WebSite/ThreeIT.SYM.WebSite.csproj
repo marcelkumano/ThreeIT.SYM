@@ -75,14 +75,12 @@
     <Content Include="content\images\rounded-plus.png" />
     <Content Include="content\images\september-1024x1024.jpg" />
     <Content Include="index.html" />
+    <Content Include="scripts\angular-animate.js" />
+    <Content Include="scripts\angular-animate.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\html5shiv.min.js" />
-    <Content Include="scripts\sym.index..js" />
-    <Content Include="scripts\jquery-1.11.3.js" />
-    <Content Include="scripts\jquery-1.11.3.min.js" />
+    <Content Include="scripts\sym.index.js" />
     <Content Include="scripts\respond.min.js" />
     <Content Include="scripts\ui-bootstrap-tpls-0.14.3.min.js" />
     <Content Include="templates\index.html" />
