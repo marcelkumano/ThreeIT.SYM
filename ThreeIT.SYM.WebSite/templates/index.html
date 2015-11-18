@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Hellow World</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../content/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="../content/css/sym.default.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="sym.pesquisa-salas">
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SYM</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container" ng-controller="sym.pesquisa-salas.resultado">
+        <!-- PAINEL MES -->
+        <div class="panel sym-panel-month {{mes.mes}}" ng-repeat="mes in items">
+            <!-- PAINEL MES-HEADING -->
+            <div class="panel-heading">
+                <h2>{{mes.descricaoMes}}</h2>
+            </div>
+            <!-- PAINEL MES-CONTENT -->
+            <div class="panel-body">
+                <!-- PAINEL DIA -->
+                <div class="panel sym-panel-day" ng-repeat="dia in mes.dias">
+                    <!-- PAINEL DIA-HEADING -->
+                    <div class="panel-heading">
+                        <h3><strong>{{dia.numeroDia}}</strong>, {{dia.diaSemana}}</h3>
+                        <hr />
+                    </div>
+                    <!-- PAINEL DIA-CONTENT -->
+                    <ul class="list-group">
+                        <li class="list-group-item sym-day-heading">
+                            <div class="row">
+                                <div class="sym-day-time">
+
+                                </div>
+                                <div class="sym-day-rooms">
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-room">
+                                            <div><strong>Missão</strong></div>
+                                            <div>6 lugares</div>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-room">
+                                            <div><strong>Missão</strong></div>
+                                            <div>6 lugares</div>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-room">
+                                            <div><strong>Missão</strong></div>
+                                            <div>6 lugares</div>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-room">
+                                            <div><strong>Missão</strong></div>
+                                            <div>6 lugares</div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item sym-day-item" ng-repeat="horario in dia.horarios">
+                            <div class="row">
+                                <div class="sym-day-time">
+                                    <span>{{horario.hora}}</span>
+                                </div>
+                                <div class="sym-day-rooms">
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-unavailable">
+                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        </button>
+                                        <button type="button" class="btn sym-btn-available">
+                                            <span class="glyphicon glyphicon-ok"></span> Agendar
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-unavailable">
+                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        </button>
+                                        <button type="button" class="btn sym-btn-available">
+                                            <span class="glyphicon glyphicon-ok"></span> Agendar
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-unavailable sym-lg">
+                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-3 sym-day-room">
+                                        <button type="button" class="btn sym-btn-available sym-lg">
+                                            <span class="glyphicon glyphicon-ok"></span> Agendar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+       
+
+    </div> <!-- /container -->
+
+    <button class="sym-btn-new"></button>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="../scripts/sym.index..js"></script>
+</body>
+</html>
