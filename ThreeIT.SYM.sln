@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeIT.SYM.WebApi", "Three
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeIT.SYM.WebSite", "ThreeIT.SYM.WebSite\ThreeIT.SYM.WebSite.csproj", "{2BFD02AA-93E7-4558-98C9-AF2472F1C5DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeIT.SYM.Models", "..\..\..\Desktop\ThreeIT.SYM\ThreeIT.SYM.Models\ThreeIT.SYM.Models.csproj", "{F1B08C71-6504-475D-A2B9-41EE0BE4B19E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeIT.SYM.Models", "ThreeIT.SYM.Models\ThreeIT.SYM.Models.csproj", "{F1B08C71-6504-475D-A2B9-41EE0BE4B19E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

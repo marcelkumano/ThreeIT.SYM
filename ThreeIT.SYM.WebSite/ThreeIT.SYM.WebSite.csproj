@@ -74,6 +74,7 @@
     <Content Include="content\images\month-background\may-1024x1024.jpg" />
     <Content Include="content\images\month-background\november-1024x1024.jpg" />
     <Content Include="content\images\month-background\october-1024x1024.jpg" />
+    <Content Include="content\images\psd\prototipo.jpg" />
     <Content Include="content\images\rounded-plus.png" />
     <Content Include="content\images\month-background\september-1024x1024.jpg" />
     <Content Include="index.html" />

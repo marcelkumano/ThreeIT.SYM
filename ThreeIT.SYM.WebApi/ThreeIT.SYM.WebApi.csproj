@@ -175,10 +175,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\ThreeIT.SYM\ThreeIT.SYM.Models\ThreeIT.SYM.Models.csproj">
-      <Project>{f1b08c71-6504-475d-a2b9-41ee0be4b19e}</Project>
-      <Name>ThreeIT.SYM.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ThreeIT.SYM.Business\ThreeIT.SYM.Business.csproj">
       <Project>{e44a07e6-8096-430c-92c8-2f9f519602a9}</Project>
       <Name>ThreeIT.SYM.Business</Name>
@@ -186,6 +182,10 @@
     <ProjectReference Include="..\ThreeIT.SYM.DataAccess\ThreeIT.SYM.DataAccess.csproj">
       <Project>{c1c4b8d6-4b05-4a58-935b-2c81ed7cd954}</Project>
       <Name>ThreeIT.SYM.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThreeIT.SYM.Models\ThreeIT.SYM.Models.csproj">
+      <Project>{f1b08c71-6504-475d-a2b9-41ee0be4b19e}</Project>
+      <Name>ThreeIT.SYM.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
