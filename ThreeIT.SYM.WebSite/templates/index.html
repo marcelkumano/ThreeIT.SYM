@@ -26,41 +26,7 @@
 
 <body ng-app="sym.pesquisa-salas">
 
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="sym.pesquisa-salas.navbar">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" ng-click="navbarCollapsed = !navbarCollapsed" >
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">{{navbarCollapsed}}</a>
-            </div>
-            <div class="navbar-collapse" ng-class="navbarCollapsed ? 'collapse' : 'in'">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="dropdown open" >
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-
-    <div class="container sym-container-nopadding" ng-controller="sym.pesquisa-salas.resultado">
+    <div class=" container sym-container-nopadding" ng-controller="sym.pesquisa-salas.resultado">
         <!-- PAINEL MES -->
         <div class="panel sym-panel-month {{mes.mes}}" ng-repeat="mes in items">
             <!-- PAINEL MES-HEADING -->
@@ -77,7 +43,7 @@
                         <hr />
                     </div>
                     <!-- PAINEL DIA-CONTENT -->
-                    <ul class="list-group">
+                    <ul class="list-group table-responsive" >
                         <li class="list-group-item sym-day-heading">
                             <div class="row">
                                 <div class="sym-day-time">
@@ -85,28 +51,28 @@
                                 </div>
                                 <div class="sym-day-rooms">
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-room">
+                                        <a class="btn sym-btn-room">
                                             <div><strong>Missão</strong></div>
                                             <div>6 lugares</div>
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-room">
+                                        <a class="btn sym-btn-room">
                                             <div><strong>Missão</strong></div>
                                             <div>6 lugares</div>
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-room">
+                                        <a class="btn sym-btn-room">
                                             <div><strong>Missão</strong></div>
                                             <div>6 lugares</div>
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-room">
+                                        <a class="btn sym-btn-room">
                                             <div><strong>Missão</strong></div>
                                             <div>6 lugares</div>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -118,28 +84,28 @@
                                 </div>
                                 <div class="sym-day-rooms">
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-unavailable">
-                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        <button type="button" class="btn sym-btn-unavailable" ng-click="open('md')">
+                                            <span class="glyphicon glyphicon-remove"></span> Reservado
                                         </button>
-                                        <button type="button" class="btn sym-btn-available">
+                                        <button type="button" class="btn sym-btn-available" ng-click="open('md')">
                                             <span class="glyphicon glyphicon-ok"></span> Agendar
                                         </button>
                                     </div>
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-unavailable">
-                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        <button type="button" class="btn sym-btn-unavailable" ng-click="open('md')">
+                                            <span class="glyphicon glyphicon-remove"></span> Reservado
                                         </button>
-                                        <button type="button" class="btn sym-btn-available">
+                                        <button type="button" class="btn sym-btn-available" ng-click="open('md')">
                                             <span class="glyphicon glyphicon-ok"></span> Agendar
                                         </button>
                                     </div>
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-unavailable sym-lg">
-                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        <button type="button" class="btn sym-btn-unavailable sym-lg" ng-click="open('md')">
+                                            <span class="glyphicon glyphicon-remove"></span> Reservado
                                         </button>
                                     </div>
                                     <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-available sym-lg">
+                                        <button type="button" class="btn sym-btn-available sym-lg" ng-click="open('md')">
                                             <span class="glyphicon glyphicon-ok"></span> Agendar
                                         </button>
                                     </div>
@@ -147,13 +113,14 @@
                             </div>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </div>
+
+        <button class="sym-btn-new" ng-click="open('md')"></button>
+
     </div> <!-- /container -->
-
-    <button class="sym-btn-new"></button>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -1,6 +1,4 @@
-﻿
-
-body {
+﻿body {
     padding-top: 70px;
 }
 
@@ -14,11 +12,9 @@ body {
     margin-left: 10px;
 }
 
-
 .sym-panel-month {
     box-shadow: none;
 }
-
 
     .sym-panel-month > .panel-heading {
         background-color: #ddd;
@@ -51,11 +47,14 @@ body {
         font-size: 24px;
     }
 
+    .sym-panel-day .table-responsive .list-group-item {
+        min-width: 420px;
+    }
+
 .sym-panel-day {
     box-shadow: none;
     border-radius: 0px;
 }
-
 
     .sym-panel-day > .panel-heading h3 {
         margin-top: 30px;
@@ -78,7 +77,6 @@ body {
     padding-bottom: 0px;
 }
 
-
 .sym-day-time {
     width: 50px;
     background-color: white;
@@ -96,8 +94,6 @@ body {
     padding-right: 2px;
 }
 
-
-
 .sym-btn-room {
     display: block;
     text-align: left;
@@ -109,6 +105,10 @@ body {
     font-size: 12px;
 }
 
+    .sym-btn-room:hover {
+        background-color: #337ab7;
+        color: white;
+    }
 
 .sym-btn-available {
     display: block;
@@ -122,10 +122,14 @@ body {
     height: 28px;
 }
 
+    .sym-btn-available:hover, .sym-btn-available:active {
+        background-color: #1a5486;
+        color: white;
+    }
+
     .sym-btn-available.sym-lg {
         height: 56px;
     }
-
 
 .sym-btn-unavailable {
     display: block;
@@ -143,11 +147,16 @@ body {
         height: 56px;
     }
 
+    .sym-btn-unavailable:hover, .sym-btn-unavailable:active {
+        background-color: #d5d5d5;
+        color: white;
+    }
+
 .sym-btn-new {
     z-index: 9999;
     border: none;
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
     background-image: url('../images/rounded-plus.png');
     background-position: center;
     background-size: 100% 100%;
