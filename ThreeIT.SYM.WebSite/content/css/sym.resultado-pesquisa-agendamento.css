@@ -30,15 +30,15 @@
     }
 
     .sym-panel-month.novembro > .panel-heading {
-        background-image: url('../images/november-1024x1024.jpg');
+        background-image: url('../images/month-background/november-1024x1024.jpg');
     }
 
     .sym-panel-month.dezembro > .panel-heading {
-        background-image: url('../images/december-1024x1024.jpg');
+        background-image: url('../images/month-background/december-1024x1024.jpg');
     }
 
     .sym-panel-month.janeiro > .panel-heading {
-        background-image: url('../images/january-1024x1024.jpg');
+        background-image: url('../images/month-background/january-1024x1024.jpg');
     }
 
     .sym-panel-month > .panel-heading h2 {

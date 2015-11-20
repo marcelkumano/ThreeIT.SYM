@@ -45,7 +45,7 @@ angular.module('sym.pesquisa-salas').controller('sym.pesquisa-salas.resultado', 
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'modalAgendamento.html',
+            templateUrl: 'modal-agendamento.html',
             controller: 'ModalInstanceCtrl',
             size: size,
             resolve: {
