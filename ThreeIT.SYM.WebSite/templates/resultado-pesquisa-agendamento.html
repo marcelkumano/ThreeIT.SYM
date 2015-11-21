@@ -43,13 +43,24 @@
                         <hr />
                     </div>
                     <!-- PAINEL DIA-CONTENT -->
-                    <ul class="list-group table-responsive" >
-                        <li class="list-group-item sym-day-heading">
-                            <div class="row">
-                                <div class="sym-day-time">
+                    <div class="panel-body">
+                        <ul class="list-group sym-list-group-time">
+                            <li class="list-group-item sym-day-heading">
+                                <div class="row">
+                                    <div class="sym-day-time">
 
+                                    </div>
                                 </div>
-                                <div class="sym-day-rooms">
+                            </li>
+                            <li class="list-group-item sym-day-time" ng-repeat="horario in dia.horarios">
+                                <div>
+                                    {{horario.hora}}
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-group table-responsive sym-list-group-room">
+                            <li class="list-group-item sym-day-heading">
+                                <div class="row">
                                     <div class="col-xs-3 sym-day-room">
                                         <a class="btn sym-btn-room">
                                             <div><strong>Missão</strong></div>
@@ -75,50 +86,33 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item sym-day-item" ng-repeat="horario in dia.horarios">
-                            <div class="row">
-                                <div class="sym-day-time">
-                                    <span>{{horario.hora}}</span>
-                                </div>
-                                <div class="sym-day-rooms">
-                                    <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-unavailable" ng-click="open('md')">
-                                            <span class="glyphicon glyphicon-remove"></span> Reservado
-                                        </button>
-                                        <button type="button" class="btn sym-btn-available" ng-click="open('md')">
-                                            <span class="glyphicon glyphicon-ok"></span> Agendar
-                                        </button>
-                                    </div>
-                                    <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-unavailable" ng-click="open('md')">
-                                            <span class="glyphicon glyphicon-remove"></span> Reservado
-                                        </button>
-                                        <button type="button" class="btn sym-btn-available" ng-click="open('md')">
-                                            <span class="glyphicon glyphicon-ok"></span> Agendar
-                                        </button>
-                                    </div>
-                                    <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-unavailable sym-lg" ng-click="open('md')">
-                                            <span class="glyphicon glyphicon-remove"></span> Reservado
-                                        </button>
-                                    </div>
-                                    <div class="col-xs-3 sym-day-room">
-                                        <button type="button" class="btn sym-btn-available sym-lg" ng-click="open('md')">
-                                            <span class="glyphicon glyphicon-ok"></span> Agendar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                            <li class="list-group-item sym-day-item" ng-repeat="horario in dia.horarios">
+                                <div class="row">
+                                    <div class="col-xs-3 sym-day-room" ng-repeat="sala in horario.salas">
 
+                                        <button type="button" class="btn" ng-class="sala.primeiroHorario == 'disponivel' ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        </button>
+
+                                        <button type="button" class="btn" ng-class="sala.segundoHorario == 'disponivel' ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                            <span class="glyphicon glyphicon-remove"></span> Agendar
+                                        </button>
+                                        
+                                        <!--<button type="button" class="btn sym-btn-available sym-lg" ng-click="open('md')">
+                                            <span class="glyphicon glyphicon-ok"></span> Agendar
+                                        </button>-->
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <button class="sym-btn-new" ng-click="open('md')"></button>
+        <!--<button class="sym-btn-new" ng-click="open('md')"></button>-->
 
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript

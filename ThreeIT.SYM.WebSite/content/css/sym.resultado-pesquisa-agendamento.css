@@ -47,6 +47,11 @@
         font-size: 24px;
     }
 
+
+.sym-panel-day .table-responsive {
+    border: none;
+}
+
     .sym-panel-day .table-responsive .list-group-item {
         min-width: 420px;
     }
@@ -67,10 +72,49 @@
         margin-bottom: 0px;
     }
 
-    .sym-panel-day .list-group-item {
-        border-bottom: 1px solid #ddd !important;
+    .sym-panel-day > .panel-heading {
+        padding: 5px;
     }
 
+    .sym-panel-day > .panel-body {
+        padding: 5px;
+    }
+
+.sym-list-group-time {
+    width: 50px;
+    float: left;
+}
+
+    .sym-list-group-time > li {
+        border-color: transparent;
+    }
+
+.sym-list-group-room {
+    margin-left: 50px;
+
+    width: 80%;
+    width: calc(100% - 50px);
+}
+
+    .sym-list-group-room > li {
+        border-top-color: black;
+        border-right-color: transparent;
+        border-bottom-color: black;
+        border-left-color: transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+    }
+
+        .sym-list-group-room > li:first-child {
+            border-top-color: transparent;
+        }
+
+
+.sym-day-heading {
+    height: 60px;
+}
 
 .sym-day-item {
     padding-top: 0px;
@@ -78,18 +122,20 @@
 }
 
 .sym-day-time {
-    width: 50px;
-    background-color: white;
-    padding-left: 10px;
-    float: left;
-    margin-top: -10px;
+    height: 58px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.sym-day-rooms {
-    margin-left: 50px;
-}
+    .sym-day-time div {
+        margin-top: -20px;
+    }
+
+
 
 .sym-day-room {
+    float: left;
+    width: 25%;
     padding-left: 2px;
     padding-right: 2px;
 }
@@ -135,7 +181,7 @@
     display: block;
     text-align: left;
     width: 100%;
-    background-color: #d5d5d5;
+    background-color: #ddd;
     border: none;
     border-radius: 0px;
     color: white;
@@ -148,7 +194,7 @@
     }
 
     .sym-btn-unavailable:hover, .sym-btn-unavailable:active {
-        background-color: #d5d5d5;
+        background-color: #ddd;
         color: white;
     }
 
