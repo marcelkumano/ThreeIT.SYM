@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="sym.pesquisa-local">
+<html lang="en" ng-app="sym.pesquisa-agendamento">
 <head>
     <title>Schedule your Meeting</title>
 
@@ -12,7 +12,7 @@
     <link href="../../content/css/sym.pesquisa-agendamento.css" rel="stylesheet" />
 
 </head>
-<body ng-controller="sym.pesquisa-salas.resultado">
+<body>
 
     <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -57,11 +57,11 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="sym-panel-basic">
+        <div class="sym-panel-basic" ng-controller="sym.pesquisa-agendamento.contador-pessoas">
             Pessoas
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            {val}
-            <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-plus-sign sym-glyphicon-button" aria-hidden="true" ng-click="aumentar()"></span>
+            {{contador}}
+            <span class="glyphicon glyphicon-minus-sign sym-glyphicon-button" aria-hidden="true" ng-click="diminuir()"></span>
         </div>
         <div class="sym-panel-basic">
             Quando?
@@ -77,11 +77,11 @@
                 </span>
             </span>
         </div>
-        <div class="sym-panel-basic">
+        <div class="sym-panel-basic" ng-controller="sym.pesquisa-agendamento.lista-local">
             Onde?
             <span class="input-group col-lg-12 col-xs-12 col-md-12">
-                <span class="col-xs-12 col-md-4 col-sm-3">
-                    <input type="radio" name="rdbLocal"> Consolação
+                <span class="col-xs-12 col-md-4 col-sm-3" ng-repeat="un in lista">
+                    <input type="radio" name="rdbLocal" value="{{un.id}}"> {{un.local}}
                 </span>
                 <span class="col-xs-12 col-md-4 col-sm-3">
                     <input type="radio" name="rdbLocal"> JB
@@ -97,8 +97,6 @@
         </div>
     </div>
     
-
-
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../scripts/angular.js"></script>
     <script src="../../scripts/angular-animate.js"></script>
