@@ -77,30 +77,33 @@
                 </span>
             </span>
         </div>
+
         <div class="sym-panel-basic" ng-controller="sym.pesquisa-agendamento.lista-local">
             Onde?
             <span class="input-group col-lg-12 col-xs-12 col-md-12">
-                <span class="col-xs-12 col-md-4 col-sm-3" ng-repeat="un in lista">
-                    <input type="radio" name="rdbLocal" value="{{un.id}}"> {{un.local}}
+                <span class="col-xs-12 col-md-4 col-sm-3 animate-repeat" ng-repeat="un in lista">
+                    <input type="radio" name="rdbLocal" value="{{un.id}}" > {{un.local}}
                 </span>
-                <span class="col-xs-12 col-md-4 col-sm-3">
-                    <input type="radio" name="rdbLocal"> JB
+                <span class="col-xs-12 col-md-4 col-sm-3 animate-repeat" ng-if="lista.length == 0">
+                    Nenhum Local encontrado.
                 </span>
             </span>
         </div>
         <div class="panel-body">
             Procure a sua sala de reunião ideal através do número de pessoas e local.
         </div>
-        <div class="sym-panel-body">
+        <div class="sym-panel-body" ng-click="">
             PROCURAR SALAS
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </div>
     </div>
     
+
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../scripts/angular.js"></script>
     <script src="../../scripts/angular-animate.js"></script>
     <script src="../../scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
     <script src="../controllers/sym.pesquisa-agendamento.js"></script>
+   
 </body>
 </html>
