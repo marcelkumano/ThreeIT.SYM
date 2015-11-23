@@ -3,10 +3,21 @@
 }
 
 .sym-panel-basic {
+    padding: 15px;
     background-color: #06a047;
     color:#ffffff;
+    box-shadow: none;  
 }
 
+.sym-panel-body {
+    color: #1a5486;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.8;
+    padding: 15px;
+    box-shadow:inset;
+    cursor:pointer;  
+}
 
 
 
