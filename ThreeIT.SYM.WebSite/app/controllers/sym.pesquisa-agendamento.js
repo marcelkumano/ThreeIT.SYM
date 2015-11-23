@@ -33,3 +33,12 @@ angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.
     }
 );
 
+
+angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.filtrar-salas',
+    function ($scope, $window, $http) {
+        $scope.filtrar = function()
+        {
+            
+        }
+    }
+);
