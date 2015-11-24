@@ -6,6 +6,10 @@
         Onde: {{params.onde}}
     </p>
 
+    <h3>
+        Agende a sua reunião!
+    </h3>
+
     <!-- PAINEL MES -->
     <div class="panel sym-panel-month {{mes.mes}}" ng-repeat="mes in items">
         <!-- PAINEL MES-HEADING -->
@@ -53,15 +57,15 @@
                                 <div class="col-xs-3 sym-day-room" ng-repeat="sala in dia.salas">
                                     <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
                                         <span class="glyphicon" ng-class="detalheSala(sala, hora).primeiroLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
-                                        {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservar' }}
+                                        {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservado' }}
                                     </button>
                                     <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).segundoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
                                         <span class="glyphicon" ng-class="detalheSala(sala, hora).segundoLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
-                                        {{detalheSala(sala, hora).segundoLivre ? 'Agendar' : 'Reservar' }}
+                                        {{detalheSala(sala, hora).segundoLivre ? 'Agendar' : 'Reservado' }}
                                     </button>
                                     <button type="button" class="btn sym-lg" ng-show="!detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
                                         <span class="glyphicon" ng-class="detalheSala(sala, hora).primeiroLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
-                                        {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservar' }}
+                                        {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservado' }}
                                     </button>
                                 </div>
                             </div>

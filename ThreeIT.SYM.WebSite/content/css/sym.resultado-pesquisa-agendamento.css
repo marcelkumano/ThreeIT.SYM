@@ -77,8 +77,6 @@
         background-image: url('../images/month-background/december-1024x1024.jpg');
     }
 
-
-
     .sym-panel-month > .panel-heading h2 {
         margin-top: 4px;
         margin-bottom: 30px;
@@ -170,8 +168,6 @@
         margin-top: -18px;
     }
 
-
-
 .sym-day-room {
     float: left;
     width: 25%;
@@ -191,7 +187,7 @@
 }
 
     .sym-btn-room:hover {
-        background-color: #337ab7;
+        background-color: #1a5486;
         color: white;
     }
 
@@ -251,8 +247,6 @@
     bottom: 10px;
     right: 10px;
 }
-
-
 
 .slideUp {
     position: absolute;
