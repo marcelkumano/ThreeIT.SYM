@@ -1,6 +1,4 @@
-﻿angular.module('sym.pesquisa-agendamento', ['ngAnimate', 'ui.bootstrap']);
-
-angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.contador-pessoas',
+﻿pesquisaAgendamentoControllers.controller('sym.pesquisa-agendamento.contador-pessoas',
     function ($scope, $timeout) {
 
         $scope.contador = 0;
@@ -18,7 +16,7 @@ angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.
 );
 
 
-angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.lista-local',
+pesquisaAgendamentoControllers.controller('sym.pesquisa-agendamento.lista-local',
     function ($scope, $window, $http) {
         //$http.get('http://localhost/sym.pesquisa-agendamento').success(function(data){
         //    $scope.lista = data;
@@ -33,7 +31,7 @@ angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.
 );
 
 
-angular.module('sym.pesquisa-agendamento').controller('sym.pesquisa-agendamento.filtrar-salas',
+pesquisaAgendamentoControllers.controller('sym.pesquisa-agendamento.filtrar-salas',
     function ($scope, $window, $http) {
         $scope.filtrar = function () {
 

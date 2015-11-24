@@ -1,0 +1,78 @@
+﻿<div class=" container sym-container-nopadding">
+
+    <!--<p>
+        Pessoas: {{params.lugares}}
+        Quando: {{params.quando}}
+        Onde: {{params.onde}}
+    </p>-->
+
+    <h3>
+        Agende a sua reunião!
+    </h3>
+
+    <!-- PAINEL MES -->
+    <div class="panel sym-panel-month {{mes.mes}}" ng-repeat="mes in items">
+        <!-- PAINEL MES-HEADING -->
+        <div class="panel-heading">
+            <h2>{{mes.descricaoMes}}</h2>
+        </div>
+        <!-- PAINEL MES-CONTENT -->
+        <div class="panel-body">
+            <!-- PAINEL DIA -->
+            <div class="panel sym-panel-day" ng-repeat="dia in mes.dias">
+                <!-- PAINEL DIA-HEADING -->
+                <div class="panel-heading">
+                    <h3><strong>{{dia.numeroDia}}</strong>, {{dia.diaSemana}}</h3>
+                    <hr />
+                </div>
+                <!-- PAINEL DIA-CONTENT -->
+                <div class="panel-body">
+                    <ul class="list-group sym-list-group-time">
+                        <li class="list-group-item sym-day-heading">
+                            <div class="row">
+                                <div class="sym-day-time">
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item sym-day-time" ng-repeat="hora in horarioComercial(dia)">
+                            <div>
+                                {{hora}}:00
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-group table-responsive sym-list-group-room">
+                        <li class="list-group-item sym-day-heading">
+                            <div class="row">
+                                <div class="col-xs-3 sym-day-room" ng-repeat="sala in dia.salas">
+                                    <a class="btn sym-btn-room">
+                                        <div><strong>{{sala.nomeSala}}</strong></div>
+                                        <div>{{sala.quantidadeLugares}} lugares</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item sym-day-item" ng-repeat="hora in horarioComercial(dia)">
+                            <div class="row">
+                                <div class="col-xs-3 sym-day-room" ng-repeat="sala in dia.salas">
+                                    <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                        <span class="glyphicon" ng-class="detalheSala(sala, hora).primeiroLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+                                        {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservado' }}
+                                    </button>
+                                    <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).segundoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                        <span class="glyphicon" ng-class="detalheSala(sala, hora).segundoLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+                                        {{detalheSala(sala, hora).segundoLivre ? 'Agendar' : 'Reservado' }}
+                                    </button>
+                                    <button type="button" class="btn sym-lg" ng-show="!detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                        <span class="glyphicon" ng-class="detalheSala(sala, hora).primeiroLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+                                        {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservado' }}
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->

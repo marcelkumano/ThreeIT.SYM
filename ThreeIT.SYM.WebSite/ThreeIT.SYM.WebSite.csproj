@@ -58,11 +58,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\controllers\sym.pesquisa-agendamento.js" />
+    <Content Include="app\controllers\sym.pesquisaAgendamento.filtrosController.js" />
+    <Content Include="app\controllers\sym.pesquisaAgendamento.js" />
+    <Content Include="app\controllers\sym.pesquisaAgendamento.resultadoController.js" />
+    <Content Include="app\views\index.html" />
+    <Content Include="app\views\sym.resultado-pesquisa-agendamento.html" />
+    <Content Include="app\views\servico-resultado-pesquisa.txt" />
     <Content Include="app\views\sym.pesquisa-agendamento.html" />
+    <Content Include="app\views\sym.pesquisa-agendamento-bkp.html" />
     <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\bootstrap.min.css" />
+    <Content Include="content\css\sym.pesquisa-agendamento.css" />
     <Content Include="content\css\sym.resultado-pesquisa-agendamento.css" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="content\images\dog-background.jpg" />
     <Content Include="content\images\month-background\april-1024x1024.jpg" />
     <Content Include="content\images\month-background\august-1024x1024.jpg" />
     <Content Include="content\images\bem-vindo-logo.png" />

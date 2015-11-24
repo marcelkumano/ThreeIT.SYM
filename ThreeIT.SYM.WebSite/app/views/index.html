@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>SYM - Schedule Your Meeting</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../content/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="../../content/css/sym.pesquisa-agendamento.css" rel="stylesheet" />
+    <link href="../../content/css/sym.resultado-pesquisa-agendamento.css" rel="stylesheet" />
+
+</head>
+
+<body ng-app="sym.pesquisaAgendamento">
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div ng-view class="slideUp">
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../scripts/angular.min.js"></script>
+    <script src="../../scripts/angular-route.min.js"></script>
+    <script src="../../scripts/angular-animate.min.js"></script>
+    <script src="../../scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+
+    <!--    CUSTOM SCRIPTS      -->
+    <script src="../controllers/sym.pesquisaAgendamento.js"></script>
+    <script src="../controllers/sym.pesquisaAgendamento.filtrosController.js"></script>
+    <script src="../controllers/sym.pesquisaAgendamento.resultadoController.js"></script>
+</body>
+</html>
