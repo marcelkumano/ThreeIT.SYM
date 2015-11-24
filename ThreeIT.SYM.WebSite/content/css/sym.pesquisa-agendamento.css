@@ -1,0 +1,191 @@
+﻿body {
+    padding-top: 70px;
+}
+
+.sym-panel-basic {
+    padding: 15px;
+    background-color: #06a047;
+    color:#ffffff;
+    box-shadow: none;  
+}
+
+.sym-panel-body {
+    color: #1a5486;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.8;
+    padding: 15px;
+    box-shadow:inset;
+    cursor:pointer;  
+}
+
+.sym-glyphicon-button {
+    cursor:pointer;
+}
+
+
+
+
+.sym-container-nopadding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.navbar-toggle {
+    float: left;
+    margin-left: 10px;
+}
+
+.sym-panel-month {
+    box-shadow: none;
+}
+
+    .sym-panel-month > .panel-heading {
+        background-color: #ddd;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position-y: 45%;
+    }
+
+    .sym-panel-month > .panel-body {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .sym-panel-month.novembro > .panel-heading {
+        background-image: url('../images/month-background/november-1024x1024.jpg');
+    }
+
+    .sym-panel-month.dezembro > .panel-heading {
+        background-image: url('../images/month-background/december-1024x1024.jpg');
+    }
+
+    .sym-panel-month.janeiro > .panel-heading {
+        background-image: url('../images/month-background/january-1024x1024.jpg');
+    }
+
+    .sym-panel-month > .panel-heading h2 {
+        margin-top: 4px;
+        margin-bottom: 30px;
+        font-size: 24px;
+    }
+
+    .sym-panel-day .table-responsive .list-group-item {
+        min-width: 420px;
+    }
+
+.sym-panel-day {
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+    .sym-panel-day > .panel-heading h3 {
+        margin-top: 30px;
+        margin-bottom: 0px;
+        font-size: 22px;
+    }
+
+    .sym-panel-day > .panel-heading hr {
+        margin-top: 2px;
+        margin-bottom: 0px;
+    }
+
+    .sym-panel-day .list-group-item {
+        border-bottom: 1px solid #ddd !important;
+    }
+
+
+.sym-day-item {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.sym-day-time {
+    width: 50px;
+    background-color: white;
+    padding-left: 10px;
+    float: left;
+    margin-top: -10px;
+}
+
+.sym-day-rooms {
+    margin-left: 50px;
+}
+
+.sym-day-room {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.sym-btn-room {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background-color: #337ab7;
+    border: none;
+    border-radius: 0px;
+    color: white;
+    font-size: 12px;
+}
+
+    .sym-btn-room:hover {
+        background-color: #337ab7;
+        color: white;
+    }
+
+.sym-btn-available {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background-color: #337ab7;
+    border: none;
+    border-radius: 0px;
+    color: white;
+    font-size: 11px;
+    height: 28px;
+}
+
+    .sym-btn-available:hover, .sym-btn-available:active {
+        background-color: #1a5486;
+        color: white;
+    }
+
+    .sym-btn-available.sym-lg {
+        height: 56px;
+    }
+
+.sym-btn-unavailable {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background-color: #d5d5d5;
+    border: none;
+    border-radius: 0px;
+    color: white;
+    font-size: 11px;
+    height: 28px;
+}
+
+    .sym-btn-unavailable.sym-lg {
+        height: 56px;
+    }
+
+    .sym-btn-unavailable:hover, .sym-btn-unavailable:active {
+        background-color: #d5d5d5;
+        color: white;
+    }
+
+.sym-btn-new {
+    z-index: 9999;
+    border: none;
+    height: 50px;
+    width: 50px;
+    background-image: url('../images/rounded-plus.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-color: transparent;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}

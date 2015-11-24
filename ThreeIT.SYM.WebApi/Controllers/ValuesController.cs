@@ -12,12 +12,11 @@ namespace ThreeIT.SYM.WebApi.Controllers
 {
     public class ValuesController : ApiController
     {
-        private SYMContext db = new SYMContext();
+        
 
         // GET api/values
         public IEnumerable<string> Get()
         {
-            var Status = db.StatusReservaSala.Count();
 
             return new string[] { "value1", "value2" };
         }

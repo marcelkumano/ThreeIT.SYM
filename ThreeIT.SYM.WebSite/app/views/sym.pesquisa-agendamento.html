@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="sym.pesquisa-local">
+<html lang="en" ng-app="sym.pesquisa-agendamento">
 <head>
     <title>Schedule your Meeting</title>
 
@@ -12,7 +12,7 @@
     <link href="../../content/css/sym.pesquisa-agendamento.css" rel="stylesheet" />
 
 </head>
-<body ng-controller="sym.pesquisa-salas.resultado">
+<body>
 
     <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -56,14 +56,14 @@
         </div>
     </div>
 
-    <div class="panel sym-panel-basic col-lg-12 col-xs-11 col-md-11">
-        <div class="panel-body">
+    <div class="panel panel-default">
+        <div class="sym-panel-basic" ng-controller="sym.pesquisa-agendamento.contador-pessoas">
             Pessoas
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            {val}
-            <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-plus-sign sym-glyphicon-button" aria-hidden="true" ng-click="aumentar()"></span>
+            {{contador}}
+            <span class="glyphicon glyphicon-minus-sign sym-glyphicon-button" aria-hidden="true" ng-click="diminuir()"></span>
         </div>
-        <div class="panel-body">
+        <div class="sym-panel-basic">
             Quando?
             <span class="input-group col-lg-12 col-xs-12 col-md-12">
                 <span class="col-xs-7 col-md-4 col-sm-3">
@@ -77,23 +77,33 @@
                 </span>
             </span>
         </div>
-        <div class="panel-body">
+
+        <div class="sym-panel-basic" ng-controller="sym.pesquisa-agendamento.lista-local">
             Onde?
             <span class="input-group col-lg-12 col-xs-12 col-md-12">
-                <span class="col-xs-12 col-md-4 col-sm-3">
-                    <input type="radio" name="rdbQuando"> Consolação
+                <span class="col-xs-12 col-md-4 col-sm-3 animate-repeat" ng-repeat="un in lista">
+                    <input type="radio" name="rdbLocal" value="{{un.id}}" > {{un.local}}
                 </span>
-                <span class="col-xs-12 col-md-4 col-sm-3">
-                    <input type="radio" name="rdbQuando"> JB
+                <span class="col-xs-12 col-md-4 col-sm-3 animate-repeat" ng-if="lista.length == 0">
+                    Nenhum Local encontrado.
                 </span>
             </span>
         </div>
+        <div class="panel-body">
+            Procure a sua sala de reunião ideal através do número de pessoas e local.
+        </div>
+        <div class="sym-panel-body" ng-controller="sym.pesquisa-agendamento.filtrar-salas" ng-click="filtrar()">
+            PROCURAR SALAS
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </div>
     </div>
+    
 
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="../../scripts/angular.js"></script>
-        <script src="../../scripts/angular-animate.js"></script>
-        <script src="../../scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
-        <script src="../controllers/sym.pesquisa-agendamento.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../scripts/angular.js"></script>
+    <script src="../../scripts/angular-animate.js"></script>
+    <script src="../../scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="../controllers/sym.pesquisa-agendamento.js"></script>
+   
 </body>
 </html>

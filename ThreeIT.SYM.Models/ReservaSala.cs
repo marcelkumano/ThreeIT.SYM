@@ -19,12 +19,8 @@ namespace ThreeIT.SYM.Models
         [ForeignKey("StatusReservaSala")]
         public int CodigoStatusReservaSala { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataHoraFinal { get; set; }
 
         public string DescricaoAgendamento { get; set; }
