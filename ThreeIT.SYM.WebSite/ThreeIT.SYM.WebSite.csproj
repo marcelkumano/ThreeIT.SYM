@@ -61,7 +61,6 @@
     <Content Include="app\views\sym.pesquisa-agendamento.html" />
     <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\bootstrap.min.css" />
-    <Content Include="content\css\sym.pesquisa-agendamento.css" />
     <Content Include="content\css\sym.resultado-pesquisa-agendamento.css" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="content\images\month-background\april-1024x1024.jpg" />
@@ -83,12 +82,17 @@
     <Content Include="index.html" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="scripts\angular-animate.min.js" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\html5shiv.min.js" />
-    <Content Include="scripts\sym.resultado-pesquisa-agendamento.js" />
+    <Content Include="scripts\sym.pesquisaAgendamento.filtrosController.js" />
+    <Content Include="scripts\sym.pesquisaAgendamento.resultadoController.js" />
     <Content Include="scripts\respond.min.js" />
     <Content Include="scripts\ui-bootstrap-tpls-0.14.3.min.js" />
+    <Content Include="templates\pesquisa-agendamento.html" />
+    <Content Include="templates\index.html" />
     <Content Include="templates\resultado-pesquisa-agendamento.html" />
     <Content Include="templates\modal-agendamento.html" />
     <Content Include="Web.config" />
@@ -101,6 +105,9 @@
     <Content Include="content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="scripts\sym.pesquisaAgendamento.js" />
+    <Content Include="templates\servico-resultado-pesquisa.txt" />
+    <Content Include="templates\servico-resultado-pesquisa.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -132,6 +139,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties templates_2servico-resultado-pesquisa_1json__JSONSchema="http://json-schema.org/address" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

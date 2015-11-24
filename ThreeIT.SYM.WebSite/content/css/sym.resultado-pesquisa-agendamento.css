@@ -29,6 +29,46 @@
         padding-right: 0px;
     }
 
+    .sym-panel-month.janeiro > .panel-heading {
+        background-image: url('../images/month-background/january-1024x1024.jpg');
+    }
+
+    .sym-panel-month.fevereiro > .panel-heading {
+        background-image: url('../images/month-background/february-1024x1024.jpg');
+    }
+
+    .sym-panel-month.marco > .panel-heading {
+        background-image: url('../images/month-background/march-1024x1024.jpg');
+    }
+
+    .sym-panel-month.abril > .panel-heading {
+        background-image: url('../images/month-background/april-1024x1024.jpg');
+    }
+
+    .sym-panel-month.maio > .panel-heading {
+        background-image: url('../images/month-background/may-1024x1024.jpg');
+    }
+
+    .sym-panel-month.junho > .panel-heading {
+        background-image: url('../images/month-background/june-1024x1024.jpg');
+    }
+
+    .sym-panel-month.julho > .panel-heading {
+        background-image: url('../images/month-background/july-1024x1024.jpg');
+    }
+
+    .sym-panel-month.agosto > .panel-heading {
+        background-image: url('../images/month-background/august-1024x1024.jpg');
+    }
+
+    .sym-panel-month.setembro > .panel-heading {
+        background-image: url('../images/month-background/september-1024x1024.jpg');
+    }
+
+    .sym-panel-month.outubro > .panel-heading {
+        background-image: url('../images/month-background/october-1024x1024.jpg');
+    }
+
     .sym-panel-month.novembro > .panel-heading {
         background-image: url('../images/month-background/november-1024x1024.jpg');
     }
@@ -37,9 +77,7 @@
         background-image: url('../images/month-background/december-1024x1024.jpg');
     }
 
-    .sym-panel-month.janeiro > .panel-heading {
-        background-image: url('../images/month-background/january-1024x1024.jpg');
-    }
+
 
     .sym-panel-month > .panel-heading h2 {
         margin-top: 4px;
@@ -81,7 +119,7 @@
     }
 
 .sym-list-group-time {
-    width: 50px;
+    width: 40px;
     float: left;
 }
 
@@ -90,16 +128,15 @@
     }
 
 .sym-list-group-room {
-    margin-left: 50px;
-
+    margin-left: 40px;
     width: 80%;
     width: calc(100% - 50px);
 }
 
     .sym-list-group-room > li {
-        border-top-color: black;
+        border-top-color: #175992;
         border-right-color: transparent;
-        border-bottom-color: black;
+        border-bottom-color: #175992;
         border-left-color: transparent;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
@@ -128,7 +165,9 @@
 }
 
     .sym-day-time div {
-        margin-top: -20px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: -18px;
     }
 
 
@@ -144,7 +183,7 @@
     display: block;
     text-align: left;
     width: 100%;
-    background-color: #337ab7;
+    background-color: #1a5486;
     border: none;
     border-radius: 0px;
     color: white;
@@ -187,6 +226,7 @@
     color: white;
     font-size: 11px;
     height: 28px;
+    cursor: default;
 }
 
     .sym-btn-unavailable.sym-lg {
@@ -211,3 +251,41 @@
     bottom: 10px;
     right: 10px;
 }
+
+
+
+.slideUp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+    .slideUp.ng-enter,
+    .slideUp.ng-leave {
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+
+    .slideUp.ng-enter {
+        opacity: 0;
+        cursor: wait;
+        /*left: 100%;*/
+    }
+
+    .slideUp.ng-enter-active {
+        opacity: 1;
+        /*left: 0;*/
+    }
+
+    .slideUp.ng-leave {
+        opacity: 1;
+        /*left: 0;*/
+    }
+
+    .slideUp.ng-leave-active {
+        opacity: 0;
+        cursor: wait;
+        /*left: -100%;*/
+    }
