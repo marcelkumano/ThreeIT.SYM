@@ -117,6 +117,7 @@
     <Content Include="scripts\sym.pesquisaAgendamento.js" />
     <Content Include="templates\servico-resultado-pesquisa.txt" />
     <Content Include="templates\servico-resultado-pesquisa.json" />
+    <None Include="Properties\PublishProfiles\default.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

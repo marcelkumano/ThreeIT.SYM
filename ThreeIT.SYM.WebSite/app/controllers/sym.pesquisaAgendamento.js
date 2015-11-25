@@ -13,7 +13,7 @@ pesquisaAgendamento.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
         when('/pesquisa/:lugares/:quando/:onde', {
-            templateUrl: 'resultado-pesquisa-agendamento.html',
+            templateUrl: 'sym.resultado-pesquisa-agendamento.html',
             controller: 'sym.pesquisaAgendamento.resultadoController'
         }).
         when('/', {
