@@ -22,16 +22,16 @@
                 </div>
                 <div class="col-xs-12 col-sm-8">
                     <div class="input-group">
-                        <input type="radio" name="rdbQuando" ng-model="quando" value="1">
-                        <span>Hoje</span>
+                        <input type="radio" id="rdbQuando1" name="rdbQuando" ng-model="quando" value="1">
+                        <label for="rdbQuando1" class="sym-label-for">Hoje</label>
                     </div>
                     <div class="input-group">
-                        <input type="radio" name="rdbQuando" ng-model="quando" value="2">
-                        <span>Essa Semana</span>
+                        <input type="radio" id="rdbQuando2" name="rdbQuando" ng-model="quando" value="2">
+                        <label for="rdbQuando2" class="sym-label-for">Essa Semana</label>
                     </div>
                     <div class="input-group">
-                        <input type="radio" name="rdbQuando" ng-model="quando" value="3">
-                        <span>Esse Mês</span>
+                        <input type="radio" id="rdbQuando3" name="rdbQuando" ng-model="quando" value="3">
+                        <label for="rdbQuando3" class="sym-label-for">Esse Mês</label>
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-8">
                     <div class="input-group" ng-repeat="un in lista">
-                        <input type="radio" name="rdbOnde" ng-model="$parent.uni" ng-value="un.CodigoUnidade">
-                        <span>{{un.NomeUnidade}}</span>
+                        <input type="radio" id="{{un.CodigoUnidade}}" name="rdbOnde" ng-model="$parent.uni" ng-value="un.CodigoUnidade">
+                        <label for="{{un.CodigoUnidade}}" class="sym-label-for">{{un.NomeUnidade}}</label>
                     </div>
                     <span ng-if="lista.length == 0">
                         Nenhum Local encontrado

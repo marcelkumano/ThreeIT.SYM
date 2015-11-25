@@ -26,8 +26,8 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.filtrosContro
         //Subtrai pessoas na sala
         $scope.diminuir = function () {
             $timeout($scope.contador--, 1000);
-            if ($scope.contador < 0) {
-                $scope.contador = 0;
+            if ($scope.contador < 2) {
+                $scope.contador = 2;
             }
             
         }
