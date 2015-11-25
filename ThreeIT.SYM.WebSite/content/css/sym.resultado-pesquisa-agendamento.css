@@ -204,11 +204,9 @@
     color: white;
     font-size: 11px;
     height: 28px;
-
 }
 
     .sym-btn-available:hover, .sym-btn-available:active {
-
         background-color: #2668a1;
         border-left: 10px solid #2668a1;
         color: white;
@@ -255,18 +253,38 @@
     right: 10px;
 }
 
-.slideUp {
-    /*position: absolute;
+
+.loader {
+    z-index: 99999;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;*/
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.90);
+    color: #337ab7;
+
+    font-size: 20px;
+    text-align: center;
+
+    padding-top: 200px;
+    
+}
+
+
+
+.slideUp {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    height: 100%;
 }
 
     .slideUp.ng-enter,
     .slideUp.ng-leave {
-        -webkit-transition: all 1s ease;
-        transition: all 1s ease;
+        -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
     }
 
     .slideUp.ng-enter {

@@ -4,7 +4,7 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
 
     $scope.params = $routeParams;
 
-    $http.get('/sym/app/views/servico-resultado-pesquisa.txt')
+    $http.get('http://localhost:52554/sym/services/api/salasreservadas?qtdpessoas=4&idunidade=1&rangedata=2')
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
     },

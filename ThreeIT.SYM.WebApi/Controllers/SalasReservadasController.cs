@@ -32,17 +32,17 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             SalasAgendadas Agendamento = new SalasAgendadas();
 
-            Agendamento.Meses = new List<Meses>();
+            Agendamento.meses = new List<Meses>();
 
             Meses _Meses = new Meses();
             _Meses.numeroMes = DateTime.Today.Month;
             _Meses.mes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
             _Meses.descricaoMes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month) + " " + DateTime.Today.Year;
 
-            Agendamento.Meses.Add(_Meses);
+            Agendamento.meses.Add(_Meses);
 
 
-            Agendamento.Meses[0].dias = new List<Dias>();
+            Agendamento.meses[0].dias = new List<Dias>();
 
             Dias _Dias = new Dias();
             _Dias.diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
@@ -71,7 +71,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
                 _Dias.salas.Add(_Sala);
             }
-            Agendamento.Meses[0].dias.Add(_Dias);
+            Agendamento.meses[0].dias.Add(_Dias);
 
 
             return Agendamento;

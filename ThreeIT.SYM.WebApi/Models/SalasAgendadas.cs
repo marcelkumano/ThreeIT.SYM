@@ -7,7 +7,7 @@ namespace ThreeIT.SYM.WebApi.Models
 {
     public class SalasAgendadas
     {
-        public List<Meses> Meses { get; set; }
+        public List<Meses> meses { get; set; }
     }
 
     public class Meses
