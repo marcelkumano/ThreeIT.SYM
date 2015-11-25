@@ -5,10 +5,10 @@
         </div>
     </div>
 </div>
-<div class="container" ng-controller="sym.pesquisa-agendamento.filtrar-salas">
+<div class="container" ng-controller="sym.pesquisaAgendamento.filtrosController">
     <div class="panel panel-default" style="max-width: 800px; margin-left: auto; margin-right: auto">
         <div class="panel-body sym-panel-basic">
-            <div class="row" ng-controller="sym.pesquisa-agendamento.contador-pessoas">
+            <div class="row">
                 <div class="col-xs-12">
                     <span class="sym-input-label">Pessoas</span>
                     <span class="glyphicon glyphicon-minus-sign sym-glyphicon-button" ng-click="diminuir()"></span>
@@ -22,26 +22,26 @@
                 </div>
                 <div class="col-xs-12 col-sm-8">
                     <div class="input-group">
-                        <input type="radio" name="rdbQuando">
+                        <input type="radio" name="rdbQuando" ng-model="quando" value="1">
                         <span>Hoje</span>
                     </div>
                     <div class="input-group">
-                        <input type="radio" name="rdbQuando">
+                        <input type="radio" name="rdbQuando" ng-model="quando" value="2">
                         <span>Essa Semana</span>
                     </div>
                     <div class="input-group">
-                        <input type="radio" name="rdbQuando">
+                        <input type="radio" name="rdbQuando" ng-model="quando" value="3">
                         <span>Esse Mês</span>
                     </div>
                 </div>
             </div>
-            <div class="row" ng-controller="sym.pesquisa-agendamento.lista-local">
+            <div class="row">
                 <div class="col-xs-12">
                     <span class="sym-input-label">Onde?</span>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                     <div class="input-group" ng-repeat="un in lista">
-                        <input type="radio" name="rdbLocal" value="{{un.CodigoUnidade}}">
+                        <input type="radio" name="rdbOnde" ng-model="$parent.uni" ng-value="un.CodigoUnidade">
                         <span>{{un.NomeUnidade}}</span>
                     </div>
                     <span ng-if="lista.length == 0">
@@ -54,7 +54,7 @@
             Procure a sua sala de reunião ideal através do número de pessoas e local
         </div>
         <div class="panel-body sym-panel-footer">
-            <a class="sym-botao-pesquisar" ng-click="filtrar()">
+            <a class="sym-botao-pesquisar" ng-href="#pesquisa/{{contador}}/{{quando}}/{{uni}}">
                 PROCURAR SALAS
             </a>
         </div>

@@ -1,7 +1,22 @@
-﻿pesquisaAgendamentoControllers.controller('sym.pesquisa-agendamento.contador-pessoas',
-    function ($scope, $timeout) {
+﻿/* Controllers */
 
-        $scope.contador = 0;
+pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.filtrosController',
+    function ($scope, $timeout, $http) {
+
+        //Inicia controles
+        $scope.contador = 5;
+        $scope.quando = 01;
+        $scope.uni = 01;
+
+        //Pesquisa Unidades
+        $http.get('/sym/app/views/servico-pesquisa-local.txt')
+        .then(function successCallback(response) {
+            $scope.lista = response.data.ListaUnidades;
+        },
+        function errorCallback(response) {
+            alert(response.status + ' - ' + response.statusText);
+        });
+
 
         //Aumenta pessoas na sala
         $scope.aumentar = function () {
@@ -15,35 +30,6 @@
                 $scope.contador = 0;
             }
             
-        }
-    }
-);
-
-
-pesquisaAgendamentoControllers.controller('sym.pesquisa-agendamento.lista-local',
-    function ($scope, $window, $http) {
-
-        $http.get('/sym/app/views/servico-pesquisa-local.txt')
-        .then(function successCallback(response) {
-            $scope.lista = response.data.ListaUnidades;
-        },
-        function errorCallback(response) {
-            alert(response.status + ' - ' + response.statusText);
-        });
-    }
-);
-
-
-pesquisaAgendamentoControllers.controller('sym.pesquisa-agendamento.filtrar-salas',
-    function ($scope, $location) {
-        $scope.filtrar = function (cont) {
-            
-            //Validar obrigatoriedade dos campos
-            $scope.contador;
-            
-            cont;
-            url = 'pesquisa/4/semana/consolacao';
-            $location.path(url);
         }
     }
 );
