@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-/*    App Module     */
+/*    App Module   */
 
 var pesquisaAgendamento = angular.module('sym.pesquisaAgendamento', [
   'ngRoute',

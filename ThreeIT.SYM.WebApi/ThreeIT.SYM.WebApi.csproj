@@ -191,7 +191,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\default.pubxml" />
+    <None Include="Properties\PublishProfiles\threeit.com.br - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,7 +4,7 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
 
     $scope.params = $routeParams;
 
-    $http.get('servico-resultado-pesquisa.txt')
+    $http.get('/sym/app/views/servico-resultado-pesquisa.txt')
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
     },
