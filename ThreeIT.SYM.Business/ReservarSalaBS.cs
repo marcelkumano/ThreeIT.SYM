@@ -14,12 +14,27 @@ namespace ThreeIT.SYM.Business
         {
             using (SYMContext db = new SYMContext())
             {
-                db.ReservaSala.Add(new ReservaSala() { CodigoSalaReuniao = 1, CodigoUsuario = 1, DescricaoAgendamento = "Reunião de KickOff", CodigoStatusReservaSala = 2, CodigoUsuarioAlteracao = 1, StartDate = DateTime.Now, DataHoraFinal = DateTime.Now, DataAlteracao = DateTime.Now });
+                db.ReservaSala.Add(new ReservaSala() { CodigoSalaReuniao = 1, CodigoUsuario = 1, DescricaoAgendamento = "Reunião de KickOff", CodigoStatusReservaSala = 2, CodigoUsuarioAlteracao = 1, DataHoraInicial = DateTime.Now, DataHoraFinal = DateTime.Now, DataAlteracao = DateTime.Now });
 
                 db.SaveChanges();
             }
-            
+
         }
 
+        public List<ReservaSala> BuscarReservas(List<SalaReuniao> ListaSalas, int RangeData)
+        {
+            using (SYMContext db = new SYMContext())
+            {
+                List<ReservaSala> ListaReservaSala = new List<ReservaSala>();
+
+                foreach (SalaReuniao Sala in ListaSalas)
+                {
+                    List<ReservaSala> Reserva = db.ReservaSala.Where(p => Sala.CodigoSalaReuniao == p.CodigoSalaReuniao).ToList();
+
+                    ListaReservaSala.AddRange(Reserva);
+                }
+                return ListaReservaSala;
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace ThreeIT.SYM.Models
         [ForeignKey("StatusReservaSala")]
         public int CodigoStatusReservaSala { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime DataHoraInicial { get; set; }
 
         public DateTime DataHoraFinal { get; set; }
 

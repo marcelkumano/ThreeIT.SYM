@@ -20,6 +20,11 @@ namespace ThreeIT.SYM.Models
 
         public int CapacidadeSala { get; set; }
 
+        public DateTime DisponibilidadeInicio { get; set; }
+
+        public DateTime DispoonibilidadeFim { get; set; }
+
+
         public DateTime DataAlteracao { get; set; }
 
         public int CodigoUsuarioAlteracao { get; set; }
@@ -27,6 +32,6 @@ namespace ThreeIT.SYM.Models
 
         public Unidade Unidade { get; set; }
 
-        public Usuario Usuario { get;set;}
+        public Usuario Usuario { get; set; }
     }
 }
