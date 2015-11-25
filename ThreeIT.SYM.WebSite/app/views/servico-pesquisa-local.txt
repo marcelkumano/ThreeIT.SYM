@@ -1,0 +1,39 @@
+﻿{
+    "ListaUnidades": [
+        {
+            "CodigoUnidade": 01,
+            "NomeUnidade": "JB",
+            "DescricaoUnidade": "José Bonifácio",
+			"DataAlteracao": "10/11/2015",
+			"CodigoUsuarioAlteracao": "rmarchetti"
+        },
+        {
+            "CodigoUnidade": 02,
+            "NomeUnidade": "Canadá",
+            "DescricaoUnidade": "Canadá",
+			"DataAlteracao": "10/11/2015",
+			"CodigoUsuarioAlteracao": "rmarchetti"
+        },
+        {
+            "CodigoUnidade": 03,
+            "NomeUnidade": "Consolação",
+            "DescricaoUnidade": "Consolação",
+			"DataAlteracao": "10/11/2015",
+			"CodigoUsuarioAlteracao": "rmarchetti"
+        },
+		{
+            "CodigoUnidade": 04,
+            "NomeUnidade": "Major Quedinho",
+            "DescricaoUnidade": "Major Quedinho",
+			"DataAlteracao": "10/11/2015",
+			"CodigoUsuarioAlteracao": "rmarchetti"
+        },
+		{
+            "CodigoUnidade": 05,
+            "NomeUnidade": "Alpha",
+            "DescricaoUnidade": "Alphavile",
+			"DataAlteracao": "10/11/2015",
+			"CodigoUsuarioAlteracao": "rmarchetti"
+        }
+    ]
+}

@@ -5,7 +5,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" ng-controller="sym.pesquisa-agendamento.filtrar-salas">
     <div class="panel panel-default" style="max-width: 800px; margin-left: auto; margin-right: auto">
         <div class="panel-body sym-panel-basic">
             <div class="row" ng-controller="sym.pesquisa-agendamento.contador-pessoas">
@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-8">
                     <div class="input-group" ng-repeat="un in lista">
-                        <input type="radio" name="rdbLocal" value="{{un.id}}">
-                        <span>{{un.local}}</span>
+                        <input type="radio" name="rdbLocal" value="{{un.CodigoUnidade}}">
+                        <span>{{un.NomeUnidade}}</span>
                     </div>
                     <span ng-if="lista.length == 0">
                         Nenhum Local encontrado
@@ -53,8 +53,8 @@
         <div class="panel-body">
             Procure a sua sala de reunião ideal através do número de pessoas e local
         </div>
-        <div class="panel-body sym-panel-footer" ng-controller="sym.pesquisa-agendamento.filtrar-salas">
-            <a class="sym-botao-pesquisar" href="#pesquisa/6/semana/consolacao" ng-click="filtrar()">
+        <div class="panel-body sym-panel-footer">
+            <a class="sym-botao-pesquisar" ng-click="filtrar()">
                 PROCURAR SALAS
             </a>
         </div>

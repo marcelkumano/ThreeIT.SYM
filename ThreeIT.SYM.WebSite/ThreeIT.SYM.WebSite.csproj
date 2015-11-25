@@ -62,6 +62,7 @@
     <Content Include="app\controllers\sym.pesquisaAgendamento.js" />
     <Content Include="app\controllers\sym.pesquisaAgendamento.resultadoController.js" />
     <Content Include="app\views\index.html" />
+    <Content Include="app\views\servico-pesquisa-local.txt" />
     <Content Include="app\views\sym.resultado-pesquisa-agendamento.html" />
     <Content Include="app\views\servico-resultado-pesquisa.txt" />
     <Content Include="app\views\sym.pesquisa-agendamento.html" />
