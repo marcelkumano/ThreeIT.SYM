@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-/* App Module */
+/*    App Module     */
 
 var pesquisaAgendamento = angular.module('sym.pesquisaAgendamento', [
   'ngRoute',
@@ -11,13 +11,13 @@ var pesquisaAgendamento = angular.module('sym.pesquisaAgendamento', [
 
 pesquisaAgendamento.config(['$routeProvider',
   function ($routeProvider) {
-      $routeProvider.
+      $routeProvider.  
         when('/pesquisa/:lugares/:quando/:onde', {
-            templateUrl: 'resultado-pesquisa-agendamento.html',
+            templateUrl: '/sym/app/views/resultado-pesquisa-agendamento.html',
             controller: 'sym.pesquisaAgendamento.resultadoController'
         }).
         when('/', {
-            templateUrl: 'pesquisa-agendamento.html',
+            templateUrl: '/sym/app/views/pesquisa-agendamento.html',
             controller: 'sym.pesquisaAgendamento.filtrosController'
         })
   }]);

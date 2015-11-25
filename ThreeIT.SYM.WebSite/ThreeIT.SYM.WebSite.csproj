@@ -88,7 +88,6 @@
     <Content Include="content\images\psd\prototipo.jpg" />
     <Content Include="content\images\rounded-plus.png" />
     <Content Include="content\images\month-background\september-1024x1024.jpg" />
-    <Content Include="index.html" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="scripts\angular-animate.min.js" />
     <Content Include="scripts\angular-route.js" />
@@ -117,7 +116,7 @@
     <Content Include="scripts\sym.pesquisaAgendamento.js" />
     <Content Include="templates\servico-resultado-pesquisa.txt" />
     <Content Include="templates\servico-resultado-pesquisa.json" />
-    <None Include="Properties\PublishProfiles\default.pubxml" />
+    <None Include="Properties\PublishProfiles\threeit.com.br - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -141,7 +140,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52558</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52558/</IISUrl>
+          <IISUrl>http://localhost:52558/sym/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
