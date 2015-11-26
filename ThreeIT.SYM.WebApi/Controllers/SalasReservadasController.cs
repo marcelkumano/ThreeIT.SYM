@@ -50,7 +50,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
             }
             else if (RangeData == 2)
             {
-                for (int i = (int)DateTime.Today.DayOfWeek; i < 8; i++)
+                for (int i = (int)DateTime.Today.DayOfWeek; i < 6; i++)
                 {
                     Dias _Dias = new Dias();
 
@@ -64,11 +64,14 @@ namespace ThreeIT.SYM.WebApi.Controllers
             {
                 for (int i = (int)DateTime.Today.Day; i <= DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month); i++)
                 {
-                    Dias _Dias = new Dias();
+                    if ((int)DateTime.Today.AddDays(contadorDias).DayOfWeek != 6 && (int)DateTime.Today.AddDays(contadorDias).DayOfWeek != 0)
+                    {
+                        Dias _Dias = new Dias();
 
-                    _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
+                        _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
 
-                    Agendamento.meses[0].dias.Add(_Dias);
+                        Agendamento.meses[0].dias.Add(_Dias);
+                    }
                     contadorDias += 1;
                 }
             }
