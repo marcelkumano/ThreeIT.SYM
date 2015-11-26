@@ -9,7 +9,7 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.filtrosContro
         $scope.uni = 01;
 
         //Pesquisa Unidades
-        $http.get('http://localhost:52554/sym/services/api/unidade')
+        $http.get('/sym/services/api/unidade')
         .then(function successCallback(response) {
             $scope.lista = response.data;
         },

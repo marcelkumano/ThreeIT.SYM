@@ -57,7 +57,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\controllers\sym.pesquisa-agendamento.js" />
     <Content Include="app\controllers\sym.pesquisaAgendamento.filtrosController.js" />
     <Content Include="app\controllers\sym.pesquisaAgendamento.js" />
     <Content Include="app\controllers\sym.pesquisaAgendamento.resultadoController.js" />
@@ -66,7 +65,6 @@
     <Content Include="app\views\sym.resultado-pesquisa-agendamento.html" />
     <Content Include="app\views\servico-resultado-pesquisa.txt" />
     <Content Include="app\views\sym.pesquisa-agendamento.html" />
-    <Content Include="app\views\sym.pesquisa-agendamento-bkp.html" />
     <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\bootstrap.min.css" />
     <Content Include="content\css\sym.pesquisa-agendamento.min.css" />
@@ -75,6 +73,25 @@
     <Content Include="content\css\sym.resultado-pesquisa-agendamento.css" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="content\images\dog-background.jpg" />
+    <Content Include="content\images\favicon\apple-touch-icon-114x114.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-120x120.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-144x144.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-152x152.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-57x57.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-60x60.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-72x72.png" />
+    <Content Include="content\images\favicon\apple-touch-icon-76x76.png" />
+    <Content Include="content\images\favicon\favicon-128.png" />
+    <Content Include="content\images\favicon\favicon-16x16.png" />
+    <Content Include="content\images\favicon\favicon-196x196.png" />
+    <Content Include="content\images\favicon\favicon-32x32.png" />
+    <Content Include="content\images\favicon\favicon-96x96.png" />
+    <Content Include="content\images\favicon\favicon.ico" />
+    <Content Include="content\images\favicon\mstile-144x144.png" />
+    <Content Include="content\images\favicon\mstile-150x150.png" />
+    <Content Include="content\images\favicon\mstile-310x150.png" />
+    <Content Include="content\images\favicon\mstile-310x310.png" />
+    <Content Include="content\images\favicon\mstile-70x70.png" />
     <Content Include="content\images\month-background\april-1024x1024.jpg" />
     <Content Include="content\images\month-background\august-1024x1024.jpg" />
     <Content Include="content\images\bem-vindo-logo.png" />
@@ -134,7 +151,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52558</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52558/sym/</IISUrl>
+          <IISUrl>http://localhost:2244/sym/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

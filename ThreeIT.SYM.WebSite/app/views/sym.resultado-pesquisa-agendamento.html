@@ -1,14 +1,10 @@
-﻿<div class=" container sym-container-nopadding">
-
-    <!--<p>
-        Pessoas: {{params.lugares}}
-        Quando: {{params.quando}}
-        Onde: {{params.onde}}
-    </p>-->
-
-    <h3>
-        Agende a sua reunião!
-    </h3>
+﻿
+<div class="container">
+    <h4 style="margin-bottom:20px;">
+        Encontramos algumas salas para voce...
+    </h4>
+</div>
+<div class=" container sym-container-nopadding">
 
     <!-- PAINEL MES -->
     <div class="panel sym-panel-month {{mes.mes}}" ng-repeat="mes in items">
@@ -26,7 +22,12 @@
                     <hr />
                 </div>
                 <!-- PAINEL DIA-CONTENT -->
-                <div class="panel-body">
+                <div class="panel-body" ng-if="dia.salas.length == 0">
+                    <h4 style="text-align:center">
+                        Ops, não temos salas para tantas pessoas nesse local.
+                    </h4>
+                </div>
+                <div class="panel-body" ng-if="dia.salas.length > 0">
                     <ul class="list-group sym-list-group-time">
                         <li class="list-group-item sym-day-heading">
                             <div class="row">
@@ -46,6 +47,9 @@
                             <div class="row">
                                 <div class="col-xs-3 sym-day-room" ng-repeat="sala in dia.salas">
                                     <a class="btn sym-btn-room">
+                                        <div class="sym-badge">
+                                            <span class="badge">{{primeiraLetra(sala.nomeSala)}}</span>
+                                        </div>
                                         <div><strong>{{sala.nomeSala}}</strong></div>
                                         <div>{{sala.quantidadeLugares}} lugares</div>
                                     </a>

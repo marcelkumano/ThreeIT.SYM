@@ -4,7 +4,9 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
 
     $scope.params = $routeParams;
 
-    $http.get('http://localhost:52554/sym/services/api/salasreservadas?qtdpessoas=4&idunidade=1&rangedata=2')
+    $http.get('/sym/services/api/salasreservadas?qtdpessoas=' + $scope.params.lugares
+                                              + '&idunidade=' + $scope.params.onde
+                                              + '&rangedata=' + $scope.params.quando)
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
     },
@@ -66,6 +68,13 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
         return disponibilidade;
 
     };
+
+    $scope.primeiraLetra = function (valor) {
+
+        var x = valor.toString();
+
+        return x.substr(0, 1).toUpperCase();
+    }
 
     $scope.open = function (size) {
 

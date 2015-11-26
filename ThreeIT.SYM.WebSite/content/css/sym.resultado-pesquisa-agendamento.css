@@ -98,7 +98,7 @@
 }
 
     .sym-panel-day > .panel-heading h3 {
-        margin-top: 30px;
+        margin-top: 10px;
         margin-bottom: 0px;
         font-size: 22px;
     }
@@ -173,6 +173,10 @@
     width: 25%;
     padding-left: 2px;
     padding-right: 2px;
+}
+
+.sym-badge {
+    display: none;
 }
 
 .sym-btn-room {
@@ -253,7 +257,6 @@
     right: 10px;
 }
 
-
 .loader {
     z-index: 99999;
     position: absolute;
@@ -263,12 +266,9 @@
     height: 100%;
     background-color: rgba(255, 255, 255, 0.90);
     color: #337ab7;
-
     font-size: 20px;
     text-align: center;
-
     padding-top: 200px;
-    
 }
 
 
@@ -308,3 +308,21 @@
         cursor: wait;
         /*left: -100%;*/
     }
+
+
+
+@media (min-width: 565px) {
+
+    .sym-badge {
+        display: block;
+        float: left;
+        height: auto;
+        padding-right: 8px;
+    }
+
+    .sym-badge .badge{
+        background-color:white;
+        color: #1a5486;
+        font-size: 30px;
+    }
+}
