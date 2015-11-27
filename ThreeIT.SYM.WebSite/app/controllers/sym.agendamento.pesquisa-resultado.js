@@ -1,6 +1,6 @@
 ﻿/* Controllers */
 
-pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoController', function ($scope, $http, $uibModal, $log, $routeParams, appGlobalData) {
+agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function ($scope, $http, $uibModal, $routeParams, $location, appGlobalData) {
 
     $scope.params = $routeParams;
 
@@ -39,6 +39,8 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
             horarioQuebrado: false,
             primeiroLivre: true,
             segundoLivre: true,
+
+
         };
 
         angular.forEach(sala.reservas, function (value) {
@@ -78,13 +80,29 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
         return x.substr(0, 1).toUpperCase();
     }
 
-    $scope.open = function (size) {
+    $scope.abrirDetalhe = function (size) {
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'modal-agendamento.html',
-            controller: 'ModalInstanceCtrl',
-            size: size,
+            templateUrl: 'sym.agendamento.detalhe.html',
+            controller: 'sym.agendamento.detalhe',
+            size: 'md',
+            resolve: {
+                items: function () {
+                    return ['item1 XXX', 'item2 XXX', 'item3'];
+                }
+            }
+        });
+
+    };
+
+    $scope.abrirInclusao= function (size) {
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'sym.agendamento.inclusao.html',
+            controller: 'sym.agendamento.inclusao',
+            size: 'md',
             resolve: {
                 items: function () {
                     return ['item1 XXX', 'item2 XXX', 'item3'];
@@ -93,26 +111,9 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
         });
 
         modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
+            $location.path('pesquisa/' + $scope.params.lugares + '/' + $scope.params.onde + '/' + $scope.params.quando);
         });
     };
 
 });
 
-pesquisaAgendamentoControllers.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
-
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
-
-    $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
-    };
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-});

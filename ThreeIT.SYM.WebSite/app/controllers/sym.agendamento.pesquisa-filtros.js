@@ -1,6 +1,6 @@
 ﻿/* Controllers */
 
-pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.filtrosController',
+agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
     function ($scope, $timeout, $http, $location, appGlobalData) {
 
         //Inicia controles

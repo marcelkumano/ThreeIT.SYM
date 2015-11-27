@@ -36,7 +36,7 @@
     <link href="/sym/content/css/sym.pesquisa-agendamento.css" rel="stylesheet" />
     <link href="/sym/content/css/sym.resultado-pesquisa-agendamento.css" rel="stylesheet" />
 </head>
-<body ng-app="sym.pesquisaAgendamento">
+<body ng-app="sym.agendamento">
     <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -65,9 +65,12 @@
     <script src="/sym/scripts/angular-animate.min.js"></script>
     <script src="/sym/scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
     <!--    CUSTOM SCRIPTS      -->
-    <script src="/sym/app/controllers/sym.pesquisaAgendamento.js"></script>
-    <script src="/sym/app/controllers/sym.pesquisaAgendamento.filtrosController.js"></script>
-    <script src="/sym/app/controllers/sym.pesquisaAgendamento.resultadoController.js"></script>
-    <script src="/sym/app/controllers/sym.pesquisaAgendamento.falhaAjaxController.js"></script>
+    <script src="/sym/app/controllers/sym.agendamento.js"></script>
+    <script src="/sym/app/controllers/sym.agendamento.pesquisa-filtros.js"></script>
+    <script src="/sym/app/controllers/sym.agendamento.pesquisa-resultado.js"></script>
+    <script src="/sym/app/controllers/sym.agendamento.erro-ajax.js"></script>
+
+    <script src="/sym/app/controllers/sym.agendamento.detalhe.js"></script>
+    <script src="/sym/app/controllers/sym.agendamento.inclusao.js"></script>
 </body>
 </html>

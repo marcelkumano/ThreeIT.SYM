@@ -59,15 +59,15 @@
                         <li class="list-group-item sym-day-item" ng-repeat="hora in horarioComercial(dia)">
                             <div class="row">
                                 <div class="col-xs-3 sym-day-room" ng-repeat="sala in dia.salas">
-                                    <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                    <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="abrirDetalhe('md')">
                                         <span class="glyphicon" ng-class="detalheSala(sala, hora).primeiroLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
                                         {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservado' }}
                                     </button>
-                                    <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).segundoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                    <button type="button" class="btn" ng-show="detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).segundoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="abrirDetalhe('md')">
                                         <span class="glyphicon" ng-class="detalheSala(sala, hora).segundoLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
                                         {{detalheSala(sala, hora).segundoLivre ? 'Agendar' : 'Reservado' }}
                                     </button>
-                                    <button type="button" class="btn sym-lg" ng-show="!detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="open('md')">
+                                    <button type="button" class="btn sym-lg" ng-show="!detalheSala(sala, hora).horarioQuebrado" ng-class="detalheSala(sala, hora).primeiroLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="abrirInclusao('md')">
                                         <span class="glyphicon" ng-class="detalheSala(sala, hora).primeiroLivre ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
                                         {{detalheSala(sala, hora).primeiroLivre ? 'Agendar' : 'Reservado' }}
                                     </button>

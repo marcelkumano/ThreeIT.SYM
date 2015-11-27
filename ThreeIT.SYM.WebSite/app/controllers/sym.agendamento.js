@@ -2,30 +2,30 @@
 
 /* App Module */
 
-var pesquisaAgendamento = angular.module('sym.pesquisaAgendamento', [
+var agendamentoApp = angular.module('sym.agendamento', [
   'ngRoute',
   'ngAnimate',
   'ui.bootstrap',
-  'sym.pesquisaAgendamento.controllers'
+  'sym.agendamento.controllers'
 ]);
 
-pesquisaAgendamento.config(['$routeProvider',
+agendamentoApp.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
         when('/pesquisa/:lugares/:quando/:onde', {
-            templateUrl: '/sym/app/views/sym.resultado-pesquisa-agendamento.html',
-            controller: 'sym.pesquisaAgendamento.resultadoController'
+            templateUrl: '/sym/app/views/sym.agendamento.pesquisa-resultado.html',
+            controller: 'sym.agendamento.pesquisa-resultado'
         }).
         when('/ops', {
             templateUrl: '/sym/app/views/sym.falha-ajax.html',
-            controller: 'sym.pesquisaAgendamento.falhaAjaxController'
+            controller: 'sym.agendamento.erro-ajax'
         }).
         when('/', {
-            templateUrl: '/sym/app/views/sym.pesquisa-agendamento.html'
+            templateUrl: '/sym/app/views/sym.agendamento.pesquisa-filtro.html'
         })
   }]);
 
-pesquisaAgendamento.factory('appGlobalData', function () {
+agendamentoApp.factory('appGlobalData', function () {
     return { Informacao: 'asdasdasdasd' };
 });
 
@@ -54,8 +54,8 @@ var routeLoadingIndicator = function ($rootScope, $timeout) {
 };
 
 routeLoadingIndicator.$inject = ['$rootScope', '$timeout'];
-pesquisaAgendamento.directive('routeLoadingIndicator', routeLoadingIndicator);
+agendamentoApp.directive('routeLoadingIndicator', routeLoadingIndicator);
 
 /* Controllers */
 
-var pesquisaAgendamentoControllers = angular.module('sym.pesquisaAgendamento.controllers', []);
+var agendamentoControllers = angular.module('sym.agendamento.controllers', []);
