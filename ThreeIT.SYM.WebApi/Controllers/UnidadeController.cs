@@ -22,6 +22,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
         public List<Unidade> GET()
         {
+
             List<Unidade> ListaUnidades = new List<Unidade>();
 
             ListaUnidades = new UnidadeBS().ListarUnidades();

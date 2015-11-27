@@ -1,6 +1,6 @@
 ﻿/* Controllers */
 
-pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoController', function ($scope, $http, $uibModal, $log, $routeParams) {
+pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoController', function ($scope, $http, $uibModal, $log, $routeParams, appGlobalData) {
 
     $scope.params = $routeParams;
 
@@ -11,7 +11,9 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.resultadoCont
         $scope.items = response.data.meses;
     },
     function errorCallback(response) {
-        alert(response.status + ' - ' + response.statusText);
+        appGlobalData.errorResponse = response;
+        $location.path('ops');
+
     });
 
     $scope.horarioComercial = function (dia) {

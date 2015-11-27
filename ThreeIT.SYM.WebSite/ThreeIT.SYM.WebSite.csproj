@@ -60,8 +60,10 @@
     <Content Include="app\controllers\sym.pesquisaAgendamento.filtrosController.js" />
     <Content Include="app\controllers\sym.pesquisaAgendamento.js" />
     <Content Include="app\controllers\sym.pesquisaAgendamento.resultadoController.js" />
+    <Content Include="app\controllers\sym.pesquisaAgendamento.falhaAjaxController.js" />
     <Content Include="app\views\index.html" />
     <Content Include="app\views\servico-pesquisa-local.txt" />
+    <Content Include="app\views\sym.falha-ajax.html" />
     <Content Include="app\views\sym.resultado-pesquisa-agendamento.html" />
     <Content Include="app\views\servico-resultado-pesquisa.txt" />
     <Content Include="app\views\sym.pesquisa-agendamento.html" />
@@ -92,6 +94,7 @@
     <Content Include="content\images\favicon\mstile-310x150.png" />
     <Content Include="content\images\favicon\mstile-310x310.png" />
     <Content Include="content\images\favicon\mstile-70x70.png" />
+    <Content Include="content\images\bsi-logo.png" />
     <Content Include="content\images\month-background\april-1024x1024.jpg" />
     <Content Include="content\images\month-background\august-1024x1024.jpg" />
     <Content Include="content\images\bem-vindo-logo.png" />
@@ -105,7 +108,6 @@
     <Content Include="content\images\month-background\may-1024x1024.jpg" />
     <Content Include="content\images\month-background\november-1024x1024.jpg" />
     <Content Include="content\images\month-background\october-1024x1024.jpg" />
-    <Content Include="content\images\psd\prototipo.jpg" />
     <Content Include="content\images\rounded-plus.png" />
     <Content Include="content\images\month-background\september-1024x1024.jpg" />
     <Content Include="scripts\angular-animate.js" />

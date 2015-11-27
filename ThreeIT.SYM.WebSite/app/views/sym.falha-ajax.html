@@ -1,0 +1,40 @@
+﻿<div class="container text-center">
+    <h1>Oops!</h1>
+    <h3>Algo não esperado aconteceu.</h3>
+    <p>Nos desculpe, um erro ocorreu no nosso website. Estamos trabalhando duro para que tudo funcione corretamente.</p>
+
+    <button class="btn btn-primary">
+        <span class="glyphicon glyphicon-home"></span> Voltar ao início 
+    </button>
+
+    <button class="btn btn-default" ng-click="exibirDetalhesTecnicos = !exibirDetalhesTecnicos">
+        <span class="glyphicon glyphicon-cog"></span> Exibir detalhes técnicos
+    </button>
+
+
+    <div class="panel panel-default text-left" ng-show="exibirDetalhesTecnicos" style="margin-top: 20px">
+        <div class="panel-heading">
+            Detalhes técnicos
+        </div>
+        <div class="panel-body" style="word-break:break-all">
+            <p>
+                <strong>Status:</strong> {{errorResponse.status}}
+            </p>
+            <p>
+                <strong>Status text:</strong> {{errorResponse.statusText}}
+            </p>
+            <p>
+                <strong>Exception message:</strong> {{errorResponse.data.ExceptionMessage}}
+            </p>
+            <p>
+                <strong>Status:</strong> {{errorResponse.data.ExceptionType}}
+            </p>
+            <p>
+                <strong>Message:</strong> {{errorResponse.data.Message}}
+            </p>
+            <p>
+                <strong>StackTrace:</strong> {{errorResponse.data.StackTrace}}
+            </p>
+        </div>
+    </div>
+</div>

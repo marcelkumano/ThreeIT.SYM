@@ -1,13 +1,21 @@
 ﻿
+
+
 .navbar-brand {
-
+    height: 50px;
     width: 115px;
-
     background-image: url('../images/logo-small.png');
     background-repeat: no-repeat;
-    background-position:right;
-
+    background-position: right;
     background-size: 70px;
+}
+
+.sym-bsi-brand {
+    margin-right: 10px;
+    background-image: url('../images/bsi-logo.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 60px;
 }
 
 .sym-panel-basic {
@@ -30,10 +38,10 @@
         margin-bottom: 20px;
     }
 
-.sym-label-for{
-    color:#000;
-    font-size:14px;
-    font-weight:normal;
+.sym-label-for {
+    color: #000;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .sym-input-label {
@@ -80,10 +88,10 @@
 }
 
 
-.sym-botao-pesquisar:hover {
-    color: #192886;
-    text-decoration:none;
-}
+    .sym-botao-pesquisar:hover {
+        color: #192886;
+        text-decoration: none;
+    }
 
 
 /* RESPONSIVE CSS
@@ -93,7 +101,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    height: 150px;
+    height: 100px;
     width: auto;
 }
 
@@ -103,7 +111,7 @@
 @media (min-width: 768px) {
 
     .bem-vindo-sm {
-        height: 150px;
+        height: 100px;
         width: auto;
     }
 }
@@ -113,7 +121,7 @@
 @media (min-width: 992px) {
 
     .bem-vindo-md {
-        height: 200px;
+        height: 150px;
         width: auto;
     }
 }
@@ -122,7 +130,7 @@
 -------------------------------------------------- */
 @media (min-width: 1200px) {
     .bem-vindo-lg {
-        height: 200px;
+        height: 150px;
         width: auto;
     }
 }

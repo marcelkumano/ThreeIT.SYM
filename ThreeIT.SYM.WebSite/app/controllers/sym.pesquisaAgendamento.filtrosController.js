@@ -1,7 +1,7 @@
 ﻿/* Controllers */
 
 pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.filtrosController',
-    function ($scope, $timeout, $http) {
+    function ($scope, $timeout, $http, $location, appGlobalData) {
 
         //Inicia controles
         $scope.contador = 5;
@@ -14,7 +14,8 @@ pesquisaAgendamentoControllers.controller('sym.pesquisaAgendamento.filtrosContro
             $scope.lista = response.data;
         },
         function errorCallback(response) {
-            alert(response.status + ' - ' + response.statusText);
+            appGlobalData.errorResponse = response;
+            $location.path('ops');
         });
 
 

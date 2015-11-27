@@ -16,11 +16,18 @@ pesquisaAgendamento.config(['$routeProvider',
             templateUrl: '/sym/app/views/sym.resultado-pesquisa-agendamento.html',
             controller: 'sym.pesquisaAgendamento.resultadoController'
         }).
+        when('/ops', {
+            templateUrl: '/sym/app/views/sym.falha-ajax.html',
+            controller: 'sym.pesquisaAgendamento.falhaAjaxController'
+        }).
         when('/', {
             templateUrl: '/sym/app/views/sym.pesquisa-agendamento.html'
         })
   }]);
 
+pesquisaAgendamento.factory('appGlobalData', function () {
+    return { Informacao: 'asdasdasdasd' };
+});
 
 var routeLoadingIndicator = function ($rootScope, $timeout) {
 
