@@ -26,9 +26,6 @@ namespace ThreeIT.SYM.WebApi.Controllers
             List<SalaReuniao> ListaSalas = new SalaReuniaoBS().ListarSalas(IdUnidade, QtdPessoas);
 
             List<ReservaSala> ListaReserva = new ReservarSalaBS().BuscarReservas(ListaSalas, RangeData);
-            //var Listagem = new ReservarSalaBS().BuscarReservas(ListaSalas, RangeData);
-
-
 
             SalasAgendadas Agendamento = new SalasAgendadas();
 
@@ -41,15 +38,55 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             Agendamento.meses.Add(_Meses);
 
-
             Agendamento.meses[0].dias = new List<Dias>();
 
+            int contadorDias = 0;
+
+            if (RangeData == 1)
+            {
+                Dias _Dias = new Dias();
+                _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
+                Agendamento.meses[0].dias.Add(_Dias);
+            }
+            else if (RangeData == 2)
+            {
+                for (int i = (int)DateTime.Today.DayOfWeek; i < 6; i++)
+                {
+                    Dias _Dias = new Dias();
+
+                    _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
+
+                    Agendamento.meses[0].dias.Add(_Dias);
+                    contadorDias += 1;
+                }
+            }
+            else if (RangeData == 3)
+            {
+                for (int i = (int)DateTime.Today.Day; i <= DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month); i++)
+                {
+                    if ((int)DateTime.Today.AddDays(contadorDias).DayOfWeek != 6 && (int)DateTime.Today.AddDays(contadorDias).DayOfWeek != 0)
+                    {
+                        Dias _Dias = new Dias();
+
+                        _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
+
+                        Agendamento.meses[0].dias.Add(_Dias);
+                    }
+                    contadorDias += 1;
+                }
+            }
+
+            return Agendamento;
+        }
+
+        private Dias PreencherListas(int contadorDias, List<SalaReuniao> ListaSalas, List<ReservaSala> ListaReserva)
+        {
             Dias _Dias = new Dias();
-            _Dias.diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
-            _Dias.numeroDia = DateTime.Today.Day;
+            _Dias.diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Today.AddDays(contadorDias).DayOfWeek);
+            _Dias.numeroDia = DateTime.Today.AddDays(contadorDias).Day;
             _Dias.salas = new List<Salas>();
 
-            foreach(SalaReuniao Sala in ListaSalas)
+            foreach (SalaReuniao Sala in ListaSalas)
             {
                 Salas _Sala = new Salas();
                 _Sala.quantidadeLugares = Sala.CapacidadeSala;
@@ -58,23 +95,24 @@ namespace ThreeIT.SYM.WebApi.Controllers
                 _Sala.horarioFinal = Sala.DispoonibilidadeFim;
 
                 _Sala.reservas = new List<Reservas>();
-                foreach(ReservaSala Reserva in ListaReserva.Where(p => p.CodigoUsuario == Sala.CodigoSalaReuniao))
+                foreach (ReservaSala Reserva in ListaReserva.Where(p => p.CodigoSalaReuniao == Sala.CodigoSalaReuniao))
                 {
-                    Reservas _Reserva = new Reservas();
-                    _Reserva.horarioFinal = Reserva.DataHoraFinal;
-                    _Reserva.horarioInicial = Reserva.DataHoraInicial;
-                    _Reserva.idAgendamento = Reserva.CodigoReserva;
-                    _Reserva.reservadoPara = "";
+                    if (Reserva.DataHoraInicial.Day == DateTime.Today.AddDays(contadorDias).Day)
+                    {
+                        Reservas _Reserva = new Reservas();
+                        _Reserva.horarioFinal = Reserva.DataHoraFinal;
+                        _Reserva.horarioInicial = Reserva.DataHoraInicial;
+                        _Reserva.idAgendamento = Reserva.CodigoReserva;
+                        _Reserva.reservadoPara = "";
 
-                    _Sala.reservas.Add(_Reserva);
+                        _Sala.reservas.Add(_Reserva);
+                    }
                 }
 
                 _Dias.salas.Add(_Sala);
             }
-            Agendamento.meses[0].dias.Add(_Dias);
 
-
-            return Agendamento;
+            return _Dias;
         }
     }
 }
