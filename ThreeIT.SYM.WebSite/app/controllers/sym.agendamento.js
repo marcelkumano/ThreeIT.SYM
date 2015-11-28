@@ -20,8 +20,12 @@ agendamentoApp.config(['$routeProvider',
             templateUrl: '/sym/app/views/sym.falha-ajax.html',
             controller: 'sym.agendamento.erro-ajax'
         }).
-        when('/', {
+        when('/filtro', {
             templateUrl: '/sym/app/views/sym.agendamento.pesquisa-filtro.html'
+        }).
+        when('/', {
+            templateUrl: '/sym/app/views/sym.login.html',
+            controller: 'sym.login'
         })
   }]);
 
