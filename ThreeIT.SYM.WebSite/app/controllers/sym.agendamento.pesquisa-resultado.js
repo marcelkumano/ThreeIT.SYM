@@ -33,14 +33,31 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
     };
 
+    $scope.detalheSalaArray = function (salas, hora) {
+        
+        var detalheSalasPorHorario = [];
+
+        angular.forEach(salas, function (sala) {
+
+            var detalhe = {
+                nomeSala: sala.nomeSala,
+                quantidadeLugares: sala.quantidadeLugares,
+                disponibilidade:  $scope.detalheSala(sala, hora)
+            }
+
+            detalheSalasPorHorario.push(detalhe);
+
+        });
+
+        return detalheSalasPorHorario;
+    }
+
     $scope.detalheSala = function (sala, hora) {
 
         var disponibilidade = {
             horarioQuebrado: false,
             primeiroLivre: true,
             segundoLivre: true,
-
-
         };
 
         angular.forEach(sala.reservas, function (value) {
