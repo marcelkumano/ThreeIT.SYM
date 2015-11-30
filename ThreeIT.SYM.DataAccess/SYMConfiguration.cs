@@ -10,7 +10,7 @@ namespace ThreeIT.SYM.DataAccess
     {
         public SYMConfiguration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             AutomaticMigrationDataLossAllowed = false;
         }
 
