@@ -8,6 +8,8 @@
                 {
                     "numeroDia": 11,
                     "diaSemana": "quarta-feira",
+					"horasDisponiveis": "",
+
                     "salas": [
                         {
                             "nomeSala": "Missão",

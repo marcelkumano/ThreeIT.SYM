@@ -32,6 +32,8 @@ namespace ThreeIT.SYM.WebApi.Controllers
             Agendamento.meses = new List<Meses>();
 
             Meses _Meses = new Meses();
+
+            _Meses.ano = DateTime.Now.Year;
             _Meses.numeroMes = DateTime.Today.Month;
             _Meses.mes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
             _Meses.descricaoMes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month) + " " + DateTime.Today.Year;
@@ -89,8 +91,12 @@ namespace ThreeIT.SYM.WebApi.Controllers
             foreach (SalaReuniao Sala in ListaSalas)
             {
                 Salas _Sala = new Salas();
-                _Sala.quantidadeLugares = Sala.CapacidadeSala;
+
+                _Sala.codigoUnidade = Sala.CodigoUnidade;
+                _Sala.nomeUnidade = new UnidadeBS().DetalharUnidade(Sala.CodigoUnidade).NomeUnidade;
+                _Sala.codigoSala = Sala.CodigoSalaReuniao;
                 _Sala.nomeSala = Sala.NomeSala;
+                _Sala.quantidadeLugares = Sala.CapacidadeSala;
                 _Sala.horarioInicial = Sala.DisponibilidadeInicio;
                 _Sala.horarioFinal = Sala.DispoonibilidadeFim;
 

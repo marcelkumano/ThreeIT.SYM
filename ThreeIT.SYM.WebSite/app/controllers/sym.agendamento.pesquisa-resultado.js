@@ -9,14 +9,30 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
                                               + '&rangedata=' + $scope.params.quando)
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
+
+        //Gerar uma lista com todas as horas que devem ser exibidas no GRID
+        $scope.processarHorasDisponiveis();
+
+        //Para cada hora exibida gerar a model para cada sala.
+        $scope.processarDetalheSala();
+
     },
     function errorCallback(response) {
         appGlobalData.errorResponse = response;
         $location.path('ops');
-
     });
 
-    $scope.horarioComercial = function (dia) {
+    $scope.processarHorasDisponiveis = function () {
+
+        angular.forEach($scope.items, function (mes) {
+
+            angular.forEach(mes.dias, function (dia) {
+                dia.horasDisponiveis = $scope.horasDisponiveis(dia);
+            });
+        });
+    };
+
+    $scope.horasDisponiveis = function (dia) {
 
         if (dia.salas.length > 0) {
 
@@ -25,7 +41,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             var horaFim = new Date(dia.salas[0].horarioFinal).getHours();
 
             for (var i = horaInicio; i <= horaFim; i++) {
-                horarios.push(i);
+                horarios.push({ hora: i, detalheSala: undefined });
             }
 
             return horarios;
@@ -33,60 +49,74 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
     };
 
-    $scope.detalheSalaArray = function (salas, hora) {
-        
-        var detalheSalasPorHorario = [];
+    $scope.processarDetalheSala = function () {
+
+        angular.forEach($scope.items, function (mes) {
+
+            angular.forEach(mes.dias, function (dia) {
+
+                angular.forEach(dia.horasDisponiveis, function (detalheHorario) {
+
+                    $scope.detalheSalaArray(mes, dia, dia.salas, detalheHorario);
+
+                });
+            });
+        });
+    };
+
+    $scope.detalheSalaArray = function (mes, dia, salas, detalheHorario) {
+
+        detalheHorario.salas = [];
 
         angular.forEach(salas, function (sala) {
 
-            var detalhe = {
-                nomeSala: sala.nomeSala,
-                quantidadeLugares: sala.quantidadeLugares,
-                disponibilidade:  $scope.detalheSala(sala, hora)
-            }
+            var detalheSala = { dia: undefined };
 
-            detalheSalasPorHorario.push(detalhe);
+            detalheSala.dia = new Date(mes.ano, mes.numeroMes - 1, dia.numeroDia);
+            detalheSala.codigoUnidade = sala.codigoUnidade;
+            detalheSala.nomeUnidade = sala.nomeUnidade;
+            detalheSala.codigoSala = sala.codigoSala;
+            detalheSala.nomeSala = sala.nomeSala;
+            detalheSala.quantidadeLugares = sala.quantidadeLugares;
+
+            $scope.detalheReservaSala(sala, detalheHorario.hora, detalheSala);
+
+            detalheHorario.salas.push(detalheSala);
 
         });
 
-        return detalheSalasPorHorario;
     }
 
-    $scope.detalheSala = function (sala, hora) {
+    $scope.detalheReservaSala = function (sala, hora, detalheSala) {
 
-        var disponibilidade = {
-            horarioQuebrado: false,
-            primeiroLivre: true,
-            segundoLivre: true,
-        };
+        detalheSala.horarioQuebrado = false;
+
+        detalheSala.primeiroPeriodoLivre = true;
+        detalheSala.segundoPeriodoLivre = true;
+
+        detalheSala.inicioPrimeiroPeriodo = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), hora, 0);
+        detalheSala.inicioSegundoPeriodo = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), hora, 30);
 
         angular.forEach(sala.reservas, function (value) {
 
-            var horarioBase = new Date(0001, 1, 1, hora, 0);
-
             var horarioInicialHora = new Date(value.horarioInicial).getHours();
             var horarioInicialMinutos = new Date(value.horarioInicial).getMinutes();
-            var horarioReservaInicio = new Date(0001, 1, 1, horarioInicialHora, horarioInicialMinutos);
+            var horarioReservaInicio = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), horarioInicialHora, horarioInicialMinutos);
 
             var horarioFinalHora = new Date(value.horarioFinal).getHours();
             var horarioFinalMinutos = new Date(value.horarioFinal).getMinutes();
-            var horarioReservaFim = new Date(0001, 1, 1, horarioFinalHora, horarioFinalMinutos);
+            var horarioReservaFim = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), horarioFinalHora, horarioFinalMinutos);
 
-            if (horarioBase >= horarioReservaInicio && horarioBase <= horarioReservaFim) {
-                disponibilidade.primeiroLivre = false;
+            if (detalheSala.inicioPrimeiroPeriodo >= horarioReservaInicio && detalheSala.inicioPrimeiroPeriodo <= horarioReservaFim) {
+                detalheSala.primeiroPeriodoLivre = false;
             }
 
-            horarioBase = new Date(0001, 1, 1, hora, 30);
-
-            if (horarioBase >= horarioReservaFim && horarioBase <= horarioReservaFim) {
-                disponibilidade.segundoLivre = false;
+            if (detalheSala.inicioSegundoPeriodo >= horarioReservaFim && detalheSala.inicioSegundoPeriodo <= horarioReservaFim) {
+                detalheSala.segundoPeriodoLivre = false;
             }
-
-            disponibilidade.horarioQuebrado = disponibilidade.primeiroLivre != disponibilidade.segundoLivre;
-
         });
 
-        return disponibilidade;
+        detalheSala.horarioQuebrado = detalheSala.primeiroPeriodoLivre != detalheSala.segundoPeriodoLivre;
 
     };
 
@@ -97,7 +127,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         return x.substr(0, 1).toUpperCase();
     }
 
-    $scope.abrirDetalhe = function (size) {
+    $scope.abrirDetalhe = function (periodo, param) {
 
         var modalInstance = $uibModal.open({
             animation: true,
@@ -105,15 +135,23 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             controller: 'sym.agendamento.detalhe',
             size: 'md',
             resolve: {
-                items: function () {
-                    return ['item1 XXX', 'item2 XXX', 'item3'];
+                param: function () {
+                    return {
+                        codigoSala: param.codigoSala,
+                        nomeSala: param.nomeSala,
+                        codigoUnidade: param.codigoUnidade,
+                        nomeUnidade: param.nomeUnidade,
+                        quantidadeLugares: param.quantidadeLugares,
+                        horarioInicio: periodo == 'segundo' ? param.inicioSegundoPeriodo : param.inicioSegundoPeriodo,
+                        quantidadeMinutos: periodo == 'integral' ? 60 : 30
+                    };
                 }
             }
         });
 
     };
 
-    $scope.abrirInclusao= function (size) {
+    $scope.abrirInclusao = function (periodo, param) {
 
         var modalInstance = $uibModal.open({
             animation: true,
@@ -121,8 +159,16 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             controller: 'sym.agendamento.inclusao',
             size: 'md',
             resolve: {
-                items: function () {
-                    return ['item1 XXX', 'item2 XXX', 'item3'];
+                param: function () {
+                    return {
+                        codigoSala: param.codigoSala,
+                        nomeSala: param.nomeSala,
+                        codigoUnidade: param.codigoUnidade,
+                        nomeUnidade: param.nomeUnidade,
+                        quantidadeLugares: param.quantidadeLugares,
+                        horarioInicio: periodo == 'segundo' ? param.inicioSegundoPeriodo : param.inicioPrimeiroPeriodo,
+                        quantidadeMinutos: periodo == 'integral' ? 60 : 30
+                    };
                 }
             }
         });

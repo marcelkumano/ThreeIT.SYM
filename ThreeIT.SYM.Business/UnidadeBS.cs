@@ -22,6 +22,15 @@ namespace ThreeIT.SYM.Business
             return ListaUnidades;
         }
 
+        public Unidade DetalharUnidade(int codigoUnidade)
+        {
+            using (SYMContext db = new SYMContext())
+            {
+                return db.Unidade.Where(p => p.CodigoUnidade == codigoUnidade).FirstOrDefault();
+            }
+        }
+
+
         public void InicializarUnidade()
         {
             using (SYMContext db = new SYMContext())

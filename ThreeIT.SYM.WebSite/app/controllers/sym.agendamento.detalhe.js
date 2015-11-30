@@ -1,18 +1,14 @@
 ﻿/* Controllers */
 
-agendamentoControllers.controller('sym.agendamento.detalhe', function ($scope, $uibModalInstance, items) {
+agendamentoControllers.controller('sym.agendamento.detalhe', function ($scope, $uibModalInstance, param) {
 
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
+    $scope.item = param;
 
     $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
+        $uibModalInstance.close('ok');
     };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-
 });

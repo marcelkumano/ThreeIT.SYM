@@ -12,6 +12,7 @@ namespace ThreeIT.SYM.WebApi.Models
 
     public class Meses
     {
+        public int ano { get; set; }
         public int numeroMes { get; set; }
         public string mes { get; set; }
         public string descricaoMes { get; set; }
@@ -27,6 +28,9 @@ namespace ThreeIT.SYM.WebApi.Models
 
     public class Salas
     {
+        public int codigoUnidade { get; set; }
+        public string nomeUnidade { get; set; }
+        public int codigoSala { get; set; }
         public string nomeSala { get; set; }
         public int quantidadeLugares { get; set; }
         public DateTime horarioInicial { get; set; }
