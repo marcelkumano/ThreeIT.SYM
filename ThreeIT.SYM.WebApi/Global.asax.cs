@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity;
 
 namespace ThreeIT.SYM.WebApi
 {
@@ -18,7 +19,7 @@ namespace ThreeIT.SYM.WebApi
         {
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-
+            Database.SetInitializer<SYM.DataAccess.SYMContext>(null);
             //Deactivate
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
