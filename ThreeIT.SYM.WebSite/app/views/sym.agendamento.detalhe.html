@@ -1,33 +1,35 @@
-﻿<div class="modal-header">
-    <h3 class="modal-title">I'm a modal (Detalhe)!</h3>
-</div>
-<div class="modal-body">
-    <ul>
-        <li>
-           codigoSala: {{item.codigoSala}} 
-        </li>
-        <li>
-            codigoUnidade: {{item.codigoUnidade}}
-        </li>
-        <li>
-            horarioInicio: {{item.horarioInicio}}
-        </li>
-        <li>
-            nomeSala: {{item.nomeSala}}
-        </li>
-        <li>
-            nomeUnidade: {{item.nomeUnidade}}
-        </li>
-        <li>
-            quantidadeLugares: {{item.quantidadeLugares}}
-        </li>
-        <li>
-            quantidadeMinutos: {{item.quantidadeMinutos}}
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+﻿<div class="container">
+    <div class="modal-header">
+        <span class="glyphicon glyphicon-remove" ng-click="ok()"></span>
+    </div>
+    <div class="modal-title">
+        <h3 class="modal-title">Detalhe Agendamento</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <span class="glyphicon glyphicon-home"></span>
+            <span>Sala {{item.nomeSala}}, {{item.quantidadeLugares}} lugares</span>
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <span>{{item.nomeUnidade}}</span>
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-calendar"></span>
+            <span>{{item.horarioInicio}}</span>
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-time"> </span>
+            <select>
+                <option disabled="disabled">{{item.quantidadeMinutos}}</option>
+            </select>
+            <span class="{{ClasseInicio}}"></span>
+
+            <select ng-model="item.size.code">
+                <option ng-repeat="horas in HoraFinal()" disabled="disabled">{{horas}}</option>
+            </select>
+
+            <span class="{{ClasseFim}}"></span>
+        </div>
+    </div>
 </div>

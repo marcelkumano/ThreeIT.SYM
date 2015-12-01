@@ -57,24 +57,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\sym.agendamento.inclusao.js" />
     <Content Include="app\controllers\sym.agendamento.pesquisa-filtros.js" />
     <Content Include="app\controllers\sym.agendamento.js" />
     <Content Include="app\controllers\sym.agendamento.detalhe.js" />
-    <Content Include="app\controllers\sym.agendamento.inclusao.js" />
+    <Content Include="app\controllers\_sym.agendamento.inclusao.js" />
     <Content Include="app\controllers\sym.agendamento.pesquisa-resultado.js" />
     <Content Include="app\controllers\sym.agendamento.erro-ajax.js" />
     <Content Include="app\controllers\sym.login.js" />
     <Content Include="app\views\index.html" />
     <Content Include="app\views\servico-pesquisa-local.txt" />
     <Content Include="app\views\sym.agendamento.detalhe.html" />
-    <Content Include="app\views\sym.falha-ajax.html" />
     <Content Include="app\views\sym.agendamento.inclusao.html" />
+    <Content Include="app\views\sym.falha-ajax.html" />
+    <Content Include="app\views\_sym.agendamento.inclusao.html" />
     <Content Include="app\views\sym.agendamento.pesquisa-resultado.html" />
     <Content Include="app\views\servico-resultado-pesquisa.txt" />
     <Content Include="app\views\sym.agendamento.pesquisa-filtro.html" />
     <Content Include="app\views\sym.login.html" />
     <Content Include="content\css\bootstrap.css" />
     <Content Include="content\css\bootstrap.min.css" />
+    <Content Include="content\css\sym.agendamento-inclusao.css" />
     <Content Include="content\css\sym.pesquisa-agendamento.min.css" />
     <Content Include="content\css\sym.pesquisa-agendamento.css" />
     <Content Include="content\css\sym.resultado-pesquisa-agendamento.min.css" />

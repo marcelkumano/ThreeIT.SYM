@@ -153,5 +153,12 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             return _Dias;
         }
+
+        public ReservaSala Get(int CodigoReserva)
+        {
+            ReservaSala dados = new ReservaSala();
+            dados = new ReservarSalaBS().ConsultarReserva(CodigoReserva);
+            return dados;
+        }
     }
 }

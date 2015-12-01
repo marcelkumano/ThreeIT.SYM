@@ -74,5 +74,14 @@ namespace ThreeIT.SYM.Business
 
             return false;
         }
+
+        public ReservaSala ConsultarReserva(int codigoReserva)
+        {
+            using (SYMContext db = new SYMContext())
+            {
+                ReservaSala dados = db.ReservaSala.Where(p => p.CodigoReserva == codigoReserva).FirstOrDefault();
+                return dados;
+            }
+        }
     }
 }
