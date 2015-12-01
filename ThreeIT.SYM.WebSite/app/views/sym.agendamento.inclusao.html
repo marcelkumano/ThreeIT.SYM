@@ -1,31 +1,32 @@
 ﻿<div class="modal-header">
-    <h3 class="modal-title">I'm a modal (Inclusão)!</h3>
+    <h3 class="modal-title">Agendar Sala</h3>
 </div>
 <div class="modal-body">
-    <ul>
-        <li>
-            codigoSala: {{item.codigoSala}}
-        </li>
-        <li>
-            codigoUnidade: {{item.codigoUnidade}}
-        </li>
-        <li>
-            horarioInicio: {{item.horarioInicio}}
-        </li>
-        <li>
-            nomeSala: {{item.nomeSala}}
-        </li>
-        <li>
-            nomeUnidade: {{item.nomeUnidade}}
-        </li>
-        <li>
-            quantidadeLugares: {{item.quantidadeLugares}}
-        </li>
-        <li>
-            quantidadeMinutos: {{item.quantidadeMinutos}}
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+    <div>
+        <span class="glyphicon glyphicon-home"></span>
+        <span>Sala {{sala}}, {{lugares}} Lugares</span>
+    </div>
+    <div>
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <span>{{unidade}}</span>
+    </div>
+    <div>
+        <span class="glyphicon glyphicon-calendar"></span>
+        <span>{{horario}}</span>
+    </div>
+    <div>
+        <span class="glyphicon glyphicon-time"> </span>
+        <select>
+            <option ng-repeat="horas in HoraInicio()" ng-change="AlterarDataInicio(horas)">{{horas}}</option>
+        </select>
+        <span class="{{ClasseInicio}}"></span>
+
+        <select ng-model="item.size.code">
+            <option ng-repeat="horas in HoraFinal()" ng-change="AlterarDataFim(horas)">{{horas}}</option>
+        </select>
+
+        <span class="{{ClasseFim}}"></span>
+    </div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
