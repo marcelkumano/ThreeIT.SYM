@@ -6,7 +6,8 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
     $http.get('/sym/services/api/salasreservadas?qtdpessoas=' + $scope.params.lugares
                                               + '&idunidade=' + $scope.params.onde
-                                              + '&rangedata=' + $scope.params.quando)
+                                              + '&rangedata=' + $scope.params.quando
+                                              + '&possuiProjetor=' + ($scope.params.possuiProjetor ? 'true' : ''))
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
 

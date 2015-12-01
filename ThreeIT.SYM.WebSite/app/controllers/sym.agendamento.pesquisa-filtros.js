@@ -7,6 +7,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
         $scope.contador = 5;
         $scope.quando = 01;
         $scope.uni = 01;
+        $scope.possuiProjetor = 0;
 
         //Pesquisa Unidades
         $http.get('/sym/services/api/unidade')

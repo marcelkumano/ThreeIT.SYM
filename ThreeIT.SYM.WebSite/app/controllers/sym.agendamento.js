@@ -12,7 +12,7 @@ var agendamentoApp = angular.module('sym.agendamento', [
 agendamentoApp.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
-        when('/pesquisa/:lugares/:quando/:onde', {
+        when('/pesquisa/:lugares/:quando/:onde/:possuiProjetor', {
             templateUrl: '/sym/app/views/sym.agendamento.pesquisa-resultado.html',
             controller: 'sym.agendamento.pesquisa-resultado'
         }).

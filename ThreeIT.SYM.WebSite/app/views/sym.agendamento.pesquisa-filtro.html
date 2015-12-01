@@ -49,9 +49,24 @@
                     </span>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="sym-input-label">Precisa ter projetor ou tv?</span>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input type="radio" id="rdbProjetorNao" name="rdbProjetor" ng-model="possuiProjetor" value="">
+                        <label for="rdbProjetorNao" class="sym-label-for">Não</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="radio" id="rdbProjetorSim" name="rdbProjetor" ng-model="possuiProjetor" value="1">
+                        <label for="rdbProjetorSim" class="sym-label-for">Sim</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="panel-body sym-panel-footer">
-            <a class="sym-botao-pesquisar" ng-href="#pesquisa/{{contador}}/{{quando}}/{{uni}}">
+            <a class="sym-botao-pesquisar" ng-href="#pesquisa/{{contador}}/{{quando}}/{{uni}}/{{possuiProjetor}}">
                 PROCURAR SALAS
             </a>
         </div>

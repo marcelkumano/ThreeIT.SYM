@@ -29,6 +29,7 @@ namespace ThreeIT.SYM.Models
 
         public int CodigoUsuarioAlteracao { get; set; }
 
+        public bool PossuiProjetor { get; set; }
 
         public Unidade Unidade { get; set; }
 

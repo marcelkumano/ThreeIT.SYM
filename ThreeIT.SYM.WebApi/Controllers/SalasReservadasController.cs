@@ -16,13 +16,13 @@ namespace ThreeIT.SYM.WebApi.Controllers
     {
         //
         // GET: /SalasReservadas/
-        public SalasAgendadas Get(int QtdPessoas, int IdUnidade, int RangeData)
+        public SalasAgendadas Get(int QtdPessoas, int IdUnidade, int RangeData, bool? possuiProjetor)
         {
             //int QtdPessoas = 4;
             //int IdUnidade = 1;
             //int RangeData = 2;
 
-            List<SalaReuniao> ListaSalas = new SalaReuniaoBS().ListarSalas(IdUnidade, QtdPessoas);
+            List<SalaReuniao> ListaSalas = new SalaReuniaoBS().ListarSalas(IdUnidade, QtdPessoas, possuiProjetor);
 
             List<ReservaSala> ListaReserva = new ReservarSalaBS().BuscarReservas(ListaSalas, RangeData);
 
