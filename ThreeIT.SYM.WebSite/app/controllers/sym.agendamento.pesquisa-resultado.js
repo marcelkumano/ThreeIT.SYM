@@ -131,7 +131,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'sym.agendamento.detalhe.html',
+            templateUrl: '/sym/app/views/sym.agendamento.detalhe.html',
             controller: 'sym.agendamento.detalhe',
             size: 'md',
             resolve: {
@@ -155,7 +155,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'sym.agendamento.inclusao.html',
+            templateUrl: '/sym/app/views/sym.agendamento.inclusao.html',
             controller: 'sym.agendamento.inclusao',
             size: 'md',
             resolve: {
