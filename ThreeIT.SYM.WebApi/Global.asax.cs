@@ -19,7 +19,7 @@ namespace ThreeIT.SYM.WebApi
         {
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            Database.SetInitializer<SYM.DataAccess.SYMContext>(null);
+            //Database.SetInitializer<SYM.DataAccess.SYMContext>(null);
             //Deactivate
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

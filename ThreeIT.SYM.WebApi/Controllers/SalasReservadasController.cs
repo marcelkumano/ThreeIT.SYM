@@ -16,7 +16,6 @@ namespace ThreeIT.SYM.WebApi.Controllers
     {
         //
         // GET: /SalasReservadas/
-
         public SalasAgendadas Get(int QtdPessoas, int IdUnidade, int RangeData)
         {
             //int QtdPessoas = 4;
@@ -79,6 +78,40 @@ namespace ThreeIT.SYM.WebApi.Controllers
             }
 
             return Agendamento;
+        }
+
+        public void Post(int? codigoSala,
+                         string descricaoAgendamento,
+                         DateTime? dataHoraInicial,
+                         DateTime? dataHoraFinal)
+        {
+            ReservaSala novaReserva = new ReservaSala();
+
+            if (codigoSala == null ||
+                string.IsNullOrEmpty(descricaoAgendamento) ||
+                dataHoraInicial == null ||
+                dataHoraFinal == null ||
+                dataHoraInicial > dataHoraFinal)
+            {
+                HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                message.Content = new StringContent("Um ou mais parâmetros de entrada estão inválidos.");
+                throw new HttpResponseException(message);
+            }
+
+            novaReserva.CodigoSalaReuniao = codigoSala.Value;
+            novaReserva.DescricaoAgendamento = descricaoAgendamento;
+            novaReserva.DataHoraInicial = dataHoraInicial.Value;
+            novaReserva.DataHoraFinal = dataHoraFinal.Value;
+
+            if (new ReservarSalaBS().ValidarReservaExistente(novaReserva))
+            {
+                HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.Conflict);
+                message.Content = new StringContent("A sala não está disponível na data solicitada.");
+                throw new HttpResponseException(message);
+            }
+
+            new ReservarSalaBS().IncluirReserva(novaReserva);
+
         }
 
         private Dias PreencherListas(int contadorDias, List<SalaReuniao> ListaSalas, List<ReservaSala> ListaReserva)

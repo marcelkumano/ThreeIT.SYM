@@ -35,8 +35,8 @@ namespace ThreeIT.SYM.Business
         {
             using (SYMContext db = new SYMContext())
             {
-                db.Unidade.Add(new Unidade() { DescricaoUnidade = "Unidade Consolacao", NomeUnidade = "Consolacao", DataAlteracao = DateTime.Now, CodigoUsuarioAlteracao = 1 });
-                db.Unidade.Add(new Unidade() { DescricaoUnidade = "Unidade JB", NomeUnidade = "Joaquim Bonifacio", DataAlteracao = DateTime.Now, CodigoUsuarioAlteracao = 1 });
+                db.Unidade.Add(new Unidade() { DescricaoUnidade = "Unidade Consolacao", NomeUnidade = "Consolação", DataAlteracao = DateTime.Now, CodigoUsuarioAlteracao = 1 });
+                db.Unidade.Add(new Unidade() { DescricaoUnidade = "Unidade JB", NomeUnidade = "José Bonifácio", DataAlteracao = DateTime.Now, CodigoUsuarioAlteracao = 1 });
                 
                 db.SaveChanges();
             }

@@ -14,7 +14,7 @@ namespace ThreeIT.SYM.Business
         {
             using (SYMContext db = new SYMContext())
             {
-                db.ReservaSala.Add(new ReservaSala() { CodigoSalaReuniao = 1, CodigoUsuario = 1, DescricaoAgendamento = "Reunião de KickOff", CodigoStatusReservaSala = 2, CodigoUsuarioAlteracao = 1, DataHoraInicial = DateTime.Now, DataHoraFinal = DateTime.Now, DataAlteracao = DateTime.Now });
+                db.ReservaSala.Add(new ReservaSala() { CodigoSalaReuniao = 1, CodigoUsuario = 1, DescricaoAgendamento = "Reunião de KickOff", CodigoStatusReservaSala = 2, CodigoUsuarioAlteracao = 1, DataHoraInicial = DateTime.Today.AddHours(9), DataHoraFinal = DateTime.Today.AddHours(9).AddMinutes(29).AddSeconds(59), DataAlteracao = DateTime.Now });
 
                 db.SaveChanges();
             }
@@ -35,6 +35,44 @@ namespace ThreeIT.SYM.Business
                 }
                 return ListaReservaSala;
             }
+        }
+
+
+        public void IncluirReserva(ReservaSala novaReserva)
+        {
+            novaReserva.CodigoUsuario = 1;
+            novaReserva.CodigoStatusReservaSala = 2;
+            novaReserva.CodigoUsuarioAlteracao = 1;
+            novaReserva.DataAlteracao = DateTime.Now;
+
+            using (SYMContext db = new SYMContext())
+            {
+                db.ReservaSala.Add(novaReserva);
+
+                db.SaveChanges();
+            }
+        
+        }
+
+        public bool ValidarReservaExistente(ReservaSala novaReserva) 
+        {
+            using (SYMContext db = new SYMContext())
+            {
+                foreach (ReservaSala reservaBase in db.ReservaSala.Where(p => p.CodigoSalaReuniao == novaReserva.CodigoSalaReuniao).ToList())
+                {
+                    if (novaReserva.DataHoraInicial >= reservaBase.DataHoraInicial && novaReserva.DataHoraInicial <= reservaBase.DataHoraFinal) 
+                    {
+                        return true;
+                    }
+
+                    if (novaReserva.DataHoraFinal >= reservaBase.DataHoraInicial && novaReserva.DataHoraInicial <= reservaBase.DataHoraFinal)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
