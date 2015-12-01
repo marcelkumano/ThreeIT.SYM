@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DisponibilidadeSalaController.cs" />
     <Compile Include="Controllers\InitializerController.cs" />
     <Compile Include="Controllers\SalasReservadasController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
