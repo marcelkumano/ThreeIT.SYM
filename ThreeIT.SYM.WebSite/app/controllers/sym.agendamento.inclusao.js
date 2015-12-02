@@ -1,44 +1,33 @@
 ﻿/* Controllers */
 
-agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, $uibModalInstance, items) {
+agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, $uibModalInstance, param) {
 
-    $scope.items = items;
+    $scope.items = param;
+
     $scope.selected = {
         item: $scope.items[0]
     };
 
     $scope.idSala = 1;
-    $scope.sala = "Missão";
-    $scope.lugares = 6;
-    $scope.unidade = "Consolação";
-    $scope.horario = "terça-feira, 1 Nov 2015";
+    $scope.sala = $scope.items.nomeSala;
+    $scope.lugares = $scope.items.quantidadeLugares
+    $scope.unidade = $scope.items.nomeUnidade;
+    $scope.horario = $scope.items.horarioInicio;
+    $scope.descricao = '';
 
     $scope.ClasseOK = "glyphicon glyphicon-ok sym-glyphicon-ok"
     $scope.ClasseNOK = "glyphicon glyphicon-remove sym-glyphicon-remove";
 
     $scope.ClasseInicio = $scope.ClasseOK;
     $scope.ClasseFim = $scope.ClasseNOK;
-
-    $scope.HoraInicio = function () {
-        var horas = [];
-
-        horas.push(230);
-        horas.push(300);
-
-        console.log(horas);
-        return horas;
+    $scope.HorarioIni = {
+        HoraInicio: [{ Hora: $scope.horario}, { Hora: '3:30' }, { Hora: "3:30" }]
+        , HoraSelecionada: { Hora: "2:30" }
     };
-
-    $scope.HoraFinal = function () {
-        var horas = [];
-
-        horas.push(455);
-        horas.push(330);
-
-        console.log(horas);
-        return horas;
+    $scope.HorarioFim = {
+        HoraFinal: [{ Hora: "3:00" }, { Hora: "3:30" }, { Hora: "4:00" }]
+        , HoraSelecionada: { Hora: "3:00" }
     };
-
 
     $scope.ok = function () {
         $uibModalInstance.close($scope.selected.item);
@@ -49,28 +38,25 @@ agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, 
     };
 
 
-    $scope.AlterarDataInicio = function (dataInicio) {
+    $scope.AlterarDataInicio = function () {
+        alert($scope.HorarioIni.HoraSelecionada.Hora);
 
-
-
+        $http.get('/sym/services/api/validarhorario')
+            .then(function successCallback(response) {
+                $scope.ClasseFim = $scope.ClasseOK;
+            }, function errorCallback(response) {
+                $scope.ClasseFim = $scope.ClasseNOK;
+            });
     };
 
-    $scope.AlterarDataFim = function (dataFim) {
+    $scope.AlterarDataFim = function () {
+        alert($scope.HorarioFim.HoraSelecionada.Hora);
 
-
+        $http.get('/sym/services/api/validarhorario')
+            .then(function successCallback(response) {
+                $scope.ClasseFim = $scope.ClasseOK;
+            }, function errorCallback(response) {
+                $scope.ClasseFim = $scope.ClasseNOK;
+            });
     };
-
-    $scope.ValidarHorario = function (Data) {
-        $http.get('/sym/services/api/validarhorario?Sala=' + $scope.idSala
-                                      + '&quando=' + Data)
-        .then(function successCallback(response) {
-            $scope.ok = response.data.ok;
-        },
-        function errorCallback(response) {
-            appGlobalData.errorResponse = response;
-            $location.path('ops');
-        });
-    };
-
-
 });

@@ -1,30 +1,32 @@
-﻿<div class="modal-header">
-    <h3 class="modal-title">Agendar Sala</h3>
+﻿<div class="modal-header sym-modal-header">
+    <h3 class="modal-title sym-modal-title"><input type="text" placeholder="Titulo do agendamento" value="{{descricao}}" class="sym-input-title"/> </h3>
 </div>
 <div class="modal-body">
     <div>
-        <span class="glyphicon glyphicon-home"></span>
-        <span>Sala {{sala}}, {{lugares}} Lugares</span>
+        <span class="glyphicon glyphicon-home sym-glyphicon-padrao"></span>
+        <span class="sym-input-label" > Sala {{sala}}, {{lugares}} Lugares</span>
+        <span class="{{ClasseInicio}}"></span>
     </div>
     <div>
-        <span class="glyphicon glyphicon-map-marker"></span>
-        <span>{{unidade}}</span>
+        <span class="glyphicon glyphicon-map-marker sym-glyphicon-padrao"></span>
+        <span class="sym-input-label">{{unidade}}</span>
+        <span class="{{ClasseInicio}}"></span>
     </div>
     <div>
-        <span class="glyphicon glyphicon-calendar"></span>
-        <span>{{horario}}</span>
+        <span class="glyphicon glyphicon-calendar sym-glyphicon-padrao"></span>
+        <span class="sym-input-label">{{horario | date:'EEEE'}}, {{horario | date:'dd/MM/yyyy'}}</span>
+        <span class="{{ClasseInicio}}"></span>
     </div>
     <div>
-        <span class="glyphicon glyphicon-time"> </span>
-        <select>
-            <option ng-repeat="horas in HoraInicio()" ng-change="AlterarDataInicio(horas)">{{horas}}</option>
+        <span class="glyphicon glyphicon-time sym-glyphicon-padrao"> </span>
+        <select ng-change="AlterarDataInicio()" ng-model="HorarioIni.HoraSelecionada.Hora">
+            <option ng-repeat="Horas in HorarioIni.HoraInicio" value="{{Horas.Hora | date:'HH:MM'}}">{{Horas.Hora | date:'HH:MM'}}</option>
         </select>
         <span class="{{ClasseInicio}}"></span>
-
-        <select ng-model="item.size.code">
-            <option ng-repeat="horas in HoraFinal()" ng-change="AlterarDataFim(horas)">{{horas}}</option>
+        <span class="sym-input-label"> Até </span>
+        <select ng-change="AlterarDataFim()" ng-model="HorarioFim.HoraSelecionada.Hora">
+            <option ng-repeat="Horas in HorarioFim.HoraFinal" value="{{Horas.Hora}}">{{Horas.Hora}}</option>
         </select>
-
         <span class="{{ClasseFim}}"></span>
     </div>
 </div>
