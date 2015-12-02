@@ -82,6 +82,9 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
         public void Post(ReservaSala postData)
         {
+            postData.DataHoraInicial = postData.DataHoraInicial.ToLocalTime();
+            postData.DataHoraFinal = postData.DataHoraFinal.ToLocalTime();
+
             if (postData.CodigoSalaReuniao == default(int) ||
                 postData.DescricaoAgendamento == default(string) ||
                 postData.DataHoraInicial == default(DateTime) ||
@@ -91,6 +94,8 @@ namespace ThreeIT.SYM.WebApi.Controllers
                 message.Content = new StringContent("Um ou mais parâmetros de entrada estão inválidos.");
                 throw new HttpResponseException(message);
             }
+
+            
 
             if (new ReservarSalaBS().ValidarReservaExistente(postData))
             {

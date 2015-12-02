@@ -19,6 +19,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
         // GET: /Api/DisponibilidadeSala/
         public string Get(int? CodigoSalaReuniao, DateTime? DataHoraInicial, DateTime? DataHoraFinal)
         {
+
             if (CodigoSalaReuniao == null ||
                 DataHoraInicial == null ||
                 DataHoraFinal == null)
@@ -30,8 +31,8 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             ReservaSala reserva = new ReservaSala();
             reserva.CodigoSalaReuniao = CodigoSalaReuniao.Value;
-            reserva.DataHoraInicial = DataHoraInicial.Value;
-            reserva.DataHoraFinal = DataHoraFinal.Value;
+            reserva.DataHoraInicial = DataHoraInicial.Value.ToLocalTime();
+            reserva.DataHoraFinal = DataHoraFinal.Value.ToLocalTime();
 
             if (new ReservarSalaBS().ValidarReservaExistente(reserva))
             {
