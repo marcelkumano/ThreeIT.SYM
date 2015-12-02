@@ -9,10 +9,13 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
         $scope.uni = 01;
         $scope.possuiProjetor = 0;
 
+        $scope.$parent.$parent.isRouteLoading = true;
+
         //Pesquisa Unidades
-        $http.get('/sym/services/api/unidade')
+        $http.get('/sym/services/api/unidade?teste=teste')
         .then(function successCallback(response) {
             $scope.lista = response.data;
+            $scope.$parent.$parent.isRouteLoading = false;
         },
         function errorCallback(response) {
             appGlobalData.errorResponse = response;

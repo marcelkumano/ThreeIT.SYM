@@ -3,6 +3,7 @@
 agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function ($scope, $http, $uibModal, $routeParams, $location, appGlobalData) {
 
     $scope.params = $routeParams;
+    $scope.$parent.isRouteLoading = true;
 
     $http.get('/sym/services/api/salasreservadas?qtdpessoas=' + $scope.params.lugares
                                               + '&idunidade=' + $scope.params.onde
@@ -16,6 +17,8 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
         //Para cada hora exibida gerar a model para cada sala.
         $scope.processarDetalheSala();
+
+        $scope.$parent.isRouteLoading = false;
 
     },
     function errorCallback(response) {
