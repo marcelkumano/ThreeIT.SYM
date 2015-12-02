@@ -48,9 +48,7 @@ var routeLoadingIndicator = function ($rootScope, $timeout) {
 
             $rootScope.$on('$routeChangeSuccess', function () {
 
-                $timeout(function () {
-                    scope.isRouteLoading = false;
-                }, 250);
+                scope.isRouteLoading = false;
 
             });
         }

@@ -80,38 +80,26 @@ namespace ThreeIT.SYM.WebApi.Controllers
             return Agendamento;
         }
 
-        public void Post(int? codigoSala,
-                         string descricaoAgendamento,
-                         DateTime? dataHoraInicial,
-                         DateTime? dataHoraFinal)
+        public void Post(ReservaSala postData)
         {
-            ReservaSala novaReserva = new ReservaSala();
-
-            if (codigoSala == null ||
-                string.IsNullOrEmpty(descricaoAgendamento) ||
-                dataHoraInicial == null ||
-                dataHoraFinal == null ||
-                dataHoraInicial > dataHoraFinal)
+            if (postData.CodigoSalaReuniao == default(int) ||
+                postData.DescricaoAgendamento == default(string) ||
+                postData.DataHoraInicial == default(DateTime) ||
+                postData.DataHoraFinal == default(DateTime))
             {
                 HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 message.Content = new StringContent("Um ou mais parâmetros de entrada estão inválidos.");
                 throw new HttpResponseException(message);
             }
 
-            novaReserva.CodigoSalaReuniao = codigoSala.Value;
-            novaReserva.DescricaoAgendamento = descricaoAgendamento;
-            novaReserva.DataHoraInicial = dataHoraInicial.Value;
-            novaReserva.DataHoraFinal = dataHoraFinal.Value;
-
-            if (new ReservarSalaBS().ValidarReservaExistente(novaReserva))
+            if (new ReservarSalaBS().ValidarReservaExistente(postData))
             {
                 HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.Conflict);
                 message.Content = new StringContent("A sala não está disponível na data solicitada.");
                 throw new HttpResponseException(message);
             }
 
-            new ReservarSalaBS().IncluirReserva(novaReserva);
-
+            new ReservarSalaBS().IncluirReserva(postData);
         }
 
         private Dias PreencherListas(int contadorDias, List<SalaReuniao> ListaSalas, List<ReservaSala> ListaReserva)

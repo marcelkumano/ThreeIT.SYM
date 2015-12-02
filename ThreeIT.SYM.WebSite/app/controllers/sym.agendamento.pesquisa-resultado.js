@@ -3,11 +3,12 @@
 agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function ($scope, $http, $uibModal, $routeParams, $location, appGlobalData) {
 
     $scope.params = $routeParams;
+    $scope.$parent.isRouteLoading = true;
 
     $http.get('/sym/services/api/salasreservadas?qtdpessoas=' + $scope.params.lugares
                                               + '&idunidade=' + $scope.params.onde
                                               + '&rangedata=' + $scope.params.quando
-                                              + '&possuiProjetor=' + ($scope.params.possuiProjetor ? 'true' : ''))
+                                              + '&possuiProjetor=' + ($scope.params.possuiProjetor == "1" ? 'true' : ''))
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
 
@@ -16,6 +17,8 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
         //Para cada hora exibida gerar a model para cada sala.
         $scope.processarDetalheSala();
+
+        $scope.$parent.isRouteLoading = false;
 
     },
     function errorCallback(response) {
@@ -42,7 +45,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             var horaFim = new Date(dia.salas[0].horarioFinal).getHours();
 
             for (var i = horaInicio; i <= horaFim; i++) {
-                horarios.push({ hora: i, detalheSala: undefined });
+                horarios.push({ hora: i });
             }
 
             return horarios;
@@ -79,6 +82,9 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             detalheSala.codigoSala = sala.codigoSala;
             detalheSala.nomeSala = sala.nomeSala;
             detalheSala.quantidadeLugares = sala.quantidadeLugares;
+
+            detalheSala.horarioFuncionamentoSalaInicial = new Date(sala.horarioInicial);
+            detalheSala.horarioFuncionamentoSalaFinal = new Date(sala.horarioFinal);
 
             $scope.detalheReservaSala(sala, detalheHorario.hora, detalheSala);
 
@@ -144,6 +150,8 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
                         nomeUnidade: param.nomeUnidade,
                         quantidadeLugares: param.quantidadeLugares,
                         horarioInicio: periodo == 'segundo' ? param.inicioSegundoPeriodo : param.inicioSegundoPeriodo,
+                        horarioFuncionamentoSalaInicial: param.horarioFuncionamentoSalaInicial,
+                        horarioFuncionamentoSalaFinal: param.horarioFuncionamentoSalaFinal,
                         quantidadeMinutos: periodo == 'integral' ? 60 : 30
                     };
                 }
@@ -168,6 +176,8 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
                         nomeUnidade: param.nomeUnidade,
                         quantidadeLugares: param.quantidadeLugares,
                         horarioInicio: periodo == 'segundo' ? param.inicioSegundoPeriodo : param.inicioPrimeiroPeriodo,
+                        horarioFuncionamentoSalaInicial: param.horarioFuncionamentoSalaInicial,
+                        horarioFuncionamentoSalaFinal: param.horarioFuncionamentoSalaFinal,
                         quantidadeMinutos: periodo == 'integral' ? 60 : 30
                     };
                 }

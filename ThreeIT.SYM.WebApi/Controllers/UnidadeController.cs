@@ -30,7 +30,15 @@ namespace ThreeIT.SYM.WebApi.Controllers
             return ListaUnidades;
         }
 
-        
+        public List<Unidade> GET(string teste)
+        {
+            List<Unidade> ListaUnidades = new List<Unidade>();
+
+            ListaUnidades.Add(new Unidade() { CodigoUnidade = 1, NomeUnidade = "Consolação (Mock)" });
+            ListaUnidades.Add(new Unidade() { CodigoUnidade = 2, NomeUnidade = "JB (Mock)" });
+
+            return ListaUnidades;
+        }
 
     }
 }
