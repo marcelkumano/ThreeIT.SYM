@@ -40,10 +40,12 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
         $scope.testeAgendamento = function () {
             var data = {
                 CodigoSalaReuniao: 1,
-                DescricaoAgendamento: "Novo Agendamento",
-                DataHoraInicial: "2015-12-01T10:00:00.000",
-                DataHoraFinal: "2015-12-01T10:29:59.000"
+                DescricaoAgendamento: "Novo Agendamento", 
+                DataHoraInicial: new Date(2015, 11, 02, 08, 0).toJSON(),
+                DataHoraFinal: new Date(2015, 11, 02, 08, 29, 59).toJSON()
             };
+
+            var teste = appGlobalData.formatarStringDataAbrvPTbr(new Date(2015, 11, 02, 08, 0));
 
             var getUrl = '/sym/services/api/DisponibilidadeSala?CodigoSalaReuniao=' + data.CodigoSalaReuniao
                                                             + '&DataHoraInicial=' + data.DataHoraInicial
