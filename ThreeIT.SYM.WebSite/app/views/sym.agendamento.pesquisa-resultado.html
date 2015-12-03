@@ -1,4 +1,21 @@
-﻿
+﻿<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header pull-left">
+            <div class="input-group" style="width: 200px">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" show-weeks="false" show-button-bar="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="navbar-header pull-right">
+            <a class="navbar-brand sym-bsi-brand" href="http:\\www.bsitecnologia.com.br">
+            </a>
+        </div>
+    </div>
+</nav>
+
+
 <div class="container" ng-if="dia.salas.length > 0">
     <h4 style="margin-bottom:20px;">
         Encontramos algumas salas para você...

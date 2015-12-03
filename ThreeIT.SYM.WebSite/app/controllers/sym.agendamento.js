@@ -76,12 +76,11 @@ var routeLoadingIndicator = function ($rootScope, $timeout) {
 
             $rootScope.$on('$routeChangeStart', function () {
                 scope.isRouteLoading = true;
+                window.scrollTo(0, 0);
             });
 
             $rootScope.$on('$routeChangeSuccess', function () {
-
                 scope.isRouteLoading = false;
-
             });
         }
     };

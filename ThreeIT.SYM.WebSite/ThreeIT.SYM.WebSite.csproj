@@ -121,6 +121,7 @@
     <Content Include="content\images\month-background\september-1024x1024.jpg" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="scripts\angular-animate.min.js" />
+    <Content Include="scripts\angular-locale_pt-br.js" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular.js" />
