@@ -19,13 +19,12 @@
     </div>
     <div>
         <span class="glyphicon glyphicon-time sym-glyphicon-padrao"> </span>
-        <select ng-change="AlterarDataInicio()" ng-model="HorarioIni.HoraSelecionada.Hora">
-            <option ng-repeat="Horas in HorarioIni.HoraInicio" value="{{Horas.Hora | date:'HH:MM'}}">{{Horas.Hora | date:'HH:MM'}}</option>
+        <select ng-change="AlterarDataInicio()" ng-model="dataSourceDataInicio.HoraSelecionada.Hora">
+            <option ng-repeat="hora in dataSourceDataInicio.Horas" value="{{hora | date:'HH:mm'}}">{{hora | date:'HH:mm'}}</option>
         </select>
-        <span class="{{ClasseInicio}}"></span>
-        <span class="sym-input-label"> Até </span>
-        <select ng-change="AlterarDataFim()" ng-model="HorarioFim.HoraSelecionada.Hora">
-            <option ng-repeat="Horas in HorarioFim.HoraFinal" value="{{Horas.Hora}}">{{Horas.Hora}}</option>
+        <span class="sym-input-label">&nbsp;&nbsp;até</span>
+        <select ng-change="AlterarDataFim()" ng-model="dataSourceDataFim.HoraSelecionada.Hora">
+            <option ng-repeat="hora in dataSourceDataFim.Horas" value="{{hora | date:'HH:mm'}}">{{hora | date:'HH:mm'}}</option>
         </select>
         <span class="{{ClasseFim}}"></span>
     </div>
