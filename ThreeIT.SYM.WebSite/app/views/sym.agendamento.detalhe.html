@@ -1,35 +1,30 @@
-﻿<div class="container">
-    <div class="modal-header">
-        <span class="glyphicon glyphicon-remove" ng-click="ok()"></span>
+﻿<div class="modal-header sym-modal-header">
+    <h3 class="modal-title sym-modal-title"><span class="glyphicon glyphicon-remove" ng-click="ok()"></span> </h3>
+</div>
+<div class="modal-body">
+    <div>
+        <span class="glyphicon glyphicon-home sym-glyphicon-padrao"></span>
+        <span class="sym-input-label">Sala {{item.nomeSala}}, {{item.quantidadeLugares}} lugares</span>
     </div>
-    <div class="modal-title">
-        <h3 class="modal-title" ng-model="detalheAgendamento">{{detalheAgendamento}}</h3>
+    <div>
+        <span class="glyphicon glyphicon-map-marker sym-glyphicon-padrao"></span>
+        <span class="sym-input-label">{{item.nomeUnidade}}</span>
     </div>
-    <div class="modal-body">
-        <div>
-            <span class="glyphicon glyphicon-home"></span>
-            <span>Sala {{item.nomeSala}}, {{item.quantidadeLugares}} lugares</span>
-        </div>
-        <div>
-            <span class="glyphicon glyphicon-map-marker"></span>
-            <span>{{item.nomeUnidade}}</span>
-        </div>
-        <div>
-            <span class="glyphicon glyphicon-calendar"></span>
-            <span>{{item.horarioInicio}}</span>
-        </div>
-        <div>
-            <span class="glyphicon glyphicon-time"> </span>
-            <select>
-                <option disabled="disabled">{{item.quantidadeMinutos}}</option>
-            </select>
-            <span class="{{ClasseInicio}}"></span>
+    <div>
+        <span class="glyphicon glyphicon-calendar sym-glyphicon-padrao"></span>
+        <span class="sym-input-label">{{diaSemanaBr}}, {{item.horarioInicio | date:'EEEE'}}, {{item.horarioInicio | date:'dd/MM/yyyy'}}</span>
+    </div>
+    <div>
+        <span class="glyphicon glyphicon-time sym-glyphicon-padrao"> </span>
+        <select>
+            <option disabled="disabled">{{item.horarioInicio | date:'HH:MM'}}</option>
+        </select>
+        
+        <span class="sym-input-label"> Até </span>
 
-            <select ng-model="item.size.code">
-                <option ng-repeat="horas in HoraFinal()" disabled="disabled">{{horas}}</option>
-            </select>
+        <select>
+            <option disabled="disabled">{{item.horarioFinal}}</option>
+        </select>
 
-            <span class="{{ClasseFim}}"></span>
-        </div>
     </div>
 </div>
