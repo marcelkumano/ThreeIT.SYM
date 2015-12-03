@@ -12,4 +12,5 @@ agendamentoControllers.controller('sym.agendamento.detalhe', function ($scope, $
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.diaSemanaBr = appGlobalData.formatarStringDataAbrvPTbr($scope.item.horarioInicio);
 });
