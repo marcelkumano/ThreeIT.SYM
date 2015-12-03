@@ -1,6 +1,6 @@
 ﻿/* Controllers */
 
-agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, $uibModalInstance, param) {
+agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, $http, $uibModalInstance, param) {
 
     $scope.items = param;
 
@@ -69,18 +69,22 @@ agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, 
 
     $scope.AlterarDataInicio = function () {
         //alert($scope.dataSourceDataInicio.HoraSelecionada.Hora);
-
+        $scope.dataSourceDataFim = $scope.ObterHorariosFim($scope.dataSourceDataInicio.HoraSelecionada.Hora);
 
     };
 
     $scope.AlterarDataFim = function () {
-        //alert($scope.HorarioFim.HoraSelecionada.Hora);
 
-        $scope.dataSourceDataFim = $scope.ObterHorariosFim($scope.dataSourceDataInicio.HoraSelecionada.Hora);
+        var dataHoraInicio = new Date($scope.horario.getFullYear(), $scope.horario.getMonth(), $scope.horario.getDate(), $scope.dataSourceDataInicio.HoraSelecionada.Hora.substr(0, 2), $scope.dataSourceDataInicio.HoraSelecionada.Hora.substr(3, 2)).toJSON();
+        var dataHoraFim = new Date($scope.horario.getFullYear(), $scope.horario.getMonth(), $scope.horario.getDate(), $scope.dataSourceDataFim.HoraSelecionada.Hora.substr(0, 2), parseInt($scope.dataSourceDataFim.HoraSelecionada.Hora.substr(3, 2)) - 1).toJSON();
 
-        $http.get('/sym/services/api/validarhorario?CodigoSalaReuniao=' + $scope.idSala
-                                                 + '&DataHoraInicial=' + 0
-                                                 + '&DataHoraFinal=' + 0)
+        //console.log(dataHoraInicio);
+        //console.log(dataHoraFim);
+
+
+        $http.get('/sym/services/api/DisponibilidadeSala?CodigoSalaReuniao=' + $scope.idSala
+                                                 + '&DataHoraInicial=' + dataHoraInicio
+                                                 + '&DataHoraFinal=' + dataHoraFim)
             .then(function successCallback(response) {
                 $scope.ClasseFim = $scope.ClasseOK;
             }, function errorCallback(response) {
