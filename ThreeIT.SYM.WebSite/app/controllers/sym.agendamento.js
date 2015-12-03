@@ -31,37 +31,7 @@ agendamentoApp.config(['$routeProvider',
 
 agendamentoApp.factory('appGlobalData', function () {
     return {
-        Informacao: 'ABC',
-
-        formatarStringDataAbrvPTbr: function (date) {
-
-            var diaDaSemana = [{ completo: "domingo", abreviado: "dom" },
-                               { completo: "segunda-feira", abreviado: "seg" },
-                               { completo: "terça-feira", abreviado: "ter" },
-                               { completo: "quarta-feira", abreviado: "qua" },
-                               { completo: "quinta-feira", abreviado: "qui" },
-                               { completo: "sexta-feira", abreviado: "sex" },
-                               { completo: "sábado", abreviado: "sáb" }]
-
-            var mes = [{ completo: "janeiro", abreviado: "jan" },
-                       { completo: "fevereiro", abreviado: "fev" },
-                       { completo: "março", abreviado: "mar" },
-                       { completo: "abril", abreviado: "abr" },
-                       { completo: "maio", abreviado: "mai" },
-                       { completo: "junho", abreviado: "jun" },
-                       { completo: "julho", abreviado: "jul" },
-                       { completo: "agosto", abreviado: "ago" },
-                       { completo: "setembro", abreviado: "set" },
-                       { completo: "outubro", abreviado: "out" },
-                       { completo: "novembro", abreviado: "nov" },
-                       { completo: "dezembro", abreviado: "dez" }]
-
-
-            date = new Date();
-
-            return diaDaSemana[date.getDay()].abreviado + ', ' + date.getDate() + ' de ' + mes[date.getMonth()].abreviado + ' de ' + date.getFullYear();
-
-        }
+        Informacao: 'ABC'
     };
 });
 

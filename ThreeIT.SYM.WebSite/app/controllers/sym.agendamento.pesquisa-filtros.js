@@ -45,7 +45,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
                 DataHoraFinal: new Date(2015, 11, 02, 08, 29, 59).toJSON()
             };
 
-            var teste = appGlobalData.formatarStringDataAbrvPTbr(new Date(2015, 11, 02, 08, 0));
+            //var teste = appGlobalData.formatarStringDataAbrvPTbr(new Date(2015, 11, 02, 08, 0));
 
             var getUrl = '/sym/services/api/DisponibilidadeSala?CodigoSalaReuniao=' + data.CodigoSalaReuniao
                                                             + '&DataHoraInicial=' + data.DataHoraInicial

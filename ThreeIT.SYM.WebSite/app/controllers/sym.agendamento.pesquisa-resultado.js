@@ -184,7 +184,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         });
 
         modalInstance.result.then(function (selectedItem) {
-            $location.path('pesquisa/' + $scope.params.lugares + '/' + $scope.params.onde + '/' + $scope.params.quando);
+            $location.path('pesquisa/' + $scope.params.lugares + '/' + $scope.params.onde + '/' + $scope.params.quando + '/' + $scope.params.possuiProjetor);
         });
     };
 
@@ -231,44 +231,16 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         startingDay: 1
     };
 
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.formats = ["dd 'de' MMM 'de' yyyy", 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 
     $scope.status = {
         opened: false
     };
 
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 2);
-    $scope.events =
-      [
-        {
-            date: tomorrow,
-            status: 'full'
-        },
-        {
-            date: afterTomorrow,
-            status: 'partially'
-        }
-      ];
 
-    $scope.getDayClass = function (date, mode) {
-        if (mode === 'day') {
-            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 
-            for (var i = 0; i < $scope.events.length; i++) {
-                var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
 
-                if (dayToCheck === currentDay) {
-                    return $scope.events[i].status;
-                }
-            }
-        }
-
-        return '';
-    };
 
 });
 

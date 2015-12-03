@@ -1,10 +1,10 @@
 ﻿<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header pull-left">
-            <div class="input-group" style="width: 200px">
-                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" show-weeks="false" show-button-bar="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <div class="input-group" style="width: 180px; margin-top: 8px;">
+                <input type="text" class="form-control" ng-click="open($event)" style="background-color: transparent; border: none; box-shadow: none; font-weight: bold" readonly="readonly" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" show-weeks="false" show-button-bar="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button type="button" class="btn" ng-click="open($event)" style="background-color: transparent; padding-left: 0px"><i class="glyphicon glyphicon-chevron-down"></i></button>
                 </span>
             </div>
         </div>
