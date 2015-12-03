@@ -12,19 +12,20 @@
     </div>
     <div>
         <span class="glyphicon glyphicon-calendar sym-glyphicon-padrao"></span>
-        <span class="sym-input-label">{{diaSemanaBr}}, {{item.horarioInicio | date:'EEEE'}}, {{item.horarioInicio | date:'dd/MM/yyyy'}}</span>
+        <span class="sym-input-label">{{item.agendamento.horarioInicial | date:'EEEE'}}, {{item.agendamento.horarioInicial | date:'dd/MM/yyyy'}}</span>
     </div>
     <div>
         <span class="glyphicon glyphicon-time sym-glyphicon-padrao"> </span>
         <select>
-            <option disabled="disabled">{{item.horarioInicio | date:'HH:MM'}}</option>
+            <option disabled="disabled" selected="selected">{{item.agendamento.horarioInicial | date:'HH:mm'}}</option>
         </select>
         
         <span class="sym-input-label"> Até </span>
 
         <select>
-            <option disabled="disabled">{{item.horarioFinal}}</option>
+            <option disabled="disabled" selected="selected">{{item.agendamento.horarioFinal | date:'HH:mm'}}</option>
         </select>
-
+        
     </div>
+    
 </div>
