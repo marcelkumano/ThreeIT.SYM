@@ -20,55 +20,23 @@
 }
 
 .sym-modal-header {
-    background-color: #277EFB;
+    background-color: #337ab7;
     height: 80px;
 }
 
 .sym-modal-title {
     color: white;
-    padding: 15px 0px 0px 10px;
+    padding: 10px 0px 0px 10px;
 }
 
-.sym-input-title {
-    background-color: #277EFB;
-    height: 25px;
-    border: 0;
-    width: calc(40% - 2px);
-    margin-left: 1px;
-    /*box-shadow: -8px 10px 0px -7px #ebebeb, 8px 10px 0px -7px #ebebeb;*/
-    box-shadow: 0px 2px 0px 0px black, 0px 2px 0px 0px black;
-    -webkit-transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s;
-    font-size: 16px;
-    color: white;
-}
-
-    .sym-input-title:focus {
-        outline: none;
-        box-shadow: 0px 2px 0px 0px black, 0px 2px 0px 0px black;
-    }
-
-
-::-webkit-input-placeholder {
-   color: white;
-   font-size: 14px;
-   opacity: 0.8;
-}
-
-:-moz-placeholder {
-   color: white;
-   font-size: 14px;
-   opacity: 0.8;
-}
-
-::-moz-placeholder {
-   color: white;  
-   font-size: 14px;
-   opacity: 0.8;
-}
-
-:-ms-input-placeholder {  
-   color: white;  
-   font-size: 14px;
-   opacity: 0.8;
+.sym-hora-select {
+    width: 80px;
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid gray;
+    padding: 4px 3px 3px 5px;
+    margin: 0;
+    font: inherit;
+    outline: none; 
+    line-height: 1.2;
 }

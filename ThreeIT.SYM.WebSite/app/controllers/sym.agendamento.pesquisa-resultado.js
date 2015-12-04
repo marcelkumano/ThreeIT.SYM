@@ -119,7 +119,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
                 detalheSala.primeiroPeriodoLivre = false;
             }
 
-            if (detalheSala.inicioSegundoPeriodo >= horarioReservaFim && detalheSala.inicioSegundoPeriodo <= horarioReservaFim) {
+            if (detalheSala.inicioSegundoPeriodo >= horarioReservaInicio && detalheSala.inicioSegundoPeriodo <= horarioReservaFim) {
                 detalheSala.agendamento = value
                 detalheSala.segundoPeriodoLivre = false;
             }
@@ -184,7 +184,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         });
 
         modalInstance.result.then(function (selectedItem) {
-            $location.path('pesquisa/' + $scope.params.lugares + '/' + $scope.params.onde + '/' + $scope.params.quando + '/' + $scope.params.possuiProjetor);
+            $location.path('pesquisa/' + $scope.params.lugares + '/' + $scope.params.onde + '/' + $scope.params.quando + '/' + $scope.params.possuiProjetor + '/' + appGlobalData.RandomNumber());
         });
     };
 

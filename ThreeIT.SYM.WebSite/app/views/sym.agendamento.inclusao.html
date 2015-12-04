@@ -1,35 +1,35 @@
 ﻿<div class="modal-header sym-modal-header">
-    <h3 class="modal-title sym-modal-title"><input type="text" placeholder="Titulo do agendamento" value="{{descricao}}" class="sym-input-title"/> </h3>
+    <h3 class="modal-title sym-modal-title">Agendamento</h3>
 </div>
 <div class="modal-body">
     <div>
         <span class="glyphicon glyphicon-home sym-glyphicon-padrao"></span>
-        <span class="sym-input-label" > Sala {{sala}}, {{lugares}} Lugares</span>
-        <span class="{{ClasseInicio}}"></span>
+        <span class="sym-input-label" > Sala {{nomeSala}}, {{quantidadeLugares}} Lugares</span>
+        <span class="glyphicon glyphicon-ok sym-glyphicon-ok"></span>
     </div>
     <div>
         <span class="glyphicon glyphicon-map-marker sym-glyphicon-padrao"></span>
-        <span class="sym-input-label">{{unidade}}</span>
-        <span class="{{ClasseInicio}}"></span>
+        <span class="sym-input-label">{{nomeUnidade}}</span>
+        <span class="glyphicon glyphicon-ok sym-glyphicon-ok"></span>
     </div>
     <div>
         <span class="glyphicon glyphicon-calendar sym-glyphicon-padrao"></span>
-        <span class="sym-input-label">{{horario | date:'EEEE'}}, {{horario | date:'dd/MM/yyyy'}}</span>
-        <span class="{{ClasseInicio}}"></span>
+        <span class="sym-input-label">{{dataExibicao}}</span>
+        <span class="glyphicon glyphicon-ok sym-glyphicon-ok"></span>
     </div>
     <div>
         <span class="glyphicon glyphicon-time sym-glyphicon-padrao"> </span>
-        <select ng-change="AlterarDataInicio()" ng-model="dataSourceDataInicio.HoraSelecionada.Hora">
-            <option ng-repeat="hora in dataSourceDataInicio.Horas" value="{{hora | date:'HH:mm'}}">{{hora | date:'HH:mm'}}</option>
+        <select class="sym-hora-select"  ng-change="AlterarDataInicio()" ng-model="horarioInicial">
+            <option ng-repeat="hora in dataSourceDataInicio" value="{{hora}}">{{hora}}</option>
         </select>
         <span class="sym-input-label">&nbsp;&nbsp;até</span>
-        <select ng-change="AlterarDataFim()" ng-model="dataSourceDataFim.HoraSelecionada.Hora">
-            <option ng-repeat="hora in dataSourceDataFim.Horas" value="{{hora | date:'HH:mm'}}">{{hora | date:'HH:mm'}}</option>
+        <select class="sym-hora-select" ng-change="AlterarDataFim()" ng-model="horarioFinal">
+            <option ng-repeat="hora in dataSourceDataFim" value="{{hora}}">{{hora}}</option>
         </select>
-        <span class="{{ClasseFim}}"></span>
+        <span ng-class="horarioDisponivel ? 'glyphicon glyphicon-ok sym-glyphicon-ok' : 'glyphicon glyphicon-remove sym-glyphicon-remove'"></span>
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" type="button" ng-click="ok()">Agendar</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Voltar</button>
 </div>

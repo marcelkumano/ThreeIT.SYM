@@ -8,11 +8,13 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
         $scope.quando = 01;
         $scope.uni = 01;
         $scope.possuiProjetor = 0;
+        $scope.randomNumber = appGlobalData.RandomNumber();
+
 
         $scope.$parent.$parent.isRouteLoading = true;
 
         //Pesquisa Unidades
-        $http.get('/sym/services/api/unidade?teste=teste')
+        $http.get('/sym/services/api/unidade')
         .then(function successCallback(response) {
             $scope.lista = response.data;
             $scope.$parent.$parent.isRouteLoading = false;

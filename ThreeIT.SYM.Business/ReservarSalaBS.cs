@@ -45,6 +45,10 @@ namespace ThreeIT.SYM.Business
             novaReserva.CodigoUsuarioAlteracao = 1;
             novaReserva.DataAlteracao = DateTime.Now;
 
+            //Se for 8:00 reservar até as 7:59
+            if (novaReserva.DataHoraFinal.Minute == 0)
+                novaReserva.DataHoraFinal = novaReserva.DataHoraFinal.AddSeconds(-1);
+
             using (SYMContext db = new SYMContext())
             {
                 db.ReservaSala.Add(novaReserva);
@@ -56,6 +60,10 @@ namespace ThreeIT.SYM.Business
 
         public bool ValidarReservaExistente(ReservaSala novaReserva) 
         {
+            //Se for 8:00 reservar até as 7:59
+            if (novaReserva.DataHoraFinal.Minute == 0)
+                novaReserva.DataHoraFinal = novaReserva.DataHoraFinal.AddSeconds(-1);
+
             using (SYMContext db = new SYMContext())
             {
                 foreach (ReservaSala reservaBase in db.ReservaSala.Where(p => p.CodigoSalaReuniao == novaReserva.CodigoSalaReuniao).ToList())

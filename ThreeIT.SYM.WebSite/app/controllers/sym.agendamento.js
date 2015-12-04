@@ -12,7 +12,7 @@ var agendamentoApp = angular.module('sym.agendamento', [
 agendamentoApp.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
-        when('/pesquisa/:lugares/:quando/:onde/:possuiProjetor', {
+        when('/pesquisa/:lugares/:quando/:onde/:possuiProjetor/:randomNumber', {
             templateUrl: '/sym/app/views/sym.agendamento.pesquisa-resultado.html',
             controller: 'sym.agendamento.pesquisa-resultado'
         }).
@@ -31,7 +31,10 @@ agendamentoApp.config(['$routeProvider',
 
 agendamentoApp.factory('appGlobalData', function () {
     return {
-        Informacao: 'ABC'
+        Informacao: 'ABC',
+        RandomNumber: function () {
+            return Math.floor((Math.random() * 1000000) + 1)
+        }
     };
 });
 
