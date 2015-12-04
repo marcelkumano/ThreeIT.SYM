@@ -5,6 +5,7 @@ agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, 
     var dataFinal = new Date(param.horarioInicio);
     dataFinal.setMinutes(dataFinal.getMinutes() + param.quantidadeMinutos);
 
+    $scope.horarioDisponivel = true;
     $scope.codigoSala = param.codigoSala;
     $scope.nomeSala = param.nomeSala;
     $scope.quantidadeLugares = param.quantidadeLugares;
