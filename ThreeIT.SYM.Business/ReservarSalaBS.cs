@@ -21,7 +21,7 @@ namespace ThreeIT.SYM.Business
 
         }
 
-        public List<ReservaSala> BuscarReservas(List<SalaReuniao> ListaSalas, int RangeData)
+        public List<ReservaSala> BuscarReservas(List<SalaReuniao> ListaSalas)
         {
             using (SYMContext db = new SYMContext())
             {
@@ -30,6 +30,15 @@ namespace ThreeIT.SYM.Business
                 foreach (SalaReuniao Sala in ListaSalas)
                 {
                     List<ReservaSala> Reserva = db.ReservaSala.Where(p => Sala.CodigoSalaReuniao == p.CodigoSalaReuniao).ToList();
+
+                    foreach(var item in Reserva) {
+
+                        item.DataAlteracao = DateTime.SpecifyKind(item.DataAlteracao, DateTimeKind.Utc);
+                        item.DataHoraInicial = DateTime.SpecifyKind(item.DataHoraInicial, DateTimeKind.Utc);
+                        item.DataHoraFinal = DateTime.SpecifyKind(item.DataHoraFinal, DateTimeKind.Utc);
+                    }
+
+                    
 
                     ListaReservaSala.AddRange(Reserva);
                 }
@@ -43,10 +52,11 @@ namespace ThreeIT.SYM.Business
             novaReserva.CodigoUsuario = 1;
             novaReserva.CodigoStatusReservaSala = 2;
             novaReserva.CodigoUsuarioAlteracao = 1;
-            novaReserva.DataAlteracao = DateTime.Now;
+            novaReserva.DataAlteracao = DateTime.UtcNow;
 
             //Se for 8:00 reservar até as 7:59
-            if (novaReserva.DataHoraFinal.Minute == 0)
+            if (novaReserva.DataHoraFinal.Minute == 0 ||
+                novaReserva.DataHoraFinal.Minute == 30)
                 novaReserva.DataHoraFinal = novaReserva.DataHoraFinal.AddSeconds(-1);
 
             using (SYMContext db = new SYMContext())
@@ -61,7 +71,8 @@ namespace ThreeIT.SYM.Business
         public bool ValidarReservaExistente(ReservaSala novaReserva) 
         {
             //Se for 8:00 reservar até as 7:59
-            if (novaReserva.DataHoraFinal.Minute == 0)
+            if (novaReserva.DataHoraFinal.Minute == 0 ||
+                novaReserva.DataHoraFinal.Minute == 30)
                 novaReserva.DataHoraFinal = novaReserva.DataHoraFinal.AddSeconds(-1);
 
             using (SYMContext db = new SYMContext())

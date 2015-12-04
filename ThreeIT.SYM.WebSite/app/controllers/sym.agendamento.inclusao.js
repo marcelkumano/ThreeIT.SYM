@@ -3,18 +3,18 @@
 agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, $http, $filter, $uibModalInstance, param, appGlobalData) {
     
     var dataFinal = new Date(param.horarioInicio);
-    dataFinal.setMinutes(param.quantidadeMinutos);
+    dataFinal.setMinutes(dataFinal.getMinutes() + param.quantidadeMinutos);
 
     $scope.codigoSala = param.codigoSala;
     $scope.nomeSala = param.nomeSala;
     $scope.quantidadeLugares = param.quantidadeLugares;
 
     $scope.nomeUnidade = param.nomeUnidade;
+    
+    $scope.horarioInicial = $filter('date')(param.horarioInicio, "HH:mm", '-0000');
+    $scope.horarioFinal = $filter('date')(dataFinal, "HH:mm", '-0000');
 
-    $scope.horarioInicial = $filter('date')(param.horarioInicio, "HH:mm");
-    $scope.horarioFinal = $filter('date')(dataFinal, "HH:mm");
-
-    $scope.dataExibicao = $filter('date')(param.horarioInicio, "EEE, dd 'de' MMM 'de' yyyy");
+    $scope.dataExibicao = $filter('date')(param.horarioInicio, "EEE, dd 'de' MMM 'de' yyyy", '-0000');
     
 
     $scope.dataSourceDataInicio = ["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
@@ -23,17 +23,17 @@ agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, 
 
     $scope.ok = function () {
 
-        var dataHoraInicio = new Date(param.horarioInicio.getFullYear(),
-                                      param.horarioInicio.getMonth(),
-                                      param.horarioInicio.getDate(),
-                                      $scope.horarioInicial.split(':')[0],
-                                      $scope.horarioInicial.split(':')[1]);
+        var dataHoraInicio = new Date(Date.UTC(param.horarioInicio.getUTCFullYear(),
+                                               param.horarioInicio.getUTCMonth(),
+                                               param.horarioInicio.getUTCDate(),
+                                               $scope.horarioInicial.split(':')[0],
+                                               $scope.horarioInicial.split(':')[1]));
 
-        var dataHoraFim = new Date(param.horarioInicio.getFullYear(),
-                                   param.horarioInicio.getMonth(),
-                                   param.horarioInicio.getDate(),
-                                   $scope.horarioFinal.split(':')[0],
-                                   $scope.horarioFinal.split(':')[1]);
+        var dataHoraFim = new Date(Date.UTC(param.horarioInicio.getUTCFullYear(),
+                                            param.horarioInicio.getUTCMonth(),
+                                            param.horarioInicio.getUTCDate(),
+                                            $scope.horarioFinal.split(':')[0],
+                                            $scope.horarioFinal.split(':')[1]));
 
         var data = {
             CodigoSalaReuniao: $scope.codigoSala,
@@ -112,17 +112,17 @@ agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, 
 
     $scope.validarDisponibilidade = function () {
 
-        var dataHoraInicio = new Date(param.horarioInicio.getFullYear(),
-                                      param.horarioInicio.getMonth(),
-                                      param.horarioInicio.getDate(),
-                                      $scope.horarioInicial.split(':')[0],
-                                      $scope.horarioInicial.split(':')[1]);
+        var dataHoraInicio = new Date(Date.UTC(param.horarioInicio.getUTCFullYear(),
+                                               param.horarioInicio.getUTCMonth(),
+                                               param.horarioInicio.getUTCDate(),
+                                               $scope.horarioInicial.split(':')[0],
+                                               $scope.horarioInicial.split(':')[1]));
 
-        var dataHoraFim = new Date(param.horarioInicio.getFullYear(),
-                                   param.horarioInicio.getMonth(),
-                                   param.horarioInicio.getDate(),
-                                   $scope.horarioFinal.split(':')[0],
-                                   $scope.horarioFinal.split(':')[1]);
+        var dataHoraFim = new Date(Date.UTC(param.horarioInicio.getUTCFullYear(),
+                                            param.horarioInicio.getUTCMonth(),
+                                            param.horarioInicio.getUTCDate(),
+                                            $scope.horarioFinal.split(':')[0],
+                                            $scope.horarioFinal.split(':')[1]));
         
 
         $http.get('/sym/services/api/DisponibilidadeSala?CodigoSalaReuniao=' + $scope.codigoSala

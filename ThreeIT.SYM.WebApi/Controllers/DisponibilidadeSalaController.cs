@@ -31,8 +31,8 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             ReservaSala reserva = new ReservaSala();
             reserva.CodigoSalaReuniao = CodigoSalaReuniao.Value;
-            reserva.DataHoraInicial = DataHoraInicial.Value.ToLocalTime();
-            reserva.DataHoraFinal = DataHoraFinal.Value.ToLocalTime();
+            reserva.DataHoraInicial = DataHoraInicial.Value.ToUniversalTime();
+            reserva.DataHoraFinal = DataHoraFinal.Value.ToUniversalTime();
 
             if (new ReservarSalaBS().ValidarReservaExistente(reserva))
             {

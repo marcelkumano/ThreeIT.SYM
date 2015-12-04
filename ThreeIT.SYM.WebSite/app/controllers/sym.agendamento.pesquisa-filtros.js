@@ -38,46 +38,5 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-filtros',
             }
 
         }
-
-        $scope.testeAgendamento = function () {
-            var data = {
-                CodigoSalaReuniao: 1,
-                DescricaoAgendamento: "Novo Agendamento", 
-                DataHoraInicial: new Date(2015, 11, 02, 08, 0).toJSON(),
-                DataHoraFinal: new Date(2015, 11, 02, 08, 29, 59).toJSON()
-            };
-
-            //var teste = appGlobalData.formatarStringDataAbrvPTbr(new Date(2015, 11, 02, 08, 0));
-
-            var getUrl = '/sym/services/api/DisponibilidadeSala?CodigoSalaReuniao=' + data.CodigoSalaReuniao
-                                                            + '&DataHoraInicial=' + data.DataHoraInicial
-                                                            + '&DataHoraFinal=' + data.DataHoraFinal
-
-
-            ///Chamada para validar a disponibilidade da sala
-            $http.get(getUrl)
-            .then(function successCallback(response) {
-
-                //realiza a inclusão
-                $http.post('/sym/services/api/salasreservadas', data)
-                .then(function successCallback(response) {
-                    
-                    alert('incluído com sucesso');
-
-                },
-                function errorCallback(response) {
-                    appGlobalData.errorResponse = response;
-                    $location.path('ops');
-                });
-
-            },
-            function errorCallback(response) {
-                appGlobalData.errorResponse = response;
-                $location.path('ops');
-            });
-
-
-
-        }
     }
 );

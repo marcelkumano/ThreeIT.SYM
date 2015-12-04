@@ -12,16 +12,16 @@
     </div>
     <div>
         <span class="glyphicon glyphicon-calendar sym-glyphicon-padrao"></span>
-        <span class="sym-input-label">{{item.agendamento.horarioInicial | date: "EEE, dd 'de' MMM 'de' yyyy"}}</span>
+        <span class="sym-input-label">{{dataExibicao}}</span>
     </div>
     <div>
         <span class="glyphicon glyphicon-time sym-glyphicon-padrao"></span>
         <span style=" border-bottom: 2px solid gray; padding-left: 2px">
-            {{item.agendamento.horarioInicial | date:'HH:mm'}}
+            {{horarioInicial}}
         </span>
         <span class="sym-input-label" style="padding-left: 20px; padding-right: 20px">até</span>
         <span style=" border-bottom: 2px solid gray; padding-left: 2px">
-            {{item.agendamento.horarioFinal | date:'HH:mm'}}
+            {{horarioFinal}}
         </span>
     </div>
 </div>

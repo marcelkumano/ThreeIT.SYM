@@ -28,6 +28,10 @@
         </select>
         <span ng-class="horarioDisponivel ? 'glyphicon glyphicon-ok sym-glyphicon-ok' : 'glyphicon glyphicon-remove sym-glyphicon-remove'"></span>
     </div>
+    
+    <div class="sym-mensagem-sala-ocupada" ng-show="!horarioDisponivel">
+        O horário selecionado não está mais disponível
+    </div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="ok()">Agendar</button>

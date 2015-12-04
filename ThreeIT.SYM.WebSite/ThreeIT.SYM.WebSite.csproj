@@ -61,7 +61,6 @@
     <Content Include="app\controllers\sym.agendamento.pesquisa-filtros.js" />
     <Content Include="app\controllers\sym.agendamento.js" />
     <Content Include="app\controllers\sym.agendamento.detalhe.js" />
-    <Content Include="app\controllers\_sym.agendamento.inclusao.js" />
     <Content Include="app\controllers\sym.agendamento.pesquisa-resultado.js" />
     <Content Include="app\controllers\sym.agendamento.erro-ajax.js" />
     <Content Include="app\controllers\sym.login.js" />
@@ -82,6 +81,7 @@
     <Content Include="content\css\sym.resultado-pesquisa-agendamento.min.css" />
     <Content Include="content\css\sym.resultado-pesquisa-agendamento.css" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="content\images\loader.gif" />
     <Content Include="content\images\dog-background.jpg" />
     <Content Include="content\images\favicon\apple-touch-icon-114x114.png" />
     <Content Include="content\images\favicon\apple-touch-icon-120x120.png" />

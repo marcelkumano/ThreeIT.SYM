@@ -43,7 +43,7 @@ var routeLoadingIndicator = function ($rootScope, $timeout) {
 
     return {
         restrict: 'E',
-        template: "<div class='loader' ng-if='isRouteLoading'><h1>Carregando...</div>",
+        template: "<div class='loader' ng-if='isRouteLoading'><h1><span class='cog'></span>Carregando...</h1></div>",
         link: function (scope, elem, attrs) {
             scope.isRouteLoading = false;
 

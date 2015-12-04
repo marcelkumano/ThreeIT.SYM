@@ -3,13 +3,20 @@
 
 .sym-glyphicon-remove {
     color: red;
-    padding: 10px 10px 10px 10px !important;
+    padding: 10px 5px 10px 5px !important;
     font-size: 20px;
+}
+
+.sym-mensagem-sala-ocupada {
+
+    text-align: center;
+    color: red;
+    font-weight: bold;
 }
 
 .sym-glyphicon-ok {
     color: green;
-    padding: 10px 10px 10px 10px !important;
+    padding: 10px 5px 10px 5px !important;
     font-size: 20px;
 }
 
@@ -37,6 +44,17 @@
     padding: 4px 3px 3px 5px;
     margin: 0;
     font: inherit;
-    outline: none; 
+    outline: none;
     line-height: 1.2;
+}
+
+
+/*MOBILE SETTINGS*/
+@media (max-width: 767px) {
+
+    .sym-glyphicon-padrao {
+        font-size: 26px !important;
+        padding: 20px 10px 20px 10px !important;
+        color: gray;
+    }
 }

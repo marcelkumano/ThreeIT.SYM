@@ -42,7 +42,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
             var horarios = [];
             var horaInicio = new Date(dia.salas[0].horarioInicial).getHours();
-            var horaFim = new Date(dia.salas[0].horarioFinal).getHours();
+            var horaFim = new Date(dia.salas[0].horarioFinal).getHours() -1;
 
             for (var i = horaInicio; i <= horaFim; i++) {
                 horarios.push({ hora: i });
@@ -76,7 +76,9 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
 
             var detalheSala = { dia: undefined };
 
-            detalheSala.dia = new Date(mes.ano, mes.numeroMes - 1, dia.numeroDia);
+            new Date().toUTCString
+
+            detalheSala.dia = new Date(Date.UTC(mes.ano, mes.numeroMes - 1, dia.numeroDia));
             detalheSala.codigoUnidade = sala.codigoUnidade;
             detalheSala.nomeUnidade = sala.nomeUnidade;
             detalheSala.codigoSala = sala.codigoSala;
@@ -101,18 +103,18 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         detalheSala.primeiroPeriodoLivre = true;
         detalheSala.segundoPeriodoLivre = true;
 
-        detalheSala.inicioPrimeiroPeriodo = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), hora, 0);
-        detalheSala.inicioSegundoPeriodo = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), hora, 30);
+        detalheSala.inicioPrimeiroPeriodo = new Date(Date.UTC(detalheSala.dia.getUTCFullYear(), detalheSala.dia.getUTCMonth(), detalheSala.dia.getUTCDate(), hora, 0));
+        detalheSala.inicioSegundoPeriodo = new Date(Date.UTC(detalheSala.dia.getUTCFullYear(), detalheSala.dia.getUTCMonth(), detalheSala.dia.getUTCDate(), hora, 30));
 
         angular.forEach(sala.reservas, function (value) {
 
-            var horarioInicialHora = new Date(value.horarioInicial).getHours();
-            var horarioInicialMinutos = new Date(value.horarioInicial).getMinutes();
-            var horarioReservaInicio = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), horarioInicialHora, horarioInicialMinutos);
+            var horarioInicialHora = new Date(value.horarioInicial).getUTCHours();
+            var horarioInicialMinutos = new Date(value.horarioInicial).getUTCMinutes();
+            var horarioReservaInicio = new Date(Date.UTC(detalheSala.dia.getUTCFullYear(), detalheSala.dia.getUTCMonth(), detalheSala.dia.getUTCDate(), horarioInicialHora, horarioInicialMinutos));
 
-            var horarioFinalHora = new Date(value.horarioFinal).getHours();
-            var horarioFinalMinutos = new Date(value.horarioFinal).getMinutes();
-            var horarioReservaFim = new Date(detalheSala.dia.getFullYear(), detalheSala.dia.getMonth(), detalheSala.dia.getDate(), horarioFinalHora, horarioFinalMinutos);
+            var horarioFinalHora = new Date(value.horarioFinal).getUTCHours();
+            var horarioFinalMinutos = new Date(value.horarioFinal).getUTCMinutes();
+            var horarioReservaFim = new Date(Date.UTC(detalheSala.dia.getUTCFullYear(), detalheSala.dia.getUTCMonth(), detalheSala.dia.getUTCDate(), horarioFinalHora, horarioFinalMinutos));
 
             if (detalheSala.inicioPrimeiroPeriodo >= horarioReservaInicio && detalheSala.inicioPrimeiroPeriodo <= horarioReservaFim) {
                 detalheSala.agendamento = value

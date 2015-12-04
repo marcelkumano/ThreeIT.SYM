@@ -24,7 +24,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             List<SalaReuniao> ListaSalas = new SalaReuniaoBS().ListarSalas(IdUnidade, QtdPessoas, possuiProjetor);
 
-            List<ReservaSala> ListaReserva = new ReservarSalaBS().BuscarReservas(ListaSalas, RangeData);
+            List<ReservaSala> ListaReserva = new ReservarSalaBS().BuscarReservas(ListaSalas);
 
             SalasAgendadas Agendamento = new SalasAgendadas();
 
@@ -32,10 +32,10 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
             Meses _Meses = new Meses();
 
-            _Meses.ano = DateTime.Now.Year;
-            _Meses.numeroMes = DateTime.Today.Month;
-            _Meses.mes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
-            _Meses.descricaoMes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month) + " " + DateTime.Today.Year;
+            _Meses.ano = DateTime.UtcNow.Year;
+            _Meses.numeroMes = DateTime.UtcNow.Month;
+            _Meses.mes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.UtcNow.Month);
+            _Meses.descricaoMes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.UtcNow.Month) + " " + DateTime.UtcNow.Year;
 
             Agendamento.meses.Add(_Meses);
 
@@ -51,7 +51,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
             }
             else if (RangeData == 2)
             {
-                for (int i = (int)DateTime.Today.DayOfWeek; i < 6; i++)
+                for (int i = (int)DateTime.UtcNow.DayOfWeek; i < 6; i++)
                 {
                     Dias _Dias = new Dias();
 
@@ -63,9 +63,9 @@ namespace ThreeIT.SYM.WebApi.Controllers
             }
             else if (RangeData == 3)
             {
-                for (int i = (int)DateTime.Today.Day; i <= DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month); i++)
+                for (int i = (int)DateTime.UtcNow.Day; i <= DateTime.DaysInMonth(DateTime.UtcNow.Year, DateTime.UtcNow.Month); i++)
                 {
-                    if ((int)DateTime.Today.AddDays(contadorDias).DayOfWeek != 6 && (int)DateTime.Today.AddDays(contadorDias).DayOfWeek != 0)
+                    if ((int)DateTime.UtcNow.AddDays(contadorDias).DayOfWeek != 6 && (int)DateTime.UtcNow.AddDays(contadorDias).DayOfWeek != 0)
                     {
                         Dias _Dias = new Dias();
 
@@ -82,8 +82,8 @@ namespace ThreeIT.SYM.WebApi.Controllers
 
         public void Post(ReservaSala postData)
         {
-            postData.DataHoraInicial = postData.DataHoraInicial.ToLocalTime();
-            postData.DataHoraFinal = postData.DataHoraFinal.ToLocalTime();
+            postData.DataHoraInicial = postData.DataHoraInicial.ToUniversalTime();
+            postData.DataHoraFinal = postData.DataHoraFinal.ToUniversalTime();
 
             if (postData.CodigoSalaReuniao == default(int) ||
                 postData.DescricaoAgendamento == default(string) ||
@@ -110,8 +110,8 @@ namespace ThreeIT.SYM.WebApi.Controllers
         private Dias PreencherListas(int contadorDias, List<SalaReuniao> ListaSalas, List<ReservaSala> ListaReserva)
         {
             Dias _Dias = new Dias();
-            _Dias.diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Today.AddDays(contadorDias).DayOfWeek);
-            _Dias.numeroDia = DateTime.Today.AddDays(contadorDias).Day;
+            _Dias.diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.UtcNow.AddDays(contadorDias).DayOfWeek);
+            _Dias.numeroDia = DateTime.UtcNow.AddDays(contadorDias).Day;
             _Dias.salas = new List<Salas>();
 
             foreach (SalaReuniao Sala in ListaSalas)
@@ -129,7 +129,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
                 _Sala.reservas = new List<Reservas>();
                 foreach (ReservaSala Reserva in ListaReserva.Where(p => p.CodigoSalaReuniao == Sala.CodigoSalaReuniao))
                 {
-                    if (Reserva.DataHoraInicial.Day == DateTime.Today.AddDays(contadorDias).Day)
+                    if (Reserva.DataHoraInicial.Day == DateTime.UtcNow.AddDays(contadorDias).Day)
                     {
                         Reservas _Reserva = new Reservas();
                         _Reserva.horarioFinal = Reserva.DataHoraFinal;
