@@ -4,6 +4,14 @@ agendamentoControllers.controller('sym.agendamento.detalhe', function ($scope, $
 
     $scope.item = param;
 
+    $scope.sameUser = false;
+    $scope.salaIndisponivel = true;
+
+    if (param.nomeSala == 'Paixão') {
+        $scope.sameUser = true;
+        $scope.salaIndisponivel = false;
+    }
+
     var dataFim = new Date(param.agendamento.horarioFinal);
     dataFim.setMinutes(dataFim.getMinutes() + 1);
 
@@ -16,5 +24,10 @@ agendamentoControllers.controller('sym.agendamento.detalhe', function ($scope, $
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.ocuparSala = function () {
+        //Ocupa a sala e retorna mensagem de sucesso
+
+    };
+    
     //$scope.diaSemanaBr = appGlobalData.formatarStringDataAbrvPTbr($scope.item.agendamento.horarioInicial);
 });

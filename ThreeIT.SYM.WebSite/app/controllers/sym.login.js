@@ -9,7 +9,7 @@ agendamentoControllers.controller('sym.login',
 
             var usuario = $scope.usuario;
             var senha = $scope.senha;
-            if (usuario == 'PADRAO' && senha == '123') {
+            if (usuario == 'padrao' && senha == '123') {
                 $location.path('filtro');
             }
             else {

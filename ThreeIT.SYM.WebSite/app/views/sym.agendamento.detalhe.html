@@ -2,7 +2,7 @@
     <h3 class="modal-title sym-modal-title">Agendamento</h3>
 </div>
 <div class="modal-body">
-    <div class="sym-mensagem-sala-ocupada">
+    <div class="sym-mensagem-sala-ocupada" ng-show="salaIndisponivel">
         O horário não está mais disponível
     </div>
     <div>
@@ -29,5 +29,6 @@
     </div>
 </div>
 <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ocuparSala()" ng-show="sameUser">Ocupar a sala</button>
     <button class="btn btn-default" type="button" ng-click="cancel()">Voltar</button>
 </div>
