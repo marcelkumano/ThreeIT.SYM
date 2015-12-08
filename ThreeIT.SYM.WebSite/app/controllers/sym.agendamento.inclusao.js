@@ -47,7 +47,7 @@ agendamentoControllers.controller('sym.agendamento.inclusao', function ($scope, 
         .then(function successCallback(response) {
 
             $uibModalInstance.close('OK');
-
+            
         },
         function errorCallback(response) {
 

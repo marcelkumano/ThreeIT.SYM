@@ -36,5 +36,12 @@ namespace ThreeIT.SYM.Models
 
         public SalaReuniao SalaReuniao { get; set; }
 
+        public DateTime? DataInicioOcupacao { get; set; }
+
+        public DateTime DataLimiteOcupacao { get; set; }
+
+        [NotMapped]
+        public bool? ExpirouLimiteOcupacao { get; set; }
+
     }
 }

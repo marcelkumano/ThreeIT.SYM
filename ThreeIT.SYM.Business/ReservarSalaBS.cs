@@ -14,7 +14,7 @@ namespace ThreeIT.SYM.Business
         {
             using (SYMContext db = new SYMContext())
             {
-                db.ReservaSala.Add(new ReservaSala() { CodigoSalaReuniao = 1, CodigoUsuario = 1, DescricaoAgendamento = "Reunião de KickOff", CodigoStatusReservaSala = 2, CodigoUsuarioAlteracao = 1, DataHoraInicial = DateTime.Today.AddHours(9), DataHoraFinal = DateTime.Today.AddHours(9).AddMinutes(29).AddSeconds(59), DataAlteracao = DateTime.Now });
+                //db.ReservaSala.Add(new ReservaSala() { CodigoSalaReuniao = 1, CodigoUsuario = 1, DescricaoAgendamento = "Reunião de KickOff", CodigoStatusReservaSala = 2, CodigoUsuarioAlteracao = 1, DataHoraInicial = DateTime.Today.AddHours(9), DataHoraFinal = DateTime.Today.AddHours(9).AddMinutes(29).AddSeconds(59), DataAlteracao = DateTime.Now });
 
                 db.SaveChanges();
             }
@@ -36,9 +36,15 @@ namespace ThreeIT.SYM.Business
                         item.DataAlteracao = DateTime.SpecifyKind(item.DataAlteracao, DateTimeKind.Utc);
                         item.DataHoraInicial = DateTime.SpecifyKind(item.DataHoraInicial, DateTimeKind.Utc);
                         item.DataHoraFinal = DateTime.SpecifyKind(item.DataHoraFinal, DateTimeKind.Utc);
-                    }
+                        
+                        if (item.DataInicioOcupacao != null)
+                            item.DataInicioOcupacao = DateTime.SpecifyKind(item.DataInicioOcupacao.Value, DateTimeKind.Utc);
 
-                    
+                        item.DataLimiteOcupacao = DateTime.SpecifyKind(item.DataLimiteOcupacao, DateTimeKind.Utc);
+
+                        if (item.DataLimiteOcupacao != default(DateTime))
+                            item.ExpirouLimiteOcupacao = DateTime.UtcNow > item.DataLimiteOcupacao;
+                    }
 
                     ListaReservaSala.AddRange(Reserva);
                 }
@@ -46,13 +52,16 @@ namespace ThreeIT.SYM.Business
             }
         }
 
-
         public void IncluirReserva(ReservaSala novaReserva)
         {
             novaReserva.CodigoUsuario = 1;
             novaReserva.CodigoStatusReservaSala = 2;
             novaReserva.CodigoUsuarioAlteracao = 1;
             novaReserva.DataAlteracao = DateTime.UtcNow;
+
+            //Iniciar sem ocupação
+            novaReserva.DataInicioOcupacao = null;
+            novaReserva.DataLimiteOcupacao = novaReserva.DataHoraInicial.AddMinutes(15);
 
             //Se for 8:00 reservar até as 7:59
             if (novaReserva.DataHoraFinal.Minute == 0 ||
@@ -100,6 +109,21 @@ namespace ThreeIT.SYM.Business
             {
                 ReservaSala dados = db.ReservaSala.Where(p => p.CodigoReserva == codigoReserva).FirstOrDefault();
                 return dados;
+            }
+        }
+
+        public void OcuparReserva(ReservaSala param) 
+        {
+            ReservaSala reservaBase = null;
+
+            using (SYMContext db = new SYMContext())
+            {
+                reservaBase = db.ReservaSala.Where(p => p.CodigoReserva == param.CodigoReserva).FirstOrDefault();
+                reservaBase.DataInicioOcupacao = DateTime.UtcNow;
+
+                db.ReservaSala.Add(reservaBase);
+
+                db.SaveChanges();
             }
         }
     }

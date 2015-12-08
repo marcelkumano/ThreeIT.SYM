@@ -41,8 +41,8 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         if (dia.salas.length > 0) {
 
             var horarios = [];
-            var horaInicio = new Date(dia.salas[0].horarioInicial).getHours();
-            var horaFim = new Date(dia.salas[0].horarioFinal).getHours() -1;
+            var horaInicio = new Date(dia.salas[0].horarioInicial).getUTCHours();
+            var horaFim = new Date(dia.salas[0].horarioFinal).getUTCHours() - 1;
 
             for (var i = horaInicio; i <= horaFim; i++) {
                 horarios.push({ hora: i });
@@ -75,8 +75,6 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         angular.forEach(salas, function (sala) {
 
             var detalheSala = { dia: undefined };
-
-            new Date().toUTCString
 
             detalheSala.dia = new Date(Date.UTC(mes.ano, mes.numeroMes - 1, dia.numeroDia));
             detalheSala.codigoUnidade = sala.codigoUnidade;

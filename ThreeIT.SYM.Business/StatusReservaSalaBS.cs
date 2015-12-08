@@ -14,8 +14,9 @@ namespace ThreeIT.SYM.Business
         {
             using (SYMContext db = new SYMContext())
             {
-                db.StatusReservaSala.Add(new StatusReservaSala() { DescricaoStatusReservaSala = "Sala Vaga" });
-                db.StatusReservaSala.Add(new StatusReservaSala() { DescricaoStatusReservaSala = "Sala Ocupada" });
+                db.StatusReservaSala.Add(new StatusReservaSala() { DescricaoStatusReservaSala = "Reservado" });
+                db.StatusReservaSala.Add(new StatusReservaSala() { DescricaoStatusReservaSala = "Cancelado" });
+                db.StatusReservaSala.Add(new StatusReservaSala() { DescricaoStatusReservaSala = "Cancelada devido à ocupação não sinalizada" });
                 
                 db.SaveChanges();
             }
