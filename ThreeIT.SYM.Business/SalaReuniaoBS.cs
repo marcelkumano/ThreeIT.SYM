@@ -22,6 +22,7 @@ namespace ThreeIT.SYM.Business
                 db.SaveChanges();
             }
         }
+
         public List<SalaReuniao> ListarSalas(int codigoUnidade, int quantidadePessoas, bool? possuiProjetor)
         {
             using (SYMContext db = new SYMContext())

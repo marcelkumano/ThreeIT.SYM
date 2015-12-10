@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ThreeIT.SYM.DataAccess;
 using ThreeIT.SYM.Models;
+using ThreeIT.SYM.Business.Extensions;
+
 
 namespace ThreeIT.SYM.Business
 {
@@ -21,34 +23,34 @@ namespace ThreeIT.SYM.Business
 
         }
 
-        public List<ReservaSala> BuscarReservas(List<SalaReuniao> ListaSalas)
+        public List<ReservaSala> ListarReservasPorData(DateTime dataInicio, DateTime dataFim, int codigoUnidade)
         {
             using (SYMContext db = new SYMContext())
             {
-                List<ReservaSala> ListaReservaSala = new List<ReservaSala>();
+                List<ReservaSala> listaReservas =
+                (from reserva in db.ReservaSala
+                 join sala in db.SalaReuniao on reserva.CodigoSalaReuniao equals sala.CodigoSalaReuniao
+                 where sala.CodigoUnidade == codigoUnidade
+                    && reserva.DataHoraInicial >= dataInicio
+                    && reserva.DataHoraInicial <= dataFim
+                 select reserva).ToList();
 
-                foreach (SalaReuniao Sala in ListaSalas)
+                foreach (var item in listaReservas)
                 {
-                    List<ReservaSala> Reserva = db.ReservaSala.Where(p => Sala.CodigoSalaReuniao == p.CodigoSalaReuniao).ToList();
+                    item.DataAlteracao = DateTime.SpecifyKind(item.DataAlteracao, DateTimeKind.Utc);
+                    item.DataHoraInicial = DateTime.SpecifyKind(item.DataHoraInicial, DateTimeKind.Utc);
+                    item.DataHoraFinal = DateTime.SpecifyKind(item.DataHoraFinal, DateTimeKind.Utc);
 
-                    foreach(var item in Reserva) {
+                    if (item.DataInicioOcupacao != null)
+                        item.DataInicioOcupacao = DateTime.SpecifyKind(item.DataInicioOcupacao.Value, DateTimeKind.Utc);
 
-                        item.DataAlteracao = DateTime.SpecifyKind(item.DataAlteracao, DateTimeKind.Utc);
-                        item.DataHoraInicial = DateTime.SpecifyKind(item.DataHoraInicial, DateTimeKind.Utc);
-                        item.DataHoraFinal = DateTime.SpecifyKind(item.DataHoraFinal, DateTimeKind.Utc);
-                        
-                        if (item.DataInicioOcupacao != null)
-                            item.DataInicioOcupacao = DateTime.SpecifyKind(item.DataInicioOcupacao.Value, DateTimeKind.Utc);
+                    item.DataLimiteOcupacao = DateTime.SpecifyKind(item.DataLimiteOcupacao, DateTimeKind.Utc);
 
-                        item.DataLimiteOcupacao = DateTime.SpecifyKind(item.DataLimiteOcupacao, DateTimeKind.Utc);
-
-                        if (item.DataLimiteOcupacao != default(DateTime))
-                            item.ExpirouLimiteOcupacao = DateTime.UtcNow > item.DataLimiteOcupacao;
-                    }
-
-                    ListaReservaSala.AddRange(Reserva);
+                    if (item.DataLimiteOcupacao != default(DateTime))
+                        item.ExpirouLimiteOcupacao = DateTime.UtcNow.BrasilNow() > item.DataLimiteOcupacao;
                 }
-                return ListaReservaSala;
+
+                return listaReservas;
             }
         }
 

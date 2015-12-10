@@ -9,6 +9,7 @@ using ThreeIT.SYM.Models;
 using ThreeIT.SYM.Business;
 using ThreeIT.SYM.WebApi.Models;
 using System.Globalization;
+using ThreeIT.SYM.Business.Extensions;
 
 namespace ThreeIT.SYM.WebApi.Controllers
 {
@@ -16,68 +17,108 @@ namespace ThreeIT.SYM.WebApi.Controllers
     {
         //
         // GET: /SalasReservadas/
-        public SalasAgendadas Get(int QtdPessoas, int IdUnidade, int RangeData, bool? possuiProjetor)
+        // http://localhost:2244/sym/services/api/SalasReservadas?quantidadePessoas=5&codigoUnidade=1&intervaloData=1&possuiProjetor=
+        public SalasAgendadas Get(int quantidadePessoas, int codigoUnidade, IntervaloPesquisaSalasEnum intervaloData, bool? possuiProjetor)
         {
-            //int QtdPessoas = 4;
-            //int IdUnidade = 1;
-            //int RangeData = 2;
+            DateTime dataInicio, dataFim;
 
-            List<SalaReuniao> ListaSalas = new SalaReuniaoBS().ListarSalas(IdUnidade, QtdPessoas, possuiProjetor);
-
-            List<ReservaSala> ListaReserva = new ReservarSalaBS().BuscarReservas(ListaSalas);
-
-            SalasAgendadas Agendamento = new SalasAgendadas();
-
-            Agendamento.meses = new List<Meses>();
-
-            Meses _Meses = new Meses();
-
-            _Meses.ano = DateTime.UtcNow.Year;
-            _Meses.numeroMes = DateTime.UtcNow.Month;
-            _Meses.mes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.UtcNow.Month);
-            _Meses.descricaoMes = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.UtcNow.Month) + " " + DateTime.UtcNow.Year;
-
-            Agendamento.meses.Add(_Meses);
-
-            Agendamento.meses[0].dias = new List<Dias>();
-
-            int contadorDias = 0;
-
-            if (RangeData == 1)
+            switch (intervaloData)
             {
-                Dias _Dias = new Dias();
-                _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
-                Agendamento.meses[0].dias.Add(_Dias);
+                case IntervaloPesquisaSalasEnum.Hoje:
+                    dataInicio = new DateTime(DateTime.Today.Ticks, DateTimeKind.Utc);
+                    dataFim = new DateTime(DateTime.Today.AddWorkingDays(0 + 1).AddMinutes(-1).Ticks, DateTimeKind.Utc);
+                    break;
+                case IntervaloPesquisaSalasEnum.ProximosSeteDias:
+                    dataInicio = new DateTime(DateTime.Today.Ticks, DateTimeKind.Utc);
+                    dataFim = new DateTime(DateTime.Today.AddWorkingDays(7).AddMinutes(-1).Ticks, DateTimeKind.Utc);
+                    break;
+                case IntervaloPesquisaSalasEnum.ProximosTrintaDias:
+                    dataInicio = new DateTime(DateTime.Today.Ticks, DateTimeKind.Utc);
+                    dataFim = new DateTime(DateTime.Today.AddWorkingDays(15).AddMinutes(-1).Ticks, DateTimeKind.Utc);
+                    break;
+
+                default:
+                    dataInicio = DateTime.MinValue;
+                    dataFim = DateTime.MaxValue;
+                    break;
             }
-            else if (RangeData == 2)
-            {
-                for (int i = (int)DateTime.UtcNow.DayOfWeek; i < 6; i++)
-                {
-                    Dias _Dias = new Dias();
 
-                    _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
 
-                    Agendamento.meses[0].dias.Add(_Dias);
-                    contadorDias += 1;
-                }
-            }
-            else if (RangeData == 3)
+            List<SalaReuniao> listaSalas = new SalaReuniaoBS().ListarSalas(codigoUnidade, quantidadePessoas, possuiProjetor);
+            List<ReservaSala> listaReservas = new ReservarSalaBS().ListarReservasPorData(dataInicio, dataFim, codigoUnidade);
+
+            SalasAgendadas pesquisaAgendamento = new SalasAgendadas();
+
+            pesquisaAgendamento.meses = new List<Meses>();
+
+            bool chegouFim = false;
+
+            DateTime dataAtual = dataInicio;
+            Meses mesAtual = new Meses();
+
+            while (!chegouFim)
             {
-                for (int i = (int)DateTime.UtcNow.Day; i <= DateTime.DaysInMonth(DateTime.UtcNow.Year, DateTime.UtcNow.Month); i++)
+                Dias dia = new Dias();
+                dia.diaSemana = dataAtual.DayName();
+                dia.numeroDia = dataAtual.Day;
+                dia.salas = new List<Salas>();
+
+                if (dataAtual.IsWorkingDay())
                 {
-                    if ((int)DateTime.UtcNow.AddDays(contadorDias).DayOfWeek != 6 && (int)DateTime.UtcNow.AddDays(contadorDias).DayOfWeek != 0)
+                    if (pesquisaAgendamento.meses.Where(w => w.ano == dataAtual.Year).Count() == 0)
                     {
-                        Dias _Dias = new Dias();
+                        mesAtual = new Meses();
+                        mesAtual.ano = dataAtual.Year;
+                        mesAtual.numeroMes = dataAtual.Month;
+                        mesAtual.mes = dataAtual.MonthName();
+                        mesAtual.descricaoMes = string.Format("{0} {1}", mesAtual.mes, DateTime.UtcNow.Year);
+                        mesAtual.dias = new List<Dias>();
 
-                        _Dias = PreencherListas(contadorDias, ListaSalas, ListaReserva);
-
-                        Agendamento.meses[0].dias.Add(_Dias);
+                        pesquisaAgendamento.meses.Add(mesAtual);
                     }
-                    contadorDias += 1;
+
+                    foreach (SalaReuniao salaAtual in listaSalas)
+                    {
+                        Salas sala = new Salas();
+
+                        sala.codigoUnidade = salaAtual.CodigoUnidade;
+                        sala.nomeUnidade = new UnidadeBS().DetalharUnidade(salaAtual.CodigoUnidade).NomeUnidade;
+                        sala.codigoSala = salaAtual.CodigoSalaReuniao;
+                        sala.nomeSala = salaAtual.NomeSala;
+                        sala.quantidadeLugares = salaAtual.CapacidadeSala;
+                        sala.horarioInicial = salaAtual.DisponibilidadeInicio;
+                        sala.horarioFinal = salaAtual.DispoonibilidadeFim;
+
+                        sala.reservas = new List<Reservas>();
+
+                        foreach (ReservaSala reservaBase in listaReservas.Where(p => p.CodigoSalaReuniao == salaAtual.CodigoSalaReuniao
+                                                                              && p.DataHoraInicial.ToShortDateString() == dataAtual.ToShortDateString()))
+                        {
+                            Reservas reserva = new Reservas();
+                            reserva.horarioFinal = reservaBase.DataHoraFinal;
+                            reserva.horarioInicial = reservaBase.DataHoraInicial;
+                            reserva.idAgendamento = reservaBase.CodigoReserva;
+                            reserva.expirouLimiteOcupacao = reservaBase.ExpirouLimiteOcupacao;
+                            reserva.reservadoPara = "";
+
+                            sala.reservas.Add(reserva);
+                        }
+
+                        dia.salas.Add(sala);
+                    }
+
+                    mesAtual.dias.Add(dia);
+                }
+
+                dataAtual = dataAtual.AddDays(1);
+
+                if (dataAtual > dataFim)
+                {
+                    chegouFim = true;
                 }
             }
 
-            return Agendamento;
+                return pesquisaAgendamento;
         }
 
         public void Post(ReservaSala postData)
@@ -95,7 +136,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
                 throw new HttpResponseException(message);
             }
 
-            
+
 
             if (new ReservarSalaBS().ValidarReservaExistente(postData))
             {

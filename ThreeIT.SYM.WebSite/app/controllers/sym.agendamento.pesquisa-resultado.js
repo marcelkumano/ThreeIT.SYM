@@ -5,9 +5,9 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
     $scope.params = $routeParams;
     $scope.$parent.isRouteLoading = true;
 
-    $http.get('/sym/services/api/salasreservadas?qtdpessoas=' + $scope.params.lugares
-                                              + '&idunidade=' + $scope.params.onde
-                                              + '&rangedata=' + $scope.params.quando
+    $http.get('/sym/services/api/salasreservadas?quantidadePessoas=' + $scope.params.lugares
+                                              + '&codigoUnidade=' + $scope.params.onde
+                                              + '&intervaloData=' + $scope.params.quando
                                               + '&possuiProjetor=' + ($scope.params.possuiProjetor == "1" ? 'true' : ''))
     .then(function successCallback(response) {
         $scope.items = response.data.meses;
@@ -117,14 +117,17 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             if (detalheSala.inicioPrimeiroPeriodo >= horarioReservaInicio && detalheSala.inicioPrimeiroPeriodo <= horarioReservaFim) {
                 detalheSala.agendamento = value
                 detalheSala.primeiroPeriodoLivre = false;
+                detalheSala.primeiroPeriodoExpirou = value.expirouLimiteOcupacao
             }
 
             if (detalheSala.inicioSegundoPeriodo >= horarioReservaInicio && detalheSala.inicioSegundoPeriodo <= horarioReservaFim) {
                 detalheSala.agendamento = value
                 detalheSala.segundoPeriodoLivre = false;
+                detalheSala.segundoPeriodoExpirou = value.expirouLimiteOcupacao
             }
         });
 
+        
         detalheSala.horarioQuebrado = detalheSala.primeiroPeriodoLivre != detalheSala.segundoPeriodoLivre;
 
     };

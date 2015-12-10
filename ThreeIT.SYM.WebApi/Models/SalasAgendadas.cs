@@ -5,6 +5,15 @@ using System.Web;
 
 namespace ThreeIT.SYM.WebApi.Models
 {
+    public enum IntervaloPesquisaSalasEnum 
+    { 
+        Nenhum = 0,
+        Hoje = 1,
+        ProximosSeteDias = 2,
+        ProximosTrintaDias = 3
+    }
+
+
     public class SalasAgendadas
     {
         public List<Meses> meses { get; set; }
@@ -44,5 +53,6 @@ namespace ThreeIT.SYM.WebApi.Models
         public DateTime horarioInicial { get; set; }
         public DateTime horarioFinal { get; set; }
         public string reservadoPara { get; set; }
+        public bool? expirouLimiteOcupacao { get; set; }
     }
 }
