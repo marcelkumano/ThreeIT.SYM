@@ -31,10 +31,22 @@
     height: 80px;
 }
 
+.sym-modal-header-disabled {
+    background-color: #ddd;
+    height: 80px;
+}
+
 .sym-modal-title {
     color: white;
     padding: 10px 0px 0px 10px;
 }
+
+.sym-modal-title-disabled {
+    color: black;
+    padding: 10px 0px 0px 10px;
+    background-color:#ddd;
+}
+
 
 .sym-hora-select {
     width: 80px;
