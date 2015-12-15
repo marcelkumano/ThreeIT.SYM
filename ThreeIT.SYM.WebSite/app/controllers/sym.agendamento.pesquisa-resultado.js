@@ -127,7 +127,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             }
         });
 
-        
+
         detalheSala.horarioQuebrado = detalheSala.primeiroPeriodoLivre != detalheSala.segundoPeriodoLivre;
 
     };
@@ -137,6 +137,47 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
         var x = valor.toString();
 
         return x.substr(0, 1).toUpperCase();
+    }
+
+    $scope.sala = function (detSala) {
+
+        var retorno = { horarioQuebrado: false };
+
+        retorno.horarioQuebrado = detSala.horarioQuebrado;
+
+        if (retorno.horarioQuebrado) {
+            retorno.horario1Class = detSala.primeiroPeriodoExpirou ? 'sym-btn-unavailable-expired' : (detSala.primeiroPeriodoLivre ? 'sym-btn-available' : 'sym-btn-unavailable');
+            retorno.horario1Glyphicon = detSala.primeiroPeriodoExpirou ? 'glyphicon-alert' : (detSala.primeiroPeriodoLivre ? 'glyphicon-ok' : 'glyphicon-remove');
+            retorno.horario1Text = detSala.primeiroPeriodoExpirou ? 'Invadir' : (detSala.primeiroPeriodoLivre ? 'Agendar' : 'Reservado');
+
+            retorno.horario2Class = detSala.segundoPeriodoExpirou ? 'sym-btn-unavailable-expired' : (detSala.segundoPeriodoLivre ? 'sym-btn-available' : 'sym-btn-unavailable');
+            retorno.horario2Glyphicon = detSala.segundoPeriodoExpirou ? 'glyphicon-alert' : (detSala.segundoPeriodoLivre ? 'glyphicon-ok' : 'glyphicon-remove');
+            retorno.horario2Text = detSala.segundoPeriodoExpirou ? 'Invadir' : (detSala.segundoPeriodoLivre ? 'Agendar' : 'Reservado');
+        }
+        else {
+            retorno.horarioClass = detSala.primeiroPeriodoExpirou ? 'sym-btn-unavailable-expired' : (detSala.primeiroPeriodoLivre ? 'sym-btn-available' : 'sym-btn-unavailable');
+            retorno.horarioGlyphicon = detSala.primeiroPeriodoExpirou ? 'glyphicon-alert' : (detSala.primeiroPeriodoLivre ? 'glyphicon-ok' : 'glyphicon-remove');
+            retorno.horarioText = detSala.primeiroPeriodoExpirou ? 'Invadir' : (detSala.primeiroPeriodoLivre ? 'Agendar' : 'Reservado');
+        }
+
+        return retorno;
+    }
+
+
+    $scope.abrirAcoes = function (periodo, param) {
+        
+        if (periodo == 'primeiro') {
+            param.primeiroPeriodoExpirou ? $scope.abrirInclusao(periodo, param) : (param.primeiroPeriodoLivre ? $scope.abrirInclusao(periodo, param) : $scope.abrirDetalhe(periodo, param));
+        }
+
+        if (periodo == 'segundo') {
+            param.segundoPeriodoExpirou ? $scope.abrirInclusao(periodo, param) : (param.segundoPeriodoLivre ? $scope.abrirInclusao(periodo, param) : $scope.abrirDetalhe(periodo, param));
+        }
+
+        if (periodo == 'integral') {
+            param.primeiroPeriodoExpirou ? $scope.abrirInclusao(periodo, param) : (param.primeiroPeriodoLivre ? $scope.abrirInclusao(periodo, param) : $scope.abrirDetalhe(periodo, param));
+        }
+
     }
 
     $scope.abrirDetalhe = function (periodo, param) {
@@ -190,6 +231,7 @@ agendamentoControllers.controller('sym.agendamento.pesquisa-resultado', function
             $location.path('pesquisa/' + $scope.params.lugares + '/' + $scope.params.onde + '/' + $scope.params.quando + '/' + $scope.params.possuiProjetor + '/' + appGlobalData.RandomNumber());
         });
     };
+
 
 
 

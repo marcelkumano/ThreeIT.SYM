@@ -25,18 +25,17 @@ namespace ThreeIT.SYM.WebApi.Controllers
             switch (intervaloData)
             {
                 case IntervaloPesquisaSalasEnum.Hoje:
-                    dataInicio = new DateTime(DateTime.Today.Ticks, DateTimeKind.Utc);
-                    dataFim = new DateTime(DateTime.Today.AddWorkingDays(0 + 1).AddMinutes(-1).Ticks, DateTimeKind.Utc);
+                    dataInicio = DateTimeExtensions.BrasilToday();
+                    dataFim = DateTimeExtensions.BrasilToday().AddWorkingDays(1).AddMinutes(-1); ;
                     break;
                 case IntervaloPesquisaSalasEnum.ProximosSeteDias:
-                    dataInicio = new DateTime(DateTime.Today.Ticks, DateTimeKind.Utc);
-                    dataFim = new DateTime(DateTime.Today.AddWorkingDays(7).AddMinutes(-1).Ticks, DateTimeKind.Utc);
+                    dataInicio = DateTimeExtensions.BrasilToday();
+                    dataFim = DateTimeExtensions.BrasilToday().AddWorkingDays(7).AddMinutes(-1);
                     break;
                 case IntervaloPesquisaSalasEnum.ProximosTrintaDias:
-                    dataInicio = new DateTime(DateTime.Today.Ticks, DateTimeKind.Utc);
-                    dataFim = new DateTime(DateTime.Today.AddWorkingDays(15).AddMinutes(-1).Ticks, DateTimeKind.Utc);
+                    dataInicio = DateTimeExtensions.BrasilToday();
+                    dataFim = DateTimeExtensions.BrasilToday().AddWorkingDays(15).AddMinutes(-1);
                     break;
-
                 default:
                     dataInicio = DateTime.MinValue;
                     dataFim = DateTime.MaxValue;
@@ -92,7 +91,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
                         sala.reservas = new List<Reservas>();
 
                         foreach (ReservaSala reservaBase in listaReservas.Where(p => p.CodigoSalaReuniao == salaAtual.CodigoSalaReuniao
-                                                                              && p.DataHoraInicial.ToShortDateString() == dataAtual.ToShortDateString()))
+                                                                                  && p.DataHoraInicial.ToShortDateString() == dataAtual.ToShortDateString()))
                         {
                             Reservas reserva = new Reservas();
                             reserva.horarioFinal = reservaBase.DataHoraFinal;
@@ -107,7 +106,10 @@ namespace ThreeIT.SYM.WebApi.Controllers
                         dia.salas.Add(sala);
                     }
 
-                    mesAtual.dias.Add(dia);
+                    dia = this.TratarHorarioComercialHoje(dia);
+
+                    if (dia != null)
+                        mesAtual.dias.Add(dia);
                 }
 
                 dataAtual = dataAtual.AddDays(1);
@@ -118,7 +120,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
                 }
             }
 
-                return pesquisaAgendamento;
+            return pesquisaAgendamento;
         }
 
         public void Post(ReservaSala postData)
@@ -148,51 +150,43 @@ namespace ThreeIT.SYM.WebApi.Controllers
             new ReservarSalaBS().IncluirReserva(postData);
         }
 
-        private Dias PreencherListas(int contadorDias, List<SalaReuniao> ListaSalas, List<ReservaSala> ListaReserva)
-        {
-            Dias _Dias = new Dias();
-            _Dias.diaSemana = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.UtcNow.AddDays(contadorDias).DayOfWeek);
-            _Dias.numeroDia = DateTime.UtcNow.AddDays(contadorDias).Day;
-            _Dias.salas = new List<Salas>();
-
-            foreach (SalaReuniao Sala in ListaSalas)
-            {
-                Salas _Sala = new Salas();
-
-                _Sala.codigoUnidade = Sala.CodigoUnidade;
-                _Sala.nomeUnidade = new UnidadeBS().DetalharUnidade(Sala.CodigoUnidade).NomeUnidade;
-                _Sala.codigoSala = Sala.CodigoSalaReuniao;
-                _Sala.nomeSala = Sala.NomeSala;
-                _Sala.quantidadeLugares = Sala.CapacidadeSala;
-                _Sala.horarioInicial = Sala.DisponibilidadeInicio;
-                _Sala.horarioFinal = Sala.DispoonibilidadeFim;
-
-                _Sala.reservas = new List<Reservas>();
-                foreach (ReservaSala Reserva in ListaReserva.Where(p => p.CodigoSalaReuniao == Sala.CodigoSalaReuniao))
-                {
-                    if (Reserva.DataHoraInicial.Day == DateTime.UtcNow.AddDays(contadorDias).Day)
-                    {
-                        Reservas _Reserva = new Reservas();
-                        _Reserva.horarioFinal = Reserva.DataHoraFinal;
-                        _Reserva.horarioInicial = Reserva.DataHoraInicial;
-                        _Reserva.idAgendamento = Reserva.CodigoReserva;
-                        _Reserva.reservadoPara = "";
-
-                        _Sala.reservas.Add(_Reserva);
-                    }
-                }
-
-                _Dias.salas.Add(_Sala);
-            }
-
-            return _Dias;
-        }
-
         public ReservaSala Get(int CodigoReserva)
         {
             ReservaSala dados = new ReservaSala();
             dados = new ReservarSalaBS().ConsultarReserva(CodigoReserva);
             return dados;
+        }
+
+        private Dias TratarHorarioComercialHoje(Dias dia)
+        {
+            if (DateTimeExtensions.BrasilNow().Hour > 18)
+            {
+                return null;
+            }
+
+            if (DateTimeExtensions.BrasilNow().Hour > 8)
+            {
+                DateTime horarioInicial = new DateTime(1900, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+
+                if (DateTimeExtensions.BrasilNow().Minute < 30)
+                {
+                    horarioInicial = horarioInicial.AddHours(DateTimeExtensions.BrasilNow().Hour);
+                    //horarioInicial = horarioInicial.AddMinutes(30);
+                }
+                else
+                {
+                    horarioInicial = horarioInicial.AddHours(DateTimeExtensions.BrasilNow().Hour);
+                    horarioInicial = horarioInicial.AddMinutes(30);
+                }
+
+                foreach (var item in dia.salas)
+                {
+                    item.horarioInicial = horarioInicial;
+                }
+            }
+
+            return dia;
+
         }
     }
 }

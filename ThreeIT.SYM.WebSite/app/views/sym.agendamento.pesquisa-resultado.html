@@ -76,17 +76,17 @@
                         <li class="list-group-item sym-day-item" ng-repeat="hora in dia.horasDisponiveis">
                             <div class="row">
                                 <div class="col-xs-3 sym-day-room" ng-repeat="detSala in hora.salas">
-                                    <button type="button" class="btn" ng-show="detSala.horarioQuebrado" ng-class="detSala.primeiroPeriodoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="detSala.primeiroPeriodoLivre ? abrirInclusao('primeiro', detSala) : abrirDetalhe('primeiro', detSala)">
-                                        <span class="glyphicon" ng-class="detSala.primeiroPeriodoExpirou ? 'glyphicon-warning-sign' : (detSala.primeiroPeriodoLivre ? 'glyphicon-ok' : 'glyphicon-remove')"></span>
-                                        {{detSala.primeiroPeriodoLivre ? 'Agendar' : 'Reservado' }}
+                                    <button type="button" class="btn" ng-show="sala(detSala).horarioQuebrado" ng-class="sala(detSala).horario1Class" ng-click="abrirAcoes('primeiro', detSala)">
+                                        <span class="glyphicon" ng-class="sala(detSala).horario1Glyphicon"></span>
+                                        {{sala(detSala).horario1Text}}
                                     </button>
-                                    <button type="button" class="btn" ng-show="detSala.horarioQuebrado" ng-class="detSala.segundoPeriodoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="detSala.segundoPeriodoLivre ? abrirInclusao('segundo', detSala) : abrirDetalhe('segundo', detSala)">
-                                        <span class="glyphicon" ng-class="detSala.segundoPeriodoExpirou ? 'glyphicon-warning-sign' : (detSala.segundoPeriodoLivre ? 'glyphicon-ok' : 'glyphicon-remove')"></span>
-                                        {{detSala.segundoPeriodoLivre ? 'Agendar' : 'Reservado' }}
+                                    <button type="button" class="btn" ng-show="sala(detSala).horarioQuebrado" ng-class="sala(detSala).horario2Class" ng-click="abrirAcoes('segundo', detSala)">
+                                        <span class="glyphicon" ng-class="sala(detSala).horario2Glyphicon"></span>
+                                        {{sala(detSala).horario2Text}}
                                     </button>
-                                    <button type="button" class="btn sym-lg" ng-show="!detSala.horarioQuebrado" ng-class="detSala.primeiroPeriodoLivre ? 'sym-btn-available' : 'sym-btn-unavailable' " ng-click="detSala.primeiroPeriodoLivre ? abrirInclusao('integral', detSala) : abrirDetalhe('integral', detSala)">
-                                        <span class="glyphicon" ng-class="detSala.primeiroPeriodoExpirou ? 'glyphicon-warning-sign' : (detSala.primeiroPeriodoLivre ? 'glyphicon-ok' : 'glyphicon-remove')"></span>
-                                        {{detSala.primeiroPeriodoLivre ? 'Agendar' : 'Reservado' }}
+                                    <button type="button" class="btn sym-lg" ng-show="!sala(detSala).horarioQuebrado" ng-class="sala(detSala).horarioClass" ng-click="abrirAcoes('integral', detSala)">
+                                        <span class="glyphicon" ng-class="sala(detSala).horarioGlyphicon"></span>
+                                        {{sala(detSala).horarioText}}
                                     </button>
                                 </div>
                             </div>

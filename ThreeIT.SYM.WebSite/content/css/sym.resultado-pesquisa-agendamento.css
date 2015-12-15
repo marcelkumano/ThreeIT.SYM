@@ -210,7 +210,7 @@
     height: 28px;
 }
 
-    .sym-btn-available:hover, .sym-btn-available:active {
+    .sym-btn-available:hover, .sym-btn-available:focus, .sym-btn-available:active {
         background-color: #2668a1;
         border-left: 10px solid #2668a1;
         color: white;
@@ -237,8 +237,31 @@
         height: 56px;
     }
 
-    .sym-btn-unavailable:hover, .sym-btn-unavailable:active {
+    .sym-btn-unavailable:hover, .sym-btn-unavailable:focus, .sym-btn-unavailable:active {
         background-color: #ddd;
+        color: white;
+    }
+
+.sym-btn-unavailable-expired {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background-color: #337ab7;
+    border: none;
+    border-left: 10px solid #2166a1;
+    border-radius: 0px;
+    color: white;
+    font-size: 11px;
+    height: 28px;
+}
+
+    .sym-btn-unavailable-expired.sym-lg {
+        height: 56px;
+    }
+
+    .sym-btn-unavailable-expired:hover, .sym-btn-unavailable-expired:active {
+        background-color: #2668a1;
+        border-left: 10px solid #2668a1;
         color: white;
     }
 
@@ -290,7 +313,7 @@
         background-repeat: no-repeat;
         background-position: left;
         background-size: 36px;
-        float:left;
+        float: left;
     }
 
 .slideUp {

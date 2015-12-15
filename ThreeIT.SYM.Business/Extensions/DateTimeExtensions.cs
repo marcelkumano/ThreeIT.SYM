@@ -42,12 +42,25 @@ namespace ThreeIT.SYM.Business.Extensions
             return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(date.Month);
         }
 
-        public static DateTime BrasilNow(this DateTime date) 
+        public static DateTime BrasilNow()
         {
             TimeZoneInfo nossaRegiao = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
 
-            return TimeZoneInfo.ConvertTimeFromUtc(date, nossaRegiao);
+            return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, nossaRegiao);
 
         }
+
+        public static DateTime BrasilToday()
+        {
+            TimeZoneInfo nossaRegiao = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+
+            DateTime dateTimeBR = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, nossaRegiao);
+
+            return new DateTime(dateTimeBR.Year, dateTimeBR.Month, dateTimeBR.Day);
+
+        }
+
     }
+
+
 }

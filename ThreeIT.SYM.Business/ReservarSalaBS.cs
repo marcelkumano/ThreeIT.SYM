@@ -47,7 +47,7 @@ namespace ThreeIT.SYM.Business
                     item.DataLimiteOcupacao = DateTime.SpecifyKind(item.DataLimiteOcupacao, DateTimeKind.Utc);
 
                     if (item.DataLimiteOcupacao != default(DateTime))
-                        item.ExpirouLimiteOcupacao = DateTime.UtcNow.BrasilNow() > item.DataLimiteOcupacao;
+                        item.ExpirouLimiteOcupacao = DateTimeExtensions.BrasilNow() > item.DataLimiteOcupacao;
                 }
 
                 return listaReservas;
@@ -57,7 +57,7 @@ namespace ThreeIT.SYM.Business
         public void IncluirReserva(ReservaSala novaReserva)
         {
             novaReserva.CodigoUsuario = 1;
-            novaReserva.CodigoStatusReservaSala = 2;
+            novaReserva.CodigoStatusReservaSala = 1;
             novaReserva.CodigoUsuarioAlteracao = 1;
             novaReserva.DataAlteracao = DateTime.UtcNow;
 
