@@ -106,7 +106,7 @@ namespace ThreeIT.SYM.WebApi.Controllers
                         dia.salas.Add(sala);
                     }
 
-                    dia = this.TratarHorarioComercialHoje(dia);
+                    dia = this.TratarHorarioComercialHoje(dataAtual, dia);
 
                     if (dia != null)
                         mesAtual.dias.Add(dia);
@@ -157,31 +157,34 @@ namespace ThreeIT.SYM.WebApi.Controllers
             return dados;
         }
 
-        private Dias TratarHorarioComercialHoje(Dias dia)
+        private Dias TratarHorarioComercialHoje(DateTime dataAtual, Dias dia)
         {
-            if (DateTimeExtensions.BrasilNow().Hour > 18)
+            if (dataAtual.ToShortDateString() == DateTimeExtensions.BrasilNow().ToShortDateString())
             {
-                return null;
-            }
-
-            if (DateTimeExtensions.BrasilNow().Hour > 8)
-            {
-                DateTime horarioInicial = new DateTime(1900, 01, 01, 0, 0, 0, DateTimeKind.Utc);
-
-                if (DateTimeExtensions.BrasilNow().Minute < 30)
+                if (DateTimeExtensions.BrasilNow().Hour > 18)
                 {
-                    horarioInicial = horarioInicial.AddHours(DateTimeExtensions.BrasilNow().Hour);
-                    //horarioInicial = horarioInicial.AddMinutes(30);
-                }
-                else
-                {
-                    horarioInicial = horarioInicial.AddHours(DateTimeExtensions.BrasilNow().Hour);
-                    horarioInicial = horarioInicial.AddMinutes(30);
+                    return null;
                 }
 
-                foreach (var item in dia.salas)
+                if (DateTimeExtensions.BrasilNow().Hour > 8)
                 {
-                    item.horarioInicial = horarioInicial;
+                    DateTime horarioInicial = new DateTime(1900, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+
+                    if (DateTimeExtensions.BrasilNow().Minute < 30)
+                    {
+                        horarioInicial = horarioInicial.AddHours(DateTimeExtensions.BrasilNow().Hour);
+                        //horarioInicial = horarioInicial.AddMinutes(30);
+                    }
+                    else
+                    {
+                        horarioInicial = horarioInicial.AddHours(DateTimeExtensions.BrasilNow().Hour);
+                        horarioInicial = horarioInicial.AddMinutes(30);
+                    }
+
+                    foreach (var item in dia.salas)
+                    {
+                        item.horarioInicial = horarioInicial;
+                    }
                 }
             }
 
